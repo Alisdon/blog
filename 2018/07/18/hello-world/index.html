@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="keyword"  content="">
+    <meta name="description" content="wlf的博客">
+    <meta name="keyword"  content="blog">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
         
-        Hello World - undefined
+        Hello World - Alisdon的博客 | Alisdon&#39;s Blog
         
     </title>
 
@@ -35,7 +35,7 @@
 </div>
 
 <div class="index-about">
-    <i>  </i>
+    <i> just like code by Alisdon </i>
 </div>
 
 <div class="index-container">
@@ -60,7 +60,7 @@
                 </a>
             </li>
             <li >
-                <a href="/archives">
+                <a href="/archive">
                     <i class="iconfont icon-guidang2"></i>
                     <span>存档</span>
                 </a>
@@ -96,7 +96,7 @@
     </div>
 </div>
         <div class="index-about-mobile">
-            <i>  </i>
+            <i> just like code by Alisdon </i>
         </div>
     </div>
     
@@ -135,8 +135,8 @@
         <button id="donate-button">赞赏</button>
     </div>
     <div class="donate-img-container hide" id="donate-img-container">
-        <img id="donate-img" src="" data-src="/img/p.jpg">
-        <p> 感谢赠送 </p>
+        <img id="donate-img" src="" data-src="/img/donate.jpg">
+        <p> 感谢鼓励 </p>
     </div>
 </div>
         
@@ -179,5 +179,19 @@
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
 <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="/js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: 'Hello World',
+        owner: 'aircloud',
+        repo: 'hexo-aircloud-blog',
+        oauth: {
+            client_id: 'your-id-created-by-https://github.com/settings/applications/new',
+            client_secret: 'your-secret-created-by-https://github.com/settings/applications/new',
+        },
+    })
+    gitment.render('comment-container')
+</script>
 
 </html>

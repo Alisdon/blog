@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="keyword"  content="">
+    <meta name="description" content="wlf的博客">
+    <meta name="keyword"  content="blog">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
         
-        play4 - undefined
+        play4 - Alisdon的博客 | Alisdon&#39;s Blog
         
     </title>
 
@@ -35,7 +35,7 @@
 </div>
 
 <div class="index-about">
-    <i>  </i>
+    <i> just like code by Alisdon </i>
 </div>
 
 <div class="index-container">
@@ -60,7 +60,7 @@
                 </a>
             </li>
             <li >
-                <a href="/archives">
+                <a href="/archive">
                     <i class="iconfont icon-guidang2"></i>
                     <span>存档</span>
                 </a>
@@ -96,7 +96,7 @@
     </div>
 </div>
         <div class="index-about-mobile">
-            <i>  </i>
+            <i> just like code by Alisdon </i>
         </div>
     </div>
     
@@ -121,11 +121,11 @@
     <div class="post-content ">
         <p>fatal: HttpRequestException encountered<br><a href="https://github.com/Microsoft/Git-Credential-Manager-for-Windows/releases/" target="_blank" rel="noopener">https://github.com/Microsoft/Git-Credential-Manager-for-Windows/releases/</a> 下载 GCMW-1.17.0-preview.3.exe 安装</p>
 <p>hexo clean 清理静态化内容<br>hexo generate 简化 hexo g<br>hexo deploy 简化 hexo d</p>
-<p>##安装hexo##<br>npm install -g hexo-cli</p>
-<p>##初始化项目##<br>hexo init</p>
-<p>##启动项目##<br>hexo server</p>
-<p>##更换主题##<br><a href="https://hexo.io/themes/" target="_blank" rel="noopener">https://hexo.io/themes/</a> 选择喜欢的主题<br>根据选择的主题进行更换，并将_config.yml中的theme主题替换成在文件夹theme中的文件名称<br>添加主题中需要的图片等素材</p>
-<p>##linux安装git##<br>yum install -y git<br>ssh-keygen -t rsa -C <a href="mailto:&#39;920124512@qq.com" target="_blank" rel="noopener">&#39;920124512@qq.com</a>‘</p>
+<p>###安装hexo<br>npm install -g hexo-cli</p>
+<p>###初始化项目<br>hexo init</p>
+<p>###启动项目<br>hexo server</p>
+<p>###更换主题<br><a href="https://hexo.io/themes/" target="_blank" rel="noopener">https://hexo.io/themes/</a> 选择喜欢的主题<br>根据选择的主题进行更换，并将_config.yml中的theme主题替换成在文件夹theme中的文件名称<br>添加主题中需要的图片等素材</p>
+<p>###linux安装git<br>yum install -y git<br>ssh-keygen -t rsa -C <a href="mailto:&#39;920124512@qq.com" target="_blank" rel="noopener">&#39;920124512@qq.com</a>‘</p>
 
         
             <div class="donate-container">
@@ -133,8 +133,8 @@
         <button id="donate-button">赞赏</button>
     </div>
     <div class="donate-img-container hide" id="donate-img-container">
-        <img id="donate-img" src="" data-src="/img/p.jpg">
-        <p> 感谢赠送 </p>
+        <img id="donate-img" src="" data-src="/img/donate.jpg">
+        <p> 感谢鼓励 </p>
     </div>
 </div>
         
@@ -177,5 +177,19 @@
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
 <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="/js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: 'play4',
+        owner: 'aircloud',
+        repo: 'hexo-aircloud-blog',
+        oauth: {
+            client_id: 'your-id-created-by-https://github.com/settings/applications/new',
+            client_secret: 'your-secret-created-by-https://github.com/settings/applications/new',
+        },
+    })
+    gitment.render('comment-container')
+</script>
 
 </html>
