@@ -11,7 +11,7 @@
 
     <title>
         
-        
+        play4 - undefined
         
     </title>
 
@@ -59,7 +59,7 @@
                     <span>主页</span>
                 </a>
             </li>
-            <li  class=active >
+            <li >
                 <a href="/archives">
                     <i class="iconfont icon-guidang2"></i>
                     <span>存档</span>
@@ -75,6 +75,10 @@
             
         </ul>
     </div>
+    
+        <div id="toc" class="toc-article">
+    
+</div>
     
 </div>
 
@@ -101,50 +105,42 @@
         
 
 
-<!-- 归档列表 -->
+<div class="post-container">
+    <div class="post-title">
+        play4
+    </div>
 
-<div class="archives-container">
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-07-19 16:18:27</span></span>
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <p>fatal: HttpRequestException encountered<br><a href="https://github.com/Microsoft/Git-Credential-Manager-for-Windows/releases/" target="_blank" rel="noopener">https://github.com/Microsoft/Git-Credential-Manager-for-Windows/releases/</a> 下载 GCMW-1.17.0-preview.3.exe 安装</p>
+<p>hexo clean 清理静态化内容<br>hexo generate 简化 hexo g<br>hexo deploy 简化 hexo d</p>
+<p>##安装hexo##<br>npm install -g hexo-cli</p>
+<p>##初始化项目##<br>hexo init</p>
+<p>##启动项目##<br>hexo server</p>
+<p>##更换主题##<br><a href="https://hexo.io/themes/" target="_blank" rel="noopener">https://hexo.io/themes/</a> 选择喜欢的主题<br>根据选择的主题进行更换，并将_config.yml中的theme主题替换成在文件夹theme中的文件名称<br>添加主题中需要的图片等素材</p>
+<p>##linux安装git##<br>yum install -y git<br>ssh-keygen -t rsa -C <a href="mailto:&#39;920124512@qq.com" target="_blank" rel="noopener">&#39;920124512@qq.com</a>‘</p>
 
-<div class="one-tag-list">
-                <span class="fa fa-calendar-times-o listing-seperator" id="2018">
-                    <span class="tag-text">2018</span>
-                </span>
-    <ul>
         
-        <!-- <li class="listing-item">
-        <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-        <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-        </li> -->
-        <li >
-            <span>07-19</span>
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2018/07/19/play4/">
-                        <span>
-                            play4
-                        </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </li>
-        
-        <!-- <li class="listing-item">
-        <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-        <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-        </li> -->
-        <li >
-            <span>07-18</span>
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2018/07/18/hello-world/">
-                        <span>
-                            Hello World
-                        </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </li>
-        
-
-    </ul>
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/p.jpg">
+        <p> 感谢赠送 </p>
+    </div>
 </div>
-
+        
+        <div id="comment-container">
+        </div>
+    </div>
 </div>
     </div>
 </div>
@@ -176,7 +172,7 @@
     // We expose some of the variables needed by the front end
     window.hexo_search_path = "search.json"
     window.hexo_root = "/"
-    window.isPost = false
+    window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
