@@ -77,7 +77,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装hexo"><span class="toc-text">安装hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化项目"><span class="toc-text">初始化项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动项目"><span class="toc-text">启动项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更换主题"><span class="toc-text">更换主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hexo快捷命令"><span class="toc-text">hexo快捷命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linux安装git"><span class="toc-text">linux安装git</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linux安装git报错"><span class="toc-text">linux安装git报错</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装hexo"><span class="toc-text">安装hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化项目"><span class="toc-text">初始化项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动项目"><span class="toc-text">启动项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更换主题"><span class="toc-text">更换主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hexo快捷命令及快速发布"><span class="toc-text">hexo快捷命令及快速发布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linux安装git"><span class="toc-text">linux安装git</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linux安装git报错"><span class="toc-text">linux安装git报错</span></a></li></ol>
 </div>
     
 </div>
@@ -129,11 +129,12 @@
 <pre><code>hexo server
 </code></pre></blockquote>
 <h3 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h3><p><a href="https://hexo.io/themes/" target="_blank" rel="noopener">https://hexo.io/themes/</a> 选择喜欢的主题<br>根据选择的主题进行更换，并将_config.yml中的theme主题替换成在文件夹theme中的文件名称<br>添加主题中需要的图片等素材</p>
-<h3 id="hexo快捷命令"><a href="#hexo快捷命令" class="headerlink" title="hexo快捷命令"></a>hexo快捷命令</h3><pre><code>hexo clean 清理静态化内容
+<h3 id="hexo快捷命令及快速发布"><a href="#hexo快捷命令及快速发布" class="headerlink" title="hexo快捷命令及快速发布"></a>hexo快捷命令及快速发布</h3><pre><code>hexo clean 清理静态化内容
 hexo generate 简化 hexo g
 hexo deploy 简化 hexo d
-</code></pre><h3 id="linux安装git"><a href="#linux安装git" class="headerlink" title="linux安装git"></a>linux安装git</h3><p>yum install -y git<br>ssh-keygen -t rsa -C <a href="mailto:&#39;920124512@qq.com" target="_blank" rel="noopener">&#39;920124512@qq.com</a>‘</p>
-<h3 id="linux安装git报错"><a href="#linux安装git报错" class="headerlink" title="linux安装git报错"></a>linux安装git报错</h3><ol>
+</code></pre><h3 id="linux安装git"><a href="#linux安装git" class="headerlink" title="linux安装git"></a>linux安装git</h3><pre><code>yum install -y git
+ssh-keygen -t rsa -C &apos;920124512@qq.com&apos;
+</code></pre><h3 id="linux安装git报错"><a href="#linux安装git报错" class="headerlink" title="linux安装git报错"></a>linux安装git报错</h3><ol>
 <li><p><strong>fatal: HttpRequestException encountered</strong></p>
 <p> <a href="https://github.com/Microsoft/Git-Credential-Manager-for-Windows/releases/" target="_blank" rel="noopener">https://github.com/Microsoft/Git-Credential-Manager-for-Windows/releases/</a> 下载 GCMW-1.17.0-preview.3.exe 安装</p>
 </li>
