@@ -77,7 +77,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#linux服务端配置"><span class="toc-text">linux服务端配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建客户端口令"><span class="toc-text">创建客户端口令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置免密登录口令"><span class="toc-text">设置免密登录口令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#请求git仓库"><span class="toc-text">请求git仓库</span></a></li></ol>
 </div>
     
 </div>
@@ -113,13 +113,53 @@
     <div class="post-meta">
         <span class="attr">发布于：<span>2018-07-24 16:44:46</span></span>
         
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#linux" title="linux">linux</a>
+        <span>/</span>
+        
+        
         </span>
         <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
 </span>
 </span>
     </div>
     <div class="post-content ">
-        
+        <h3 id="linux服务端配置"><a href="#linux服务端配置" class="headerlink" title="linux服务端配置"></a>linux服务端配置</h3><p><strong>linux安装git</strong></p>
+<pre><code>yum install -y git
+</code></pre><p><strong>创建用户git</strong></p>
+<pre><code>groupadd git
+adduser git -g git
+</code></pre><p><strong>配置linux权限问题及创建authorized_keys文件</strong></p>
+<pre><code>cd /home/git
+mkdir .ssh
+chmod 700 .ssh
+touch .ssh/authorized_keys
+chmod 600 .ssh/authorized_keys
+cd /home
+chown -R git:git git
+
+Tips:后续的git clone如果需要密码，很有可能是git用户没有访问authorized_keys文件的权限
+</code></pre><p><strong>创建git仓库文件夹</strong></p>
+<pre><code>cd /home
+mkdir gitTest
+chown git:git gitTest
+</code></pre><p><strong>初始化git仓库</strong></p>
+<pre><code>cd gitTest
+git init --bare gitTest.git
+</code></pre><p><strong>把仓库所属用户改为git</strong></p>
+<pre><code>chown -R git:git gitTest.git
+</code></pre><p><strong>创建post-receive文件</strong></p>
+<pre><code>vim ~/gitTest.git/hooks/post-receive
+</code></pre><p><strong>post-receive文件内容</strong></p>
+<pre><code>#！/bin/sh
+git --work-tree=/usr/share/nginx/html/blog --git-dir=/home/gitTest/gitTest.git checkout -f
+</code></pre><p><strong>设置权限</strong></p>
+<pre><code>chmod +x ~/gitTest.git/hooks/post-receive
+</code></pre><h3 id="创建客户端口令"><a href="#创建客户端口令" class="headerlink" title="创建客户端口令"></a><strong>创建客户端口令</strong></h3><p>ssh-keygen -t rsa -C <a href="mailto:&#39;920124512@qq.com" target="_blank" rel="noopener">&#39;920124512@qq.com</a>‘</p>
+<h3 id="设置免密登录口令"><a href="#设置免密登录口令" class="headerlink" title="设置免密登录口令"></a><strong>设置免密登录口令</strong></h3><p>将id_rsa.pub中的内容写到服务器的authorized_keys文件中。</p>
+<h3 id="请求git仓库"><a href="#请求git仓库" class="headerlink" title="请求git仓库"></a><strong>请求git仓库</strong></h3><p>git clone git@ip:/home/gitTest/gitTest.git</p>
+
         
             <div class="donate-container">
     <div class="donate-button">
