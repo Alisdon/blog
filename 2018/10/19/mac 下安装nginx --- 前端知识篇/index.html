@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="wlf的博客">
+    <meta name="keyword"  content="blog">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        mac下安装nginx --- 前端知识篇 - Alisdon的博客
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Time is the most precious wealth of all wealth </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/img/t.jpg" />
+        </div>
+        <div class="name">
+            <i>Alisdon</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装nginx"><span class="toc-text">安装nginx</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> Time is the most precious wealth of all wealth </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        mac下安装nginx --- 前端知识篇
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-10-19 14:14:37</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#服务" title="服务">服务</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <p>##初识nginx<br>相信大多数同学已经听说了nginx这个东东，会不会很多同学和我一样一开始接触nginx的时候不知道它是什么？它能干什么？如果需要启服务，完全可以用node，为什么还需要使用nginx？</p>
+<p>对以上问题，我先引用一下官方对nginx的介绍</p>
+<blockquote>
+<p>“Nginx是一款轻量级的HTTP服务器，采用事件驱动的异步非阻塞处理方式框架，这让其具有极好的IO性能，时常用于服务端的反向代理和负载均衡。”</p>
+</blockquote>
+<p>##nginx的应用场景</p>
+<ol>
+<li><strong>http服务器</strong>。Nginx是一个http服务可以独立提供http服务。可以做网页静态服务器。</li>
+<li><strong>虚拟主机</strong>。可以实现在一台服务器虚拟出多个网站。例如个人网站使用的虚拟主机。</li>
+<li><strong>反向代理，负载均衡</strong>。当网站的访问量达到一定程度后，单台服务器不能满足用户的请求时，需要用多台服务器集群可以使用nginx做反向代理。并且多台服务器可以平均分担负载，不会因为某台服务器负载高宕机而某台服务器闲置的情况。</li>
+</ol>
+<p>##nginx的优点<br>nginx的优点在应用场景中已有体现，比如上面提到的反向代理，负载均衡功能。除此之外还有以下优势</p>
+<ul>
+<li><strong>支持海量高并发</strong>：采用IO多路复用epoll。官方测试Nginx能够支持5万并发链接，实际生产环境中可以支撑2-4万并发连接数。</li>
+<li><strong>内存消耗少</strong>：在主流的服务器中Nginx目前是内存消耗最小的。</li>
+<li><strong>配置文件简单</strong>：网络和程序配置通俗易懂，即使非专业运维也能看懂。</li>
+<li><strong>支持热部署</strong>：这对于我们前端的同学来说，使用惯webpack的热更新，对热更新的支持，无疑是吸引了一大波同学（我就算其中一个，啊哈哈）</li>
+</ul>
+<p><img src="../img/nginx-c.jpg" alt=""></p>
+<h2 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h2><p>前面铺垫了这么多，现在终于进入主题了。本教程是使用homebrew进行安装，未安装brew的同学请自行安装</p>
+<pre><code>brew install nginx
+</code></pre><p><img src="../img/nginx-install.png" alt=""></p>
+<p>##Nginx配置文件地址<br>安装成功后需要对配置文件进行个性化定制，本教程提供大部分时间需要修改的配置，配置文件在如下地址处</p>
+<p><em>/usr/local/etc/nginx/nginx.conf</em></p>
+<p>##默认的网站根目录<br>是否想知道网址访问的哪份文件呢？来，我们一起打开它</p>
+<p><em>/usr/local/var/www/</em></p>
+<p>##启动重启关闭nginx<br>成功安装后，我们肯定就是来使用nginx了，你可使用</p>
+<pre><code>nginx 
+</code></pre><p>直接启动或者使用</p>
+<pre><code>nginx -s reload|reopen|stop|quit 
+</code></pre><p>重新加载配置|重启|快速停止|安全关闭</p>
+<p>##访问地址<br>启动成功后，我们就只需要在浏览器中访问服务（地址）就好了</p>
+<p><em><a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a></em><br><img src="../img/nginx-open.png" alt=""></p>
+<p>##修改其他端口访问地址配置<br>默认8080被占用了？或者你看8080端口不爽？来，我们一起灭了它</p>
+<p><img src="../img/nginx-port.png" alt=""></p>
+<p>##修改默认的网站根目录<br>修改完8080，你是否觉得用默认的网站根目录很难找？是不是想换成自己熟悉的目录呢？</p>
+<p><img src="../img/nginx-path.png" alt=""></p>
+<blockquote>
+<p>tips: 配置文件里<code>location /</code> 里面的<code>root</code>,将<code>yourname</code>换成你电脑的用户名</p>
+</blockquote>
+<p>##执行启动或停止时报错Permission问题<br>这种问题都是没有权限引起的，执行代码前加上sudo即可<br><img src="../img/nginx-permission.png" alt=""></p>
+<p>##修改默认的网站根目录出现的问题报403 Forbidden或者File not find<br>修改了默认的网站根目录，出现问题时避免不了的。但是怎么办呢？这种问题一般是没有找到对应的文件，要不就是权限的问题</p>
+<ol>
+<li><p>查看目录下是否存在<code>index.html</code>或者<code>index.htm</code></p>
+</li>
+<li><p>修改配置文件第一行为 <code>user root owner;</code> 然后重启</p>
+</li>
+</ol>
+<p>##卸载nginx<br>好了，最后，如果你还是觉得nginx用起来不爽，更喜欢node，Apache什么的，勇敢的卸载它吧</p>
+<pre><code>brew uninstall nginx
+</code></pre>
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/p.jpg">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <div id="comment-container">
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="/js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: 'mac下安装nginx --- 前端知识篇',
+        owner: 'aircloud',
+        repo: 'hexo-aircloud-blog',
+        oauth: {
+            client_id: 'your-id-created-by-https://github.com/settings/applications/new',
+            client_secret: 'your-secret-created-by-https://github.com/settings/applications/new',
+        },
+    })
+    gitment.render('comment-container')
+</script>
+
+</html>
