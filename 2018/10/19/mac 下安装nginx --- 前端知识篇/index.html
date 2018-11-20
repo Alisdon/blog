@@ -136,10 +136,10 @@
 <li><strong>配置文件简单</strong>：网络和程序配置通俗易懂，即使非专业运维也能看懂。</li>
 <li><strong>支持热部署</strong>：这对于我们前端的同学来说，使用惯webpack的热更新，对热更新的支持，无疑是吸引了一大波同学（我就算其中一个，啊哈哈）</li>
 </ul>
-<p><img src="./img/nginx-c.jpg" alt=""></p>
+<p><img src="/img/nginx-c.jpg" alt=""></p>
 <h2 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h2><p>前面铺垫了这么多，现在终于进入主题了。本教程是使用homebrew进行安装，未安装brew的同学请自行安装</p>
 <pre><code>brew install nginx
-</code></pre><p><img src="./img/nginx-install.png" alt=""></p>
+</code></pre><p><img src="/img/nginx-install.png" alt=""></p>
 <h2 id="Nginx配置文件地址"><a href="#Nginx配置文件地址" class="headerlink" title="Nginx配置文件地址"></a>Nginx配置文件地址</h2><p>安装成功后需要对配置文件进行个性化定制，本教程提供大部分时间需要修改的配置，配置文件在如下地址处</p>
 <p><em>/usr/local/etc/nginx/nginx.conf</em></p>
 <h2 id="默认的网站根目录"><a href="#默认的网站根目录" class="headerlink" title="默认的网站根目录"></a>默认的网站根目录</h2><p>是否想知道网址访问的哪份文件呢？来，我们一起打开它</p>
@@ -151,16 +151,16 @@
 </code></pre><p><strong>重新加载配置|重启|快速停止|安全关闭</strong></p>
 <p>启动成功后，我们就只需要在浏览器中访问服务（地址）就好了</p>
 <p><em><a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a></em></p>
-<p><img src="./img/nginx-open.png" alt=""></p>
+<p><img src="/img/nginx-open.png" alt=""></p>
 <h2 id="修改其他端口访问地址配置"><a href="#修改其他端口访问地址配置" class="headerlink" title="修改其他端口访问地址配置"></a>修改其他端口访问地址配置</h2><p>默认8080被占用了？或者你看8080端口不爽？来，我们一起灭了它</p>
-<p><img src="./img/nginx-port.png" alt=""></p>
+<p><img src="/img/nginx-port.png" alt=""></p>
 <h2 id="修改默认的网站根目录"><a href="#修改默认的网站根目录" class="headerlink" title="修改默认的网站根目录"></a>修改默认的网站根目录</h2><p>修改完8080，你是否觉得用默认的网站根目录很难找？是不是想换成自己熟悉的目录呢？</p>
-<p><img src="./img/nginx-path.png" alt=""></p>
+<p><img src="/img/nginx-path.png" alt=""></p>
 <blockquote>
 <p>tips: 配置文件里<code>location /</code> 里面的<code>root</code>,将<code>yourname</code>换成你电脑的用户名</p>
 </blockquote>
 <h2 id="报错Permission问题"><a href="#报错Permission问题" class="headerlink" title="报错Permission问题"></a>报错Permission问题</h2><p>这种问题都是没有权限引起的，执行代码前加上sudo即可</p>
-<p><img src="./img/nginx-permission.png" alt=""></p>
+<p><img src="/img/nginx-permission.png" alt=""></p>
 <h2 id="403-Forbidden或者File-not-find"><a href="#403-Forbidden或者File-not-find" class="headerlink" title="403 Forbidden或者File not find"></a>403 Forbidden或者File not find</h2><p>修改了默认的网站根目录，出现问题时避免不了的。但是怎么办呢？这种问题一般是没有找到对应的文件，要不就是权限的问题</p>
 <ol>
 <li><p>查看目录下是否存在<code>index.html</code>或者<code>index.htm</code></p>
