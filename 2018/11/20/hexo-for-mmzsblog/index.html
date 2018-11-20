@@ -132,12 +132,18 @@
 <p>进入<strong>克隆下来</strong>的文件夹中安装依赖文件</p>
 <pre><code>$ cd blog
 $ npm install
-</code></pre><h2 id="新建博客"><a href="#新建博客" class="headerlink" title="新建博客"></a>新建博客</h2><pre><code>$ hexo new 你的文章名称
+</code></pre><h2 id="新建博客"><a href="#新建博客" class="headerlink" title="新建博客"></a>新建博客</h2><p>更新仓库代码，创建一篇新文章</p>
+<pre><code>$ git pull
+$ hexo new 你的文章名称
 </code></pre><p>打开<strong>当前文件夹</strong>下的<code>source/_post</code>目录，找到新建的文件（<em>一般是根据上方新建的文章名称作为文件名称</em>）进行编写</p>
-<h2 id="发布博客"><a href="#发布博客" class="headerlink" title="发布博客"></a>发布博客</h2><p>编译博客文件，这里由于<code>mmzs</code>是通过<code>github</code>进行重定向，所以将不做清理静态文件的操作，避免提交后需要重新设置的重复操作</p>
+<h2 id="发布博客"><a href="#发布博客" class="headerlink" title="发布博客"></a>发布博客</h2><p>由于<code>mmzs</code>是通过<code>github</code>进行重定向，所以将不做清理静态文件的操作，避免提交后需要重新设置的重复操作</p>
+<p>打包编译成静态文件</p>
 <pre><code>$ hexo generate      简写        hexo g
-$ hexo deploy         简写        hexo d
-</code></pre><p>如果出现一下提示则说明提交成功</p>
+</code></pre><p><img src="./hexog.png" alt=""></p>
+<p>发布提交到<code>github</code>上</p>
+<pre><code>$ hexo deploy         简写        hexo d
+</code></pre><p><img src="./hexod.png" alt=""></p>
+<p>如果出现以上提示则说明提交成功，隔几分钟后刷新<code>https://blog.mmzsblog.cn</code>即可查看刚刚新增的文章</p>
 
         
             <div class="donate-container">
