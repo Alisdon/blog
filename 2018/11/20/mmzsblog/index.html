@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="wlf的博客">
+    <meta name="keyword"  content="blog">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        用于mmzsblog网站博客开发 - Alisdon的博客
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Time is the most precious wealth of all wealth </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/img/t.png" />
+        </div>
+        <div class="name">
+            <i>Alisdon</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装nodejs"><span class="toc-text">安装nodejs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装git"><span class="toc-text">安装git</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装hexo"><span class="toc-text">安装hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git克隆仓库模版代码"><span class="toc-text">git克隆仓库模版代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装依赖文件"><span class="toc-text">安装依赖文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新建文章"><span class="toc-text">新建文章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#静态图片的处理"><span class="toc-text">静态图片的处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发布文章"><span class="toc-text">发布文章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#打包编译"><span class="toc-text">打包编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发布提交"><span class="toc-text">发布提交</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> Time is the most precious wealth of all wealth </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        用于mmzsblog网站博客开发
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-11-20 21:07:16</span></span>
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h2 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h2><p>前往 <a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">node官方下载地址</a>下载对应版本进行安装</p>
+<h2 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h2><p>前往 <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">git官方下载地址</a>下载对应版本进行安装</p>
+<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><pre><code>$ npm install -g hexo-cli
+</code></pre><blockquote>
+<p>此步骤需要将<code>nodejs</code>安装成功后才可进行，否则将报<code>npm</code>命令不存在的错误</p>
+</blockquote>
+<h2 id="git克隆仓库模版代码"><a href="#git克隆仓库模版代码" class="headerlink" title="git克隆仓库模版代码"></a>git克隆仓库模版代码</h2><pre><code>$ git clone https://www.mmzsblog.cn/mmzs/blog.git
+</code></pre><blockquote>
+<p>此步骤需要将<code>git</code>安装成功后才可进行，否则将报<code>git</code>命令不存在的错误</p>
+</blockquote>
+<h3 id="安装依赖文件"><a href="#安装依赖文件" class="headerlink" title="安装依赖文件"></a>安装依赖文件</h3><pre><code>$ cd blog
+$ npm install
+</code></pre><p>执行成功上述操作将图中文件</p>
+<p><img src="./hexom.png" alt=""></p>
+<h2 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h2><p>创建文章之前先更新仓库代码，然后再创建一篇新文章</p>
+<pre><code>$ git pull
+$ hexo new 你的文章名称
+</code></pre><p>打开<strong>当前文件夹</strong>下的<code>source/_post</code>目录，找到新建的文件<em>（一般是根据上方新建的文章名称作为文件名称）</em>进行编写</p>
+<h2 id="静态图片的处理"><a href="#静态图片的处理" class="headerlink" title="静态图片的处理"></a>静态图片的处理</h2><ol>
+<li>放到<code>source/img</code>文件中，在文章中需要进行<code>![](/img/xxx.jpg)</code>的引入</li>
+<li>直接放到和文章名称相同的文件夹中，在文章中需要进行<code>![](./xxx.png)</code>的引入</li>
+</ol>
+<h2 id="发布文章"><a href="#发布文章" class="headerlink" title="发布文章"></a>发布文章</h2><p>由于<code>mmzs</code>是通过<code>github</code>进行重定向，所以将不做清理静态文件的操作，避免提交后需要重新设置的重复操作</p>
+<h3 id="打包编译"><a href="#打包编译" class="headerlink" title="打包编译"></a>打包编译</h3><pre><code>$ hexo generate      简写        hexo g
+</code></pre><p><img src="./hexog.png" alt=""></p>
+<h3 id="发布提交"><a href="#发布提交" class="headerlink" title="发布提交"></a>发布提交</h3><pre><code>$ hexo deploy         简写        hexo d
+</code></pre><p><img src="./hexod.png" alt=""></p>
+<p>如果出现以上提示则说明提交成功，隔几分钟后刷新<code>https://blog.mmzsblog.cn</code>即可查看刚刚新增的文章</p>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/p.jpg">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <div id="comment-container">
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="/js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: '用于mmzsblog网站博客开发',
+        owner: 'aircloud',
+        repo: 'hexo-aircloud-blog',
+        oauth: {
+            client_id: 'your-id-created-by-https://github.com/settings/applications/new',
+            client_secret: 'your-secret-created-by-https://github.com/settings/applications/new',
+        },
+    })
+    gitment.render('comment-container')
+</script>
+
+</html>
