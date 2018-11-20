@@ -77,7 +77,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装nodejs"><span class="toc-text">安装nodejs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装git"><span class="toc-text">安装git</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装hexo"><span class="toc-text">安装hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git克隆仓库模版代码"><span class="toc-text">git克隆仓库模版代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新建博客"><span class="toc-text">新建博客</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发布博客"><span class="toc-text">发布博客</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装nodejs"><span class="toc-text">安装nodejs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装git"><span class="toc-text">安装git</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装hexo"><span class="toc-text">安装hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git克隆仓库模版代码"><span class="toc-text">git克隆仓库模版代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#进入克隆下来的文件夹中安装依赖文件"><span class="toc-text">进入克隆下来的文件夹中安装依赖文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新建博客"><span class="toc-text">新建博客</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发布博客"><span class="toc-text">发布博客</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#打包编译成静态文件"><span class="toc-text">打包编译成静态文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发布提交到github上"><span class="toc-text">发布提交到github上</span></a></li></ol>
 </div>
     
 </div>
@@ -129,19 +129,16 @@
 </code></pre><blockquote>
 <p>此步骤需要将<code>git</code>安装成功后才可进行，否则将报<code>git</code>命令不存在的错误</p>
 </blockquote>
-<p>进入<strong>克隆下来</strong>的文件夹中安装依赖文件</p>
-<pre><code>$ cd blog
+<h3 id="进入克隆下来的文件夹中安装依赖文件"><a href="#进入克隆下来的文件夹中安装依赖文件" class="headerlink" title="进入克隆下来的文件夹中安装依赖文件"></a>进入<strong>克隆下来</strong>的文件夹中安装依赖文件</h3><pre><code>$ cd blog
 $ npm install
 </code></pre><h2 id="新建博客"><a href="#新建博客" class="headerlink" title="新建博客"></a>新建博客</h2><p>更新仓库代码，创建一篇新文章</p>
 <pre><code>$ git pull
 $ hexo new 你的文章名称
 </code></pre><p>打开<strong>当前文件夹</strong>下的<code>source/_post</code>目录，找到新建的文件（<em>一般是根据上方新建的文章名称作为文件名称</em>）进行编写</p>
 <h2 id="发布博客"><a href="#发布博客" class="headerlink" title="发布博客"></a>发布博客</h2><p>由于<code>mmzs</code>是通过<code>github</code>进行重定向，所以将不做清理静态文件的操作，避免提交后需要重新设置的重复操作</p>
-<p>打包编译成静态文件</p>
-<pre><code>$ hexo generate      简写        hexo g
+<h2 id="打包编译成静态文件"><a href="#打包编译成静态文件" class="headerlink" title="打包编译成静态文件"></a>打包编译成静态文件</h2><pre><code>$ hexo generate      简写        hexo g
 </code></pre><p><img src="./hexog.png" alt=""></p>
-<p>发布提交到<code>github</code>上</p>
-<pre><code>$ hexo deploy         简写        hexo d
+<h2 id="发布提交到github上"><a href="#发布提交到github上" class="headerlink" title="发布提交到github上"></a>发布提交到<code>github</code>上</h2><pre><code>$ hexo deploy         简写        hexo d
 </code></pre><p><img src="./hexod.png" alt=""></p>
 <p>如果出现以上提示则说明提交成功，隔几分钟后刷新<code>https://blog.mmzsblog.cn</code>即可查看刚刚新增的文章</p>
 
