@@ -60,7 +60,7 @@
 </code></pre><blockquote>
 <p>此步骤需要将<code>nodejs</code>安装成功后才可进行，否则将报<code>npm</code>命令不存在的错误</p>
 </blockquote>
-<h2 id="git克隆仓库模版代码"><a href="#git克隆仓库模版代码" class="headerlink" title="git克隆仓库模版代码"></a>git克隆仓库模版代码</h2><pre><code>$ git clone https://www.mmzsblog.cn/mmzs/blog.git
+<h2 id="git克隆仓库模版代码"><a href="#git克隆仓库模版代码" class="headerlink" title="git克隆仓库模版代码"></a>git克隆仓库模版代码</h2><pre><code>$ git clone git@www.mmzsblog.cn/mmzs/blog.git
 </code></pre><blockquote>
 <p>此步骤需要将<code>git</code>安装成功后才可进行，否则将报<code>git</code>命令不存在的错误</p>
 </blockquote>
@@ -82,7 +82,9 @@ $ hexo new 你的文章名称
 <h3 id="发布提交"><a href="#发布提交" class="headerlink" title="发布提交"></a>发布提交</h3><pre><code>$ hexo deploy         简写        hexo d
 </code></pre><p><img src="./hexod.png" alt=""></p>
 <p>如果出现以上提示则说明提交成功，隔几分钟后刷新<a href="https://blog.mmzsblog.cn" target="_blank" rel="noopener">https://blog.mmzsblog.cn</a>即可查看刚刚新增的文章</p>
-
+<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><p>1.执行发布提交操作时控制台报<code>Deployer not found: git</code></p>
+<pre><code>$ npm install --save hexo-deployer-git
+</code></pre>
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
                 <source type="audio/mpeg" src="">
@@ -112,7 +114,7 @@ $ hexo new 你的文章名称
     </div>
     
         <div class='side'>
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装nodejs"><span class="toc-number">1.</span> <span class="toc-text">安装nodejs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装git"><span class="toc-number">2.</span> <span class="toc-text">安装git</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装hexo"><span class="toc-number">3.</span> <span class="toc-text">安装hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git克隆仓库模版代码"><span class="toc-number">4.</span> <span class="toc-text">git克隆仓库模版代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装依赖文件"><span class="toc-number">4.1.</span> <span class="toc-text">安装依赖文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新建文章"><span class="toc-number">5.</span> <span class="toc-text">新建文章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#静态图片的处理"><span class="toc-number">6.</span> <span class="toc-text">静态图片的处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发布文章"><span class="toc-number">7.</span> <span class="toc-text">发布文章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#打包编译"><span class="toc-number">7.1.</span> <span class="toc-text">打包编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发布提交"><span class="toc-number">7.2.</span> <span class="toc-text">发布提交</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装nodejs"><span class="toc-number">1.</span> <span class="toc-text">安装nodejs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装git"><span class="toc-number">2.</span> <span class="toc-text">安装git</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装hexo"><span class="toc-number">3.</span> <span class="toc-text">安装hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git克隆仓库模版代码"><span class="toc-number">4.</span> <span class="toc-text">git克隆仓库模版代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装依赖文件"><span class="toc-number">4.1.</span> <span class="toc-text">安装依赖文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新建文章"><span class="toc-number">5.</span> <span class="toc-text">新建文章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#静态图片的处理"><span class="toc-number">6.</span> <span class="toc-text">静态图片的处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发布文章"><span class="toc-number">7.</span> <span class="toc-text">发布文章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#打包编译"><span class="toc-number">7.1.</span> <span class="toc-text">打包编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发布提交"><span class="toc-number">7.2.</span> <span class="toc-text">发布提交</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#异常处理"><span class="toc-number">8.</span> <span class="toc-text">异常处理</span></a></li></ol>
         </div>
     
 </div>
