@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://alisdon.github.com/mmzs/mmzsblog/hexos.png">
 <meta property="og:image" content="https://alisdon.github.com/mmzs/mmzsblog/hexog.png">
 <meta property="og:image" content="https://alisdon.github.com/mmzs/mmzsblog/hexod.png">
-<meta property="og:updated_time" content="2018-11-23T05:32:58.105Z">
+<meta property="og:updated_time" content="2018-11-23T06:56:54.070Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用于mmzsblog网站博客开发">
 <meta name="twitter:description" content="前提条件提醒以下代码均在系统命令行(非node环境下的命令行)下完成。  cmd打开window系统命令行 直接在mac系统中打开终端  安装nodeJs前往 node官方下载地址下载对应版本进行安装 检测安装状态1$ node -v 出现版本信息则表示安装成功 安装git前往 git官方下载地址下载对应版本进行安装 检测安装状态1$ git --version 出现版本信息则表示安装成功 安装h">
@@ -426,7 +426,7 @@
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/mmzs/mmzsblog/#comments" class="article-comment-link">Comments</a></span>
         
 	
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 716(words)</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 726(words)</span>
 	
 	
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 2(minutes)</span>
@@ -467,13 +467,13 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git pull</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo new 你的文章名称</span></span><br></pre></td></tr></table></figure>
 <p>打开<strong>当前文件夹</strong>下的<code>source/_post</code>目录，找到新建的文件<em>（一般是根据上方新建的文章名称作为文件名称）</em>进行编写</p>
 <h3 id="静态图片的处理"><a href="#静态图片的处理" class="headerlink" title="静态图片的处理"></a>静态图片的处理</h3><ol>
-<li>放到<code>source/img</code>文件中，在文章中需要进行<code>![](/img/xxx.jpg)</code>的引入</li>
+<li>放到<code>source/images</code>文件中，在文章中需要进行<code>![](/images/xxx.jpg)</code>的引入</li>
 <li>直接放到和文章名称相同的文件夹中，在文章中需要进行<code>![](./xxx.png)</code>的引入</li>
 </ol>
 <h3 id="预览文章"><a href="#预览文章" class="headerlink" title="预览文章"></a>预览文章</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo<span class="built_in"> server	</span>	简写		hexo s</span><br></pre></td></tr></table></figure>
 <p><img src="./hexos.png" alt=""></p>
 <blockquote>
-<p>如果访问<code>http://localhost:4000</code>出现白板且控制台出现了<code>index.html</code>相关的问题则是由于没有获取主题导致的，需要前往<a href="#克隆主题代码">克隆主题文件</a></p>
+<p>打开浏览器输入<code>http://localhost:4000</code>进行访问。如果出现白板且控制台出现了<code>index.html</code>相关的问题则是由于没有获取主题导致的，需要前往<a href="#克隆主题代码">克隆主题文件</a></p>
 </blockquote>
 <h2 id="发布文章"><a href="#发布文章" class="headerlink" title="发布文章"></a>发布文章</h2><p>由于<code>mmzsblog</code>是通过<code>github</code>进行重定向，所以将不做清理静态文件的操作，避免提交后需要重新设置的重复操作</p>
 <h3 id="打包编译"><a href="#打包编译" class="headerlink" title="打包编译"></a>打包编译</h3><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo <span class="keyword">generate</span> 	 简写		hexo g</span><br></pre></td></tr></table></figure>
