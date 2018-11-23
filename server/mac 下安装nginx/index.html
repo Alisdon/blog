@@ -17,12 +17,12 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>mac下安装nginx --- 前端知识篇 | Alisdon</title>
+  <title>mac下安装nginx | Alisdon</title>
   <meta name="description" content="初识nginx相信大多数同学已经听说了nginx这个东东，会不会很多同学和我一样一开始接触nginx的时候不知道它是什么？它能干什么？如果需要启服务，完全可以用node，为什么还需要使用nginx？ 对以上问题，我先引用一下官方对nginx的介绍  “Nginx是一款轻量级的HTTP服务器，采用事件驱动的异步非阻塞处理方式框架，这让其具有极好的IO性能，时常用于服务端的反向代理和负载均衡。”  n">
 <meta name="keywords" content="nginx">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mac下安装nginx --- 前端知识篇">
-<meta property="og:url" content="https://alisdon.github.com/server/mac 下安装nginx --- 前端知识篇/index.html">
+<meta property="og:title" content="mac下安装nginx">
+<meta property="og:url" content="https://alisdon.github.com/server/mac 下安装nginx/index.html">
 <meta property="og:site_name" content="Alisdon Blog">
 <meta property="og:description" content="初识nginx相信大多数同学已经听说了nginx这个东东，会不会很多同学和我一样一开始接触nginx的时候不知道它是什么？它能干什么？如果需要启服务，完全可以用node，为什么还需要使用nginx？ 对以上问题，我先引用一下官方对nginx的介绍  “Nginx是一款轻量级的HTTP服务器，采用事件驱动的异步非阻塞处理方式框架，这让其具有极好的IO性能，时常用于服务端的反向代理和负载均衡。”  n">
 <meta property="og:locale" content="zh">
@@ -32,13 +32,13 @@
 <meta property="og:image" content="https://alisdon.github.com/blog/images/nginx-port.png">
 <meta property="og:image" content="https://alisdon.github.com/blog/images/nginx-path.png">
 <meta property="og:image" content="https://alisdon.github.com/blog/images/nginx-permission.png">
-<meta property="og:updated_time" content="2018-11-22T07:37:16.560Z">
+<meta property="og:updated_time" content="2018-11-23T15:59:16.030Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mac下安装nginx --- 前端知识篇">
+<meta name="twitter:title" content="mac下安装nginx">
 <meta name="twitter:description" content="初识nginx相信大多数同学已经听说了nginx这个东东，会不会很多同学和我一样一开始接触nginx的时候不知道它是什么？它能干什么？如果需要启服务，完全可以用node，为什么还需要使用nginx？ 对以上问题，我先引用一下官方对nginx的介绍  “Nginx是一款轻量级的HTTP服务器，采用事件驱动的异步非阻塞处理方式框架，这让其具有极好的IO性能，时常用于服务端的反向代理和负载均衡。”  n">
 <meta name="twitter:image" content="https://alisdon.github.com/blog/images/nginx-c.jpg">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://alisdon.github.com/server/mac 下安装nginx --- 前端知识篇/index.html">
+  <link rel="canonical" href="https://alisdon.github.com/server/mac 下安装nginx/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Alisdon Blog" type="application/atom+xml">
   
@@ -267,7 +267,7 @@
           <li>
             
             <div class="item-thumb">
-              <a href="/blog/server/mac 下安装nginx --- 前端知识篇/" class="thumb">
+              <a href="/blog/server/mac 下安装nginx/" class="thumb">
     
     
         <span class="thumb-image thumb-none"></span>
@@ -281,7 +281,7 @@
                 <a class="category-link" href="/blog/categories/server/">server</a>
               </p>
               <p class="item-title">
-                <a href="/blog/server/mac 下安装nginx --- 前端知识篇/" class="title">mac下安装nginx --- 前端知识篇</a>
+                <a href="/blog/server/mac 下安装nginx/" class="title">mac下安装nginx</a>
               </p>
               <p class="item-date">
                 <time datetime="2018-10-19T06:14:37.000Z" itemprop="datePublished">2018-10-19</time>
@@ -379,21 +379,21 @@
   <div class="slimContent">
     <nav id="toc" class="article-toc">
       <h3 class="toc-title">Catalogue</h3>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#初识nginx"><span class="toc-number">1.</span> <span class="toc-text">初识nginx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nginx的应用场景"><span class="toc-number">2.</span> <span class="toc-text">nginx的应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nginx的优点"><span class="toc-number">3.</span> <span class="toc-text">nginx的优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装nginx"><span class="toc-number">4.</span> <span class="toc-text">安装nginx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx配置文件地址"><span class="toc-number">5.</span> <span class="toc-text">Nginx配置文件地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#默认的网站根目录"><span class="toc-number">6.</span> <span class="toc-text">默认的网站根目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动重启关闭nginx"><span class="toc-number">7.</span> <span class="toc-text">启动重启关闭nginx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改其他端口访问地址配置"><span class="toc-number">8.</span> <span class="toc-text">修改其他端口访问地址配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改默认的网站根目录"><span class="toc-number">9.</span> <span class="toc-text">修改默认的网站根目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#报错Permission问题"><span class="toc-number">10.</span> <span class="toc-text">报错Permission问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#403-Forbidden或者File-not-find"><span class="toc-number">11.</span> <span class="toc-text">403 Forbidden或者File not find</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#卸载nginx"><span class="toc-number">12.</span> <span class="toc-text">卸载nginx</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#初识nginx"><span class="toc-number">1.</span> <span class="toc-text">初识nginx</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#nginx的应用场景"><span class="toc-number">1.1.</span> <span class="toc-text">nginx的应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nginx的优点"><span class="toc-number">1.2.</span> <span class="toc-text">nginx的优点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装nginx"><span class="toc-number">2.</span> <span class="toc-text">安装nginx</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置文件地址"><span class="toc-number">2.1.</span> <span class="toc-text">配置文件地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#默认根目录"><span class="toc-number">2.2.</span> <span class="toc-text">默认根目录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动重启关闭"><span class="toc-number">3.</span> <span class="toc-text">启动重启关闭</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义配置"><span class="toc-number">4.</span> <span class="toc-text">自定义配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#修改其他端口访问地址配置"><span class="toc-number">4.1.</span> <span class="toc-text">修改其他端口访问地址配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改默认的网站根目录"><span class="toc-number">4.2.</span> <span class="toc-text">修改默认的网站根目录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#异常处理"><span class="toc-number">5.</span> <span class="toc-text">异常处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Permission问题"><span class="toc-number">5.1.</span> <span class="toc-text">Permission问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Forbidden"><span class="toc-number">5.2.</span> <span class="toc-text">Forbidden</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-not-find"><span class="toc-number">5.3.</span> <span class="toc-text">File not find</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#卸载nginx"><span class="toc-number">6.</span> <span class="toc-text">卸载nginx</span></a></li></ol>
     </nav>
   </div>
 </aside>
 
 <main class="main" role="main">
   <div class="content">
-  <article id="post-mac 下安装nginx --- 前端知识篇" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-mac 下安装nginx" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      mac下安装nginx --- 前端知识篇
+      mac下安装nginx
     </h1>
   
 
@@ -401,7 +401,7 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/blog/server/mac 下安装nginx --- 前端知识篇/" class="article-date">
+	<a href="/blog/server/mac 下安装nginx/" class="article-date">
 	  <time datetime="2018-10-19T06:14:37.000Z" itemprop="datePublished">2018-10-19</time>
 	</a>
 </span>
@@ -422,13 +422,13 @@
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/blog/server/mac 下安装nginx --- 前端知识篇/" class="leancloud_visitors"  data-flag-title="mac下安装nginx --- 前端知识篇">0</span>
+    	<span id="/blog/server/mac 下安装nginx/" class="leancloud_visitors"  data-flag-title="mac下安装nginx">0</span>
     </span>
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/server/mac 下安装nginx --- 前端知识篇/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/server/mac 下安装nginx/#comments" class="article-comment-link">Comments</a></span>
         
 	
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 993(words)</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 1k(words)</span>
 	
 	
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 3(minutes)</span>
@@ -443,12 +443,12 @@
 <blockquote>
 <p>“Nginx是一款轻量级的HTTP服务器，采用事件驱动的异步非阻塞处理方式框架，这让其具有极好的IO性能，时常用于服务端的反向代理和负载均衡。”</p>
 </blockquote>
-<h2 id="nginx的应用场景"><a href="#nginx的应用场景" class="headerlink" title="nginx的应用场景"></a>nginx的应用场景</h2><ol>
+<h3 id="nginx的应用场景"><a href="#nginx的应用场景" class="headerlink" title="nginx的应用场景"></a>nginx的应用场景</h3><ol>
 <li><strong>http服务器</strong>。Nginx是一个http服务可以独立提供http服务。可以做网页静态服务器。</li>
 <li><strong>虚拟主机</strong>。可以实现在一台服务器虚拟出多个网站。例如个人网站使用的虚拟主机。</li>
 <li><strong>反向代理，负载均衡</strong>。当网站的访问量达到一定程度后，单台服务器不能满足用户的请求时，需要用多台服务器集群可以使用nginx做反向代理。并且多台服务器可以平均分担负载，不会因为某台服务器负载高宕机而某台服务器闲置的情况。</li>
 </ol>
-<h2 id="nginx的优点"><a href="#nginx的优点" class="headerlink" title="nginx的优点"></a>nginx的优点</h2><p>nginx的优点在应用场景中已有体现，比如上面提到的反向代理，负载均衡功能。除此之外还有以下优势</p>
+<h3 id="nginx的优点"><a href="#nginx的优点" class="headerlink" title="nginx的优点"></a>nginx的优点</h3><p>nginx的优点在应用场景中已有体现，比如上面提到的反向代理，负载均衡功能。除此之外还有以下优势</p>
 <ul>
 <li><strong>支持海量高并发</strong>：采用IO多路复用epoll。官方测试Nginx能够支持5万并发链接，实际生产环境中可以支撑2-4万并发连接数。</li>
 <li><strong>内存消耗少</strong>：在主流的服务器中Nginx目前是内存消耗最小的。</li>
@@ -459,11 +459,11 @@
 <h2 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h2><p>前面铺垫了这么多，现在终于进入主题了。本教程是使用homebrew进行安装，未安装brew的同学请自行安装</p>
 <pre><code>brew install nginx
 </code></pre><p><img src="/blog/images/nginx-install.png" alt=""></p>
-<h2 id="Nginx配置文件地址"><a href="#Nginx配置文件地址" class="headerlink" title="Nginx配置文件地址"></a>Nginx配置文件地址</h2><p>安装成功后需要对配置文件进行个性化定制，本教程提供大部分时间需要修改的配置，配置文件在如下地址处</p>
+<h3 id="配置文件地址"><a href="#配置文件地址" class="headerlink" title="配置文件地址"></a>配置文件地址</h3><p>安装成功后需要对配置文件进行个性化定制，本教程提供大部分时间需要修改的配置，配置文件在如下地址处</p>
 <p><em>/usr/local/etc/nginx/nginx.conf</em></p>
-<h2 id="默认的网站根目录"><a href="#默认的网站根目录" class="headerlink" title="默认的网站根目录"></a>默认的网站根目录</h2><p>是否想知道网址访问的哪份文件呢？来，我们一起打开它</p>
+<h3 id="默认根目录"><a href="#默认根目录" class="headerlink" title="默认根目录"></a>默认根目录</h3><p>是否想知道网址访问的哪份文件呢？来，我们一起打开它</p>
 <p><em>/usr/local/var/www/</em></p>
-<h2 id="启动重启关闭nginx"><a href="#启动重启关闭nginx" class="headerlink" title="启动重启关闭nginx"></a>启动重启关闭nginx</h2><p>成功安装后，我们肯定就是来使用nginx了，你可使用</p>
+<h2 id="启动重启关闭"><a href="#启动重启关闭" class="headerlink" title="启动重启关闭"></a>启动重启关闭</h2><p>成功安装后，我们肯定就是来使用nginx了，你可使用</p>
 <pre><code>nginx 
 </code></pre><p><strong>直接启动</strong>或者使用</p>
 <pre><code>nginx -s reload|reopen|stop|quit 
@@ -471,22 +471,23 @@
 <p>启动成功后，我们就只需要在浏览器中访问服务（地址）就好了</p>
 <p><em><a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a></em></p>
 <p><img src="/blog/images/nginx-open.png" alt=""></p>
-<h2 id="修改其他端口访问地址配置"><a href="#修改其他端口访问地址配置" class="headerlink" title="修改其他端口访问地址配置"></a>修改其他端口访问地址配置</h2><p>默认8080被占用了？或者你看8080端口不爽？来，我们一起灭了它</p>
+<h2 id="自定义配置"><a href="#自定义配置" class="headerlink" title="自定义配置"></a>自定义配置</h2><h3 id="修改其他端口访问地址配置"><a href="#修改其他端口访问地址配置" class="headerlink" title="修改其他端口访问地址配置"></a>修改其他端口访问地址配置</h3><p>默认8080被占用了？或者你看8080端口不爽？来，我们一起灭了它</p>
 <p><img src="/blog/images/nginx-port.png" alt=""></p>
-<h2 id="修改默认的网站根目录"><a href="#修改默认的网站根目录" class="headerlink" title="修改默认的网站根目录"></a>修改默认的网站根目录</h2><p>修改完8080，你是否觉得用默认的网站根目录很难找？是不是想换成自己熟悉的目录呢？</p>
+<h3 id="修改默认的网站根目录"><a href="#修改默认的网站根目录" class="headerlink" title="修改默认的网站根目录"></a>修改默认的网站根目录</h3><p>修改完8080，你是否觉得用默认的网站根目录很难找？是不是想换成自己熟悉的目录呢？</p>
 <p><img src="/blog/images/nginx-path.png" alt=""></p>
 <blockquote>
 <p>tips: 配置文件里<code>location /</code> 里面的<code>root</code>,将<code>yourname</code>换成你电脑的用户名</p>
 </blockquote>
-<h2 id="报错Permission问题"><a href="#报错Permission问题" class="headerlink" title="报错Permission问题"></a>报错Permission问题</h2><p>这种问题都是没有权限引起的，执行代码前加上sudo即可</p>
+<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><h3 id="Permission问题"><a href="#Permission问题" class="headerlink" title="Permission问题"></a>Permission问题</h3><p>这种问题都是没有权限引起的，执行代码前加上sudo即可</p>
 <p><img src="/blog/images/nginx-permission.png" alt=""></p>
-<h2 id="403-Forbidden或者File-not-find"><a href="#403-Forbidden或者File-not-find" class="headerlink" title="403 Forbidden或者File not find"></a>403 Forbidden或者File not find</h2><p>修改了默认的网站根目录，出现问题时避免不了的。但是怎么办呢？这种问题一般是没有找到对应的文件，要不就是权限的问题</p>
+<h3 id="Forbidden"><a href="#Forbidden" class="headerlink" title="Forbidden"></a>Forbidden</h3><p>修改了默认的网站根目录，出现问题时避免不了的。但是怎么办呢？这种问题一般是没有找到对应的文件，要不就是权限的问题</p>
 <ol>
 <li><p>查看目录下是否存在<code>index.html</code>或者<code>index.htm</code></p>
 </li>
 <li><p>修改配置文件第一行为 <code>user root owner;</code> 然后重启</p>
 </li>
 </ol>
+<h3 id="File-not-find"><a href="#File-not-find" class="headerlink" title="File not find"></a>File not find</h3><p>同上 <a href="#Forbidden"> Forbidden </a>的解决方案</p>
 <h2 id="卸载nginx"><a href="#卸载nginx" class="headerlink" title="卸载nginx"></a>卸载nginx</h2><p>好了，最后，如果你还是觉得nginx用起来不爽，更喜欢node，Apache什么的，勇敢的卸载它吧</p>
 <pre><code>brew uninstall nginx
 </code></pre>
@@ -498,7 +499,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://alisdon.github.com/server/mac 下安装nginx --- 前端知识篇/" title="mac下安装nginx --- 前端知识篇" target="_blank" rel="external">https://alisdon.github.com/server/mac 下安装nginx --- 前端知识篇/</a>
+      <a href="https://alisdon.github.com/server/mac 下安装nginx/" title="mac下安装nginx" target="_blank" rel="external">https://alisdon.github.com/server/mac 下安装nginx/</a>
     </li>
     
     <li class="post-copyright-license">
