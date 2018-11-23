@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://alisdon.github.com/blog/images/nginx-port.png">
 <meta property="og:image" content="https://alisdon.github.com/blog/images/nginx-path.png">
 <meta property="og:image" content="https://alisdon.github.com/blog/images/nginx-permission.png">
-<meta property="og:updated_time" content="2018-11-23T15:59:16.030Z">
+<meta property="og:updated_time" content="2018-11-23T16:01:56.878Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mac下安装nginx">
 <meta name="twitter:description" content="初识nginx相信大多数同学已经听说了nginx这个东东，会不会很多同学和我一样一开始接触nginx的时候不知道它是什么？它能干什么？如果需要启服务，完全可以用node，为什么还需要使用nginx？ 对以上问题，我先引用一下官方对nginx的介绍  “Nginx是一款轻量级的HTTP服务器，采用事件驱动的异步非阻塞处理方式框架，这让其具有极好的IO性能，时常用于服务端的反向代理和负载均衡。”  n">
@@ -342,7 +342,7 @@
           <li>
             
             <div class="item-thumb">
-              <a href="/blog/server/linux下安装配置实现无密操作git/" class="thumb">
+              <a href="/blog/server/linux下实现无密操作git/" class="thumb">
     
     
         <span class="thumb-image thumb-none"></span>
@@ -356,7 +356,7 @@
                 <a class="category-link" href="/blog/categories/server/">server</a>
               </p>
               <p class="item-title">
-                <a href="/blog/server/linux下安装配置实现无密操作git/" class="title">linux下安装配置实现无密操作git</a>
+                <a href="/blog/server/linux下实现无密操作git/" class="title">linux下实现无密操作git</a>
               </p>
               <p class="item-date">
                 <time datetime="2018-07-24T08:44:46.000Z" itemprop="datePublished">2018-07-24</time>
@@ -379,7 +379,7 @@
   <div class="slimContent">
     <nav id="toc" class="article-toc">
       <h3 class="toc-title">Catalogue</h3>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#初识nginx"><span class="toc-number">1.</span> <span class="toc-text">初识nginx</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#nginx的应用场景"><span class="toc-number">1.1.</span> <span class="toc-text">nginx的应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nginx的优点"><span class="toc-number">1.2.</span> <span class="toc-text">nginx的优点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装nginx"><span class="toc-number">2.</span> <span class="toc-text">安装nginx</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置文件地址"><span class="toc-number">2.1.</span> <span class="toc-text">配置文件地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#默认根目录"><span class="toc-number">2.2.</span> <span class="toc-text">默认根目录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动重启关闭"><span class="toc-number">3.</span> <span class="toc-text">启动重启关闭</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义配置"><span class="toc-number">4.</span> <span class="toc-text">自定义配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#修改其他端口访问地址配置"><span class="toc-number">4.1.</span> <span class="toc-text">修改其他端口访问地址配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改默认的网站根目录"><span class="toc-number">4.2.</span> <span class="toc-text">修改默认的网站根目录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#异常处理"><span class="toc-number">5.</span> <span class="toc-text">异常处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Permission问题"><span class="toc-number">5.1.</span> <span class="toc-text">Permission问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Forbidden"><span class="toc-number">5.2.</span> <span class="toc-text">Forbidden</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-not-find"><span class="toc-number">5.3.</span> <span class="toc-text">File not find</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#卸载nginx"><span class="toc-number">6.</span> <span class="toc-text">卸载nginx</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#初识nginx"><span class="toc-number">1.</span> <span class="toc-text">初识nginx</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#nginx的应用场景"><span class="toc-number">1.1.</span> <span class="toc-text">nginx的应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nginx的优点"><span class="toc-number">1.2.</span> <span class="toc-text">nginx的优点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装nginx"><span class="toc-number">2.</span> <span class="toc-text">安装nginx</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置文件地址"><span class="toc-number">2.1.</span> <span class="toc-text">配置文件地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#默认根目录"><span class="toc-number">2.2.</span> <span class="toc-text">默认根目录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动重启关闭"><span class="toc-number">3.</span> <span class="toc-text">启动重启关闭</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义配置"><span class="toc-number">4.</span> <span class="toc-text">自定义配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#修改访问端口"><span class="toc-number">4.1.</span> <span class="toc-text">修改访问端口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改默认根目录"><span class="toc-number">4.2.</span> <span class="toc-text">修改默认根目录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#异常处理"><span class="toc-number">5.</span> <span class="toc-text">异常处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Permission问题"><span class="toc-number">5.1.</span> <span class="toc-text">Permission问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Forbidden"><span class="toc-number">5.2.</span> <span class="toc-text">Forbidden</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-not-find"><span class="toc-number">5.3.</span> <span class="toc-text">File not find</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#卸载nginx"><span class="toc-number">6.</span> <span class="toc-text">卸载nginx</span></a></li></ol>
     </nav>
   </div>
 </aside>
@@ -428,7 +428,7 @@
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/server/mac 下安装nginx/#comments" class="article-comment-link">Comments</a></span>
         
 	
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 1k(words)</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 992(words)</span>
 	
 	
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 3(minutes)</span>
@@ -471,9 +471,9 @@
 <p>启动成功后，我们就只需要在浏览器中访问服务（地址）就好了</p>
 <p><em><a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a></em></p>
 <p><img src="/blog/images/nginx-open.png" alt=""></p>
-<h2 id="自定义配置"><a href="#自定义配置" class="headerlink" title="自定义配置"></a>自定义配置</h2><h3 id="修改其他端口访问地址配置"><a href="#修改其他端口访问地址配置" class="headerlink" title="修改其他端口访问地址配置"></a>修改其他端口访问地址配置</h3><p>默认8080被占用了？或者你看8080端口不爽？来，我们一起灭了它</p>
+<h2 id="自定义配置"><a href="#自定义配置" class="headerlink" title="自定义配置"></a>自定义配置</h2><h3 id="修改访问端口"><a href="#修改访问端口" class="headerlink" title="修改访问端口"></a>修改访问端口</h3><p>默认8080被占用了？或者你看8080端口不爽？来，我们一起灭了它</p>
 <p><img src="/blog/images/nginx-port.png" alt=""></p>
-<h3 id="修改默认的网站根目录"><a href="#修改默认的网站根目录" class="headerlink" title="修改默认的网站根目录"></a>修改默认的网站根目录</h3><p>修改完8080，你是否觉得用默认的网站根目录很难找？是不是想换成自己熟悉的目录呢？</p>
+<h3 id="修改默认根目录"><a href="#修改默认根目录" class="headerlink" title="修改默认根目录"></a>修改默认根目录</h3><p>修改完8080，你是否觉得用默认的网站根目录很难找？是不是想换成自己熟悉的目录呢？</p>
 <p><img src="/blog/images/nginx-path.png" alt=""></p>
 <blockquote>
 <p>tips: 配置文件里<code>location /</code> 里面的<code>root</code>,将<code>yourname</code>换成你电脑的用户名</p>
