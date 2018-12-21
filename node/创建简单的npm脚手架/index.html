@@ -18,18 +18,18 @@
   
   
   <title>创建简单的npm脚手架 | Alisdon</title>
-  <meta name="description" content="前言vue-cli， webpack-cli 等脚手架是不是用起来爱不释手？自己写了个模版每次来回复制粘贴代码是不是很难维护？如果你是对前端、Node操作有一定的了解，同时也存在以上疑问，那就请尽情阅读尝试吧！ 本篇文章按照al-block-cli举例, al-block-cli是一个基于vue和elementUI而集成的一个开发模版，可安装进行使用 依赖 Commander.js 命令行工具 d">
+  <meta name="description" content="前言vue-cli， webpack-cli 等脚手架是不是用起来爱不释手？自己写了个模版每次来回复制粘贴代码是不是很难维护？如果你是对前端、Node操作有一定的了解，同时也存在以上疑问，那就请尽情阅读尝试吧！  本篇文章按照al-block-cli举例, al-block-cli是一个基于vue和elementUI而集成的一个开发模版，可安装进行使用  依赖 Commander.js 命令行工具">
 <meta name="keywords" content="node">
 <meta property="og:type" content="article">
 <meta property="og:title" content="创建简单的npm脚手架">
 <meta property="og:url" content="https://alisdon.github.com/node/创建简单的npm脚手架/index.html">
 <meta property="og:site_name" content="Alisdon Blog">
-<meta property="og:description" content="前言vue-cli， webpack-cli 等脚手架是不是用起来爱不释手？自己写了个模版每次来回复制粘贴代码是不是很难维护？如果你是对前端、Node操作有一定的了解，同时也存在以上疑问，那就请尽情阅读尝试吧！ 本篇文章按照al-block-cli举例, al-block-cli是一个基于vue和elementUI而集成的一个开发模版，可安装进行使用 依赖 Commander.js 命令行工具 d">
+<meta property="og:description" content="前言vue-cli， webpack-cli 等脚手架是不是用起来爱不释手？自己写了个模版每次来回复制粘贴代码是不是很难维护？如果你是对前端、Node操作有一定的了解，同时也存在以上疑问，那就请尽情阅读尝试吧！  本篇文章按照al-block-cli举例, al-block-cli是一个基于vue和elementUI而集成的一个开发模版，可安装进行使用  依赖 Commander.js 命令行工具">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2018-12-21T04:14:02.662Z">
+<meta property="og:updated_time" content="2018-12-21T04:16:13.334Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="创建简单的npm脚手架">
-<meta name="twitter:description" content="前言vue-cli， webpack-cli 等脚手架是不是用起来爱不释手？自己写了个模版每次来回复制粘贴代码是不是很难维护？如果你是对前端、Node操作有一定的了解，同时也存在以上疑问，那就请尽情阅读尝试吧！ 本篇文章按照al-block-cli举例, al-block-cli是一个基于vue和elementUI而集成的一个开发模版，可安装进行使用 依赖 Commander.js 命令行工具 d">
+<meta name="twitter:description" content="前言vue-cli， webpack-cli 等脚手架是不是用起来爱不释手？自己写了个模版每次来回复制粘贴代码是不是很难维护？如果你是对前端、Node操作有一定的了解，同时也存在以上疑问，那就请尽情阅读尝试吧！  本篇文章按照al-block-cli举例, al-block-cli是一个基于vue和elementUI而集成的一个开发模版，可安装进行使用  依赖 Commander.js 命令行工具">
   <!-- Canonical links -->
   <link rel="canonical" href="https://alisdon.github.com/node/创建简单的npm脚手架/index.html">
   
@@ -434,7 +434,9 @@
     <div class="article-entry marked-body" itemprop="articleBody">
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>vue-cli， webpack-cli 等脚手架是不是用起来爱不释手？自己写了个模版每次来回复制粘贴代码是不是很难维护？如果你是对前端、Node操作有一定的了解，同时也存在以上疑问，那就请尽情阅读尝试吧！</p>
+<blockquote>
 <p>本篇文章按照<code>al-block-cli</code>举例, <code>al-block-cli</code>是一个基于<code>vue</code>和<code>elementUI</code>而集成的一个开发模版，可安装进行使用</p>
+</blockquote>
 <h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><ol>
 <li><a href="https://github.com/tj/commander.js" target="_blank" rel="noopener">Commander.js</a> 命令行工具</li>
 <li><a href="https://github.com/flipxfx/download-git-repo" target="_blank" rel="noopener">download-git-repo</a> git仓库代码下载</li>
@@ -455,7 +457,7 @@
 <blockquote>
 <p><code>bin</code>文件夹为可执行命令入口目录，<code>commands</code>则负责编写一些命令交互，</p>
 </blockquote>
-<h3 id="最终目录结构"><a href="#最终目录结构" class="headerlink" title="最终目录结构"></a>最终目录结构</h3><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- al-block-cli</span><br><span class="line"><span class="string">| - bin</span></span><br><span class="line"> <span class="string">| - al-blocl-cli</span></span><br><span class="line"><span class="string">| - commands</span></span><br><span class="line"> <span class="string">| - init.js</span></span><br><span class="line"><span class="string">| - node_modules</span></span><br><span class="line"><span class="string">| - package.json</span></span><br><span class="line"><span class="string">| - templates.json</span></span><br></pre></td></tr></table></figure>
+<h3 id="最终目录结构"><a href="#最终目录结构" class="headerlink" title="最终目录结构"></a>最终目录结构</h3><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- al-block-cli</span><br><span class="line"><span class="string">| - bin</span></span><br><span class="line">  <span class="string">| - al-blocl-cli</span></span><br><span class="line"><span class="string">| - commands</span></span><br><span class="line">  <span class="string">| - init.js</span></span><br><span class="line"><span class="string">| - node_modules</span></span><br><span class="line"><span class="string">| - package.json</span></span><br><span class="line"><span class="string">| - templates.json</span></span><br></pre></td></tr></table></figure>
 <h2 id="编写代码"><a href="#编写代码" class="headerlink" title="编写代码"></a>编写代码</h2><h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>输入默认需要的配置，如这里需要<code>github</code>的仓库地址和命令行的名称</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"init"</span>: &#123;</span><br><span class="line">    <span class="attr">"name"</span>: <span class="string">"init"</span>,</span><br><span class="line">    <span class="attr">"path"</span>: <span class="string">"Alisdon/al-block-template"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="入口文件"><a href="#入口文件" class="headerlink" title="入口文件"></a>入口文件</h3><p>打开<code>al-block-cli</code>文件，并在其第一行加入</p>
