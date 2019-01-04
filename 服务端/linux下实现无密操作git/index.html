@@ -17,19 +17,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Archive | Alisdon</title>
-  <meta name="description" content="wlf的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Alisdon Blog">
-<meta property="og:url" content="https://alisdon.github.com/archive/index.html">
+  <title>linux下实现无密操作git | Alisdon</title>
+  <meta name="description" content="linux服务端配置linux安装git yum install -y git 创建用户git groupadd git adduser git -g git 配置linux权限问题及创建authorized_keys文件 cd /home/git mkdir .ssh chmod 700 .ssh touch .ssh/authorized_keys chmod 600 .ssh/authori">
+<meta name="keywords" content="git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux下实现无密操作git">
+<meta property="og:url" content="https://alisdon.github.com/服务端/linux下实现无密操作git/index.html">
 <meta property="og:site_name" content="Alisdon Blog">
-<meta property="og:description" content="wlf的博客">
+<meta property="og:description" content="linux服务端配置linux安装git yum install -y git 创建用户git groupadd git adduser git -g git 配置linux权限问题及创建authorized_keys文件 cd /home/git mkdir .ssh chmod 700 .ssh touch .ssh/authorized_keys chmod 600 .ssh/authori">
 <meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-01-04T01:37:37.189Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Alisdon Blog">
-<meta name="twitter:description" content="wlf的博客">
+<meta name="twitter:title" content="linux下实现无密操作git">
+<meta name="twitter:description" content="linux服务端配置linux安装git yum install -y git 创建用户git groupadd git adduser git -g git 配置linux权限问题及创建authorized_keys文件 cd /home/git mkdir .ssh chmod 700 .ssh touch .ssh/authorized_keys chmod 600 .ssh/authori">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://alisdon.github.com/archive/index.html">
+  <link rel="canonical" href="https://alisdon.github.com/服务端/linux下实现无密操作git/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Alisdon Blog" type="application/atom+xml">
   
@@ -366,137 +368,229 @@
 
   
   
+<aside class="sidebar sidebar-toc" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#linux服务端配置"><span class="toc-number">1.</span> <span class="toc-text">linux服务端配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建客户端口令"><span class="toc-number">2.</span> <span class="toc-text">创建客户端口令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置免密登录口令"><span class="toc-number">3.</span> <span class="toc-text">设置免密登录口令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#请求git仓库"><span class="toc-number">4.</span> <span class="toc-text">请求git仓库</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
 <main class="main" role="main">
-  	<article class="content article article-archives article-type-list" itemscope="">
-	    <header class="article-header">
-	      <h1 itemprop="title">Archive</h1>
-	      <p class="text-muted">Total 8 articles</p>
-	    </header>
-	    <div class="article-body">
-	      
+  <div class="content">
+  <article id="post-linux下实现无密操作git" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
   
+    <h1 class="article-title" itemprop="name">
+      linux下实现无密操作git
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/blog/服务端/linux下实现无密操作git/" class="article-date">
+	  <time datetime="2018-07-24T08:44:46.000Z" itemprop="datePublished">2018-07-24</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/blog/categories/服务端/">服务端</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/blog/tags/git/">git</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/服务端/linux下实现无密操作git/#comments" class="article-comment-link">Comments</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 287(words)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 1(minutes)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h3 id="linux服务端配置"><a href="#linux服务端配置" class="headerlink" title="linux服务端配置"></a>linux服务端配置</h3><p><strong>linux安装git</strong></p>
+<pre><code>yum install -y git
+</code></pre><p><strong>创建用户git</strong></p>
+<pre><code>groupadd git
+adduser git -g git
+</code></pre><p><strong>配置linux权限问题及创建authorized_keys文件</strong></p>
+<pre><code>cd /home/git
+mkdir .ssh
+chmod 700 .ssh
+touch .ssh/authorized_keys
+chmod 600 .ssh/authorized_keys
+cd /home
+chown -R git:git git
+
+Tips:后续的git clone如果需要密码，很有可能是git用户没有访问authorized_keys文件的权限
+</code></pre><p><strong>创建git仓库文件夹</strong></p>
+<pre><code>cd /home
+mkdir gitTest
+chown git:git gitTest //赋予git用户权限
+</code></pre><p><strong>初始化git仓库</strong></p>
+<pre><code>cd gitTest
+git init --bare gitTest.git
+</code></pre><p><strong>把仓库所属用户改为git</strong></p>
+<pre><code>chown -R git:git gitTest.git
+</code></pre><p><strong>创建post-receive文件（若不使用git自启动属性可不操作）</strong></p>
+<pre><code>vim ~/gitTest.git/hooks/post-receive
+</code></pre><p><strong>post-receive文件内容（若不使用git自启动属性可不操作）</strong></p>
+<pre><code>#！/bin/sh
+git --work-tree=/usr/share/nginx/html/blog --git-dir=/home/gitTest/gitTest.git checkout -f
+</code></pre><p><strong>设置权限（若不使用git自启动属性可不操作）</strong></p>
+<pre><code>chmod +x ~/gitTest.git/hooks/post-receive
+</code></pre><h3 id="创建客户端口令"><a href="#创建客户端口令" class="headerlink" title="创建客户端口令"></a><strong>创建客户端口令</strong></h3><pre><code>ssh-keygen -t rsa -C &apos;你的邮箱&apos;
+</code></pre><h3 id="设置免密登录口令"><a href="#设置免密登录口令" class="headerlink" title="设置免密登录口令"></a><strong>设置免密登录口令</strong></h3><p>将id_rsa.pub中的内容写到服务器的authorized_keys文件中。</p>
+<pre><code>cat id_rsa.pub &gt;&gt; authorized_keys
+</code></pre><h3 id="请求git仓库"><a href="#请求git仓库" class="headerlink" title="请求git仓库"></a><strong>请求git仓库</strong></h3><pre><code>git clone git@ip:/home/gitTest/gitTest.git
+</code></pre>
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://alisdon.github.com/服务端/linux下实现无密操作git/" title="linux下实现无密操作git" target="_blank" rel="external">https://alisdon.github.com/服务端/linux下实现无密操作git/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/Alisdon" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/blog/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/Alisdon" target="_blank"><span class="text-dark">Alisdon</span><small class="ml-1x">Web Developer</small></a></h3>
+        <div>Focus on coding</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
   
     
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
     
-      
-      
-      <section class="panel panel-default b-no">
-        <div class="panel-heading" role="tab">
-          <h3 class="panel-title">
-            <a data-toggle="collapse" href="#collapse2019" aria-expanded="true">
-              <i class="icon icon-calendar-plus text-active"></i><i class="icon icon-calendar-minus text"></i>
-              2019
-            </a>
-            <!-- <a href="/blog/archive/2019" class="archive-year">2019</a> -->
-          </h3>
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/blog/其他/用hexo写一篇文章/" title="hexo书写一篇文章"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,twitter" data-mobile-sites="weibo,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/blog/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/blog/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div id="collapse2019" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading2019">
-        <div class="panel-body">
-          <div class="collection">
-    
-    
-<a href="/blog/小程序/小程序获取特定页二维码/" class="collection-item" target="_self" itemprop="url">
-  <time datetime="2019-01-04T05:55:37.000Z" itemprop="datePublished">2019-01-04</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> 小程序获取特定页二维码
-</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 
-  
-    
-    
-    
-<a href="/blog/css/verticalAlign简介/" class="collection-item" target="_self" itemprop="url">
-  <time datetime="2019-01-02T08:07:16.000Z" itemprop="datePublished">2019-01-02</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> 用vertical-align实现垂直水平居中
-</a>
 
-
-  
-    
-    
-      
-        </div></div></div></section>
-      
-      
-      <section class="panel panel-default b-no">
-        <div class="panel-heading" role="tab">
-          <h3 class="panel-title">
-            <a data-toggle="collapse" href="#collapse2018" aria-expanded="true">
-              <i class="icon icon-calendar-plus text-active"></i><i class="icon icon-calendar-minus text"></i>
-              2018
-            </a>
-            <!-- <a href="/blog/archive/2018" class="archive-year">2018</a> -->
-          </h3>
-        </div>
-        <div id="collapse2018" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading2018">
-        <div class="panel-body">
-          <div class="collection">
-    
-    
-<a href="/blog/node/创建简单的npm脚手架/" class="collection-item" target="_self" itemprop="url">
-  <time datetime="2018-12-18T08:57:18.000Z" itemprop="datePublished">2018-12-18</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> 创建简单的npm脚手架
-</a>
-
-
-  
-    
-    
-    
-<a href="/blog/mmzsblog/mmzsblog/" class="collection-item" target="_self" itemprop="url">
-  <time datetime="2018-11-20T13:07:16.000Z" itemprop="datePublished">2018-11-20</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> 用于mmzsblog网站博客开发
-</a>
-
-
-  
-    
-    
-    
-<a href="/blog/服务端/mac 下安装nginx/" class="collection-item" target="_self" itemprop="url">
-  <time datetime="2018-10-19T06:14:37.000Z" itemprop="datePublished">2018-10-19</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> mac下安装nginx
-</a>
-
-
-  
-    
-    
-    
-<a href="/blog/其他/安装hexo/" class="collection-item" target="_self" itemprop="url">
-  <time datetime="2018-07-27T16:12:50.132Z" itemprop="datePublished">2018-07-28</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> 安装hexo
-</a>
-
-
-  
-    
-    
-    
-<a href="/blog/其他/用hexo写一篇文章/" class="collection-item" target="_self" itemprop="url">
-  <time datetime="2018-07-27T16:12:50.110Z" itemprop="datePublished">2018-07-28</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> hexo书写一篇文章
-</a>
-
-
-  
-    
-    
-    
-<a href="/blog/服务端/linux下实现无密操作git/" class="collection-item" target="_self" itemprop="url">
-  <time datetime="2018-07-24T08:44:46.000Z" itemprop="datePublished">2018-07-24</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> linux下实现无密操作git
-</a>
-
-
-  
-  
-    </div></div></div></section>
-  
-
-	    </div>
-  	</article>
-  	 	
 </main>
 
   <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
@@ -552,6 +646,39 @@ window.jQuery || document.write('<script src="/blog/js/jquery.min.js"><\/script>
 
 
 
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: true,
+    appId: 'BBUCe5DaUH5jQi1wYMQ0rTwH-gzGzoHsz',
+    appKey: 'qgW4CjNI3tM14wBB9Q0R8o0k',
+    placeholder: '说点什么吧',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
 
 
 
