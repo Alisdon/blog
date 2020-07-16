@@ -1,0 +1,470 @@
+<hr>
+<p>title: al-block-form 使用说明<br>date: 2020-07-16 17:41:49<br>tags: al-block</p>
+<h2 id="category-al-block"><a href="#category-al-block" class="headerlink" title="category: al-block"></a>category: al-block</h2><h2 id="表单篇"><a href="#表单篇" class="headerlink" title="表单篇"></a>表单篇</h2><p><code>Al-Block-Crud</code>对表单进行了二次封装，意为开发带来更多的便利，减少开发时多余代码的<code>Ctrl+c</code>、<code>Ctrl+v</code>。</p>
+<h3 id="功能说明"><a href="#功能说明" class="headerlink" title="功能说明"></a>功能说明</h3><ul>
+<li style="list-style: none"><input type="checkbox" checked></input> 简化表单校验开发代码</li>
+<li style="list-style: none"><input type="checkbox" checked></input> 分离提交参数</li>
+<li style="list-style: none"><input type="checkbox" checked></input> 自定义表单项</li>
+<li style="list-style: none"><input type="checkbox" checked></input> 表单项描述</li>
+<li style="list-style: none"><input type="checkbox" checked></input> 兼容<code>element-ui</code>所有属性</li>
+<li style="list-style: none"><input type="checkbox" checked></input> 控制单项宽度</li>
+</ul>
+<h3 id="props-对象"><a href="#props-对象" class="headerlink" title="props 对象"></a>props 对象</h3><pre><code>formMap: {
+  options: {},
+  formData: {},
+  formComponents: []
+}
+</code></pre><blockquote>
+<p><code>formData</code>为最后提交的参数，不做描述</p>
+</blockquote>
+<h3 id="options-对象"><a href="#options-对象" class="headerlink" title="options 对象"></a>options 对象</h3><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>column</td>
+<td style="text-align:left">显示配置，<a href="#列显示配置">详情点击此处</a>，也可直接传<code>Number</code>设置<code>span</code>的值</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td>submitApi</td>
+<td style="text-align:left">请求地址，需返回<code>Promise</code>对象</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td>submitBefore</td>
+<td style="text-align:left">保存前函数，需返回带传递参数的<code>Promise</code>对象</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td>labelWidth</td>
+<td style="text-align:left"><code>label</code>的宽度</td>
+<td style="text-align:left">80px</td>
+</tr>
+<tr>
+<td>labelPosition</td>
+<td style="text-align:left"><code>label</code>的位置</td>
+<td style="text-align:left">right</td>
+</tr>
+<tr>
+<td>…</td>
+<td style="text-align:left"><code>element-ui</code>表单的其他属性，可自由配置</td>
+</tr>
+</tbody>
+</table>
+<h3 id="列显示配置"><a href="#列显示配置" class="headerlink" title="列显示配置"></a>列显示配置</h3><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gutter</td>
+<td style="text-align:left">每列展示间隔，可在引入时配置默认值</td>
+<td style="text-align:left">0</td>
+</tr>
+<tr>
+<td>span</td>
+<td style="text-align:left">每列展示所占用的比列，共 24 等分，可在引入时配置默认值</td>
+<td style="text-align:left">24</td>
+</tr>
+<tr>
+<td>…</td>
+<td style="text-align:left"><code>element-ui</code>组件<code>col</code>的其他属性，可自由配置</td>
+</tr>
+</tbody>
+</table>
+<h3 id="formComponents-数组"><a href="#formComponents-数组" class="headerlink" title="formComponents 数组"></a>formComponents 数组</h3><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">函数参数</th>
+<th style="text-align:left">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>label</td>
+<td style="text-align:left">显示文本</td>
+<td style="text-align:left">String/Function</td>
+<td style="text-align:left">(formData)</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td>component</td>
+<td style="text-align:left">元素类型，有效值:<code>input</code>,<code>number</code>,<code>textarea</code>,<code>select</code>,<code>checkbox</code>,<code>radio</code>,<code>switch</code>,<code>date</code>,<code>button</code>,<code>render</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td>name</td>
+<td style="text-align:left">对应 formData 中的 key</td>
+<td style="text-align:left">String/Function</td>
+<td style="text-align:left">(formData)</td>
+</tr>
+<tr>
+<td>show</td>
+<td style="text-align:left">是否显示</td>
+<td style="text-align:left">Boolean/Function</td>
+<td style="text-align:left">(formData)</td>
+<td style="text-align:left">true</td>
+</tr>
+<tr>
+<td>column</td>
+<td style="text-align:left">列配置，<code>element-ui</code>中<code>col</code>的配置项</td>
+<td style="text-align:left">Object/Function</td>
+<td style="text-align:left">(formData)</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td>disabled</td>
+<td style="text-align:left">是否不可用</td>
+<td style="text-align:left">Boolean/Function</td>
+<td style="text-align:left">(formData)</td>
+<td style="text-align:left">false</td>
+</tr>
+<tr>
+<td>rules</td>
+<td style="text-align:left">校验规则，<a href="#表单校验rules说明">详情点击此处</a></td>
+<td style="text-align:left">Object/Array/Function</td>
+<td style="text-align:left">(formData)</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td>listeners</td>
+<td style="text-align:left">事件处理集合</td>
+<td style="text-align:left">Object</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td>options</td>
+<td style="text-align:left">elementUI 表单元素其他绑定属性</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td>dataSource</td>
+<td style="text-align:left">数据源，用于 radio，checkbox，select，render 组件的数据配置</td>
+<td style="text-align:left">根据元素类型确定，详情见<a href="#案例">下方 dataSource</a>的运用</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td>description</td>
+<td style="text-align:left">描述</td>
+<td style="text-align:left">String/Function</td>
+<td style="text-align:left">(formData)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><table>
+<thead>
+<tr>
+<th>事件名</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>submit</td>
+<td style="text-align:left">提交的方法，需要和<code>submitApi</code>配合使用</td>
+<td style="text-align:left">提交请求后的<code>Promise</code>对象</td>
+</tr>
+<tr>
+<td>valid</td>
+<td style="text-align:left">表单校验</td>
+<td style="text-align:left"><code>Boolean</code>类型的<code>true</code>/<code>false</code></td>
+</tr>
+<tr>
+<td>reset</td>
+<td style="text-align:left">重置表单</td>
+<td style="text-align:left">无</td>
+</tr>
+</tbody>
+</table>
+<h3 id="表单校验-rules-说明"><a href="#表单校验-rules-说明" class="headerlink" title="表单校验 rules 说明"></a>表单校验 rules 说明</h3><pre><code>rules: {
+  required: true,          // 开启必填校验
+  required: {
+    message: &apos;请输入xxx&apos;    // 错误时提示的消息，见下方说明
+  },
+  required: [{
+    required: true,
+    message: &apos;请输入xxx&apos;,
+    trigger: [&apos;change&apos;, &apos;blur&apos;]
+  }],
+  phone: true,          // 开启手机号校验
+  phone: {},
+  email: true,          // 开启邮箱校验
+  email: {},
+  number: true,         // 开启数字校验
+  number: {},
+  code: true,           // 开启数字和字母校验
+  code: {},
+  port: true,           // 开启端口校验
+  port: {},
+  ip: true,             // 开启ip校验
+  ip: {
+    contain: &apos;localhost&apos;   // 可传入数组或以,分割的字符串
+  },
+  integer: true,        // 开启整数校验
+  integer: {
+    positive: true,   // 正整数，与负整数二选一
+    negative: true,   // 负整数，与正整数二选一
+    containZero: true,// 是否包含0， 在正负整数设置时有效
+    min: 1,           // 最小值
+    max: () =&gt; 10,    // 最大值
+  },
+  length: {
+    min: 1,           // 最小值
+    max: () =&gt; 10,    // 最大值
+    len: 5            // 特定长度
+  },
+  regular: {
+    pattern: /./
+  },
+  specialChar: {
+    message: char =&gt; `存在非法字符${char}`,   // 自定义提示可接受过滤后所包含的的特殊字符
+    filter: &apos;all&apos;                           // 过滤所有特殊字符
+    filter: &apos;@s.&apos;                           // 过滤@.两个特殊字符（以s分割的字符串）
+    filter: [&quot;@&quot;, &quot;.&quot;]                      // 过滤@.两个特殊字符
+  }
+}
+</code></pre><blockquote>
+<ol>
+<li>可传返回对应类型的函数或对应类型数据，如<code>length</code>中最大值和最小值的用法等效。</li>
+<li>若只需开启某规则不定义其他属性，可直接设置 true 属性，反之亦然。<em>可设置 Boolean 类型的已全部罗列<a href="#表单校验rules说明">上方说明</a></em>，如<code>required</code>。</li>
+<li>若当前规则需要添加其他属性，可使用 Object 对象进行配置，<em>规则为 Object 对象时也为开启状态</em>。如<code>required</code>。</li>
+<li><code>message</code>都<strong>存在</strong>默认提示，不传则使用默认提示。</li>
+<li>可传入支持<code>elementUI</code>封装的数据格式。</li>
+</ol>
+</blockquote>
+<h3 id="组件-input-说明"><a href="#组件-input-说明" class="headerlink" title="组件 input 说明"></a>组件 input 说明</h3><pre><code>{
+  label: &apos;输入框&apos;,
+  component: &apos;input&apos;,
+  show: () =&gt; true,
+  name: &apos;input&apos;,
+  rules: {
+    required: {
+      message: &apos;请输入输入框&apos;
+    }
+  },
+  options: {
+    slots: {
+      prefix: (data, h) =&gt; h(&apos;i&apos;, { class: &apos;el-icon-search&apos; })
+    }
+  },
+  description: &apos;这是一条说明&apos;
+}
+</code></pre><blockquote>
+<p>此处<code>slot</code>对象 key 需要和 input 框<code>slot</code>的<code>name</code>对应,否则将不会生效。可接受表单数据和<a href="https://cn.vuejs.org/v2/guide/render-function.html#%E5%9F%BA%E7%A1%80">render 函数</a>进行渲染</p>
+</blockquote>
+<h3 id="组件-render-说明"><a href="#组件-render-说明" class="headerlink" title="组件 render 说明"></a>组件 render 说明</h3><p>以 <code>el-color-picker</code> 色彩选择器为例</p>
+<pre><code>{
+  label: &apos;render组件&apos;,
+  component: &apos;render&apos;,
+  name: &apos;render&apos;,
+  dataSource: (data, h) =&gt; {
+    return h(&quot;el-color-picker&quot;, {
+      props: {
+        value: this.formMap.formData.render
+      },
+      on: {
+        change: val =&gt; {
+          this.$set(this.formMap.formData, &apos;render&apos;, val)
+        }
+      }
+    });
+  }
+}
+</code></pre><blockquote>
+<p>此处<code>dataSource</code>接收当前表单数据和渲染函数，可通过此函数进行<a href="https://cn.vuejs.org/v2/guide/render-function.html#%E5%9F%BA%E7%A1%80">render 函数</a>的渲染</p>
+</blockquote>
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><pre><code>&lt;template&gt;
+  &lt;al-block-form ref=&apos;mainForm&apos; :formMap=&quot;formMap&quot; /&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data () {
+    formMap: {
+      options: {
+        submitApi: axios.post(&apos;save&apos;)
+      },
+      formData: {
+        input: &apos;&apos;,
+        number: 0,
+        textarea: &apos;&apos;,
+        date: new Date(),
+        select: &apos;1&apos;,
+        checkbox: [&apos;1&apos;],
+        radio: &apos;1&apos;,
+        switch: 1,
+        render: &apos;&apos;
+      },
+      formComponents: [{
+        label: &apos;输入框&apos;,
+        component: &apos;input&apos;,
+        name: &apos;input&apos;,
+        show: () =&gt; true,
+        rules: {
+          required: {
+            message: &apos;请输入输入框&apos;
+          }
+        },
+        listeners: {
+          change: value =&gt; console.log(value)
+        },
+        options: {
+          placeholder: &apos;请输入输入框&apos;,
+          slots: {
+            prefix: (data, h) =&gt; h(&apos;i&apos;, { class: &apos;el-icon-search&apos; })
+          }
+        }
+      },
+      {
+        label: &apos;数字框&apos;,
+        component: &apos;number&apos;,
+        name: &apos;number&apos;,
+        show: () =&gt; true,
+        disabled: () =&gt; false,
+        rules: [],
+        description: &apos;这是一个数字框&apos;
+      },
+      {
+        label: &apos;文本框&apos;,
+        component: &apos;textarea&apos;,
+        name: &apos;textarea&apos;,
+        show: () =&gt; true,
+        disabled: () =&gt; false,
+        options: {
+          autosize: { minRows: 1, maxRows: 3 }
+        }
+      },
+      {
+        label: &apos;日期&apos;,
+        component: &apos;date&apos;,
+        name: &apos;date&apos;,
+        show: () =&gt; true,
+        disabled: () =&gt; false
+      },
+      {
+        label: &apos;下拉框&apos;,
+        component: &apos;select&apos;,
+        name: &apos;select&apos;,
+        show: () =&gt; true,
+        disabled: () =&gt; false,
+        dataSource: [{
+          value: &apos;1&apos;,
+          label: &apos;下拉框&apos;,
+          disabled: true
+        },
+        {
+          value: &apos;2&apos;,
+          label: &apos;下拉框2&apos;,
+          disabled: false
+        }]
+      },
+      {
+        label: &apos;复选框&apos;,
+        component: &apos;checkbox&apos;,
+        name: &apos;checkbox&apos;,
+        show: () =&gt; true,
+        disabled: () =&gt; false,
+        dataSource: [{
+          value: &apos;1&apos;,
+          label: &apos;复选框1&apos;
+        },
+        {
+          value: &apos;2&apos;,
+          label: &apos;复选框2&apos;
+        }]
+      },
+      {
+        label: &apos;单选框&apos;,
+        component: &apos;radio&apos;,
+        name: &apos;radio&apos;,
+        show: () =&gt; true,
+        disabled: () =&gt; false,
+        dataSource: [{
+          value: &apos;1&apos;,
+          label: &apos;单选框1&apos;
+        },
+        {
+          value: &apos;2&apos;,
+          label: &apos;单选框2&apos;
+        }]
+      },
+      {
+        label: &apos;开关&apos;,
+        component: &apos;switch&apos;,
+        name: &apos;switch&apos;,
+        show: () =&gt; true,
+        disabled: () =&gt; false,
+        options: {
+          activeValue: &apos;1&apos;,
+          inactiveValue: &apos;0&apos;
+        }
+      },
+      {
+        label: &apos;按钮&apos;,
+        component: &apos;button&apos;,
+        show: () =&gt; true,
+        listeners: {
+          click: _ =&gt; console.log(this.formMap.formData)
+        },
+        dataSource: [{
+          html: &apos;&lt;i class=&quot;el-icon el-icon-plus&quot;&gt;&lt;/i&gt;&lt;span&gt;按钮&lt;/span&gt;&apos;,
+          type: &apos;primary&apos;,
+          style: &apos;width: 100%&apos;,
+          click: formData =&gt; console.log(formData)
+        }]
+      },
+      {
+        label: &apos;render组件&apos;,
+        component: &apos;render&apos;,
+        name: &apos;render&apos;,
+        show: () =&gt; true,
+        disabled: () =&gt; false,
+        dataSource: (data, h) =&gt; {
+          return h(&quot;el-color-picker&quot;, {
+            props: {
+              value: this.formMap.formData.render
+            },
+            on: {
+              change: val =&gt; {
+                this.$set(this.formMap.formData, &apos;render&apos;, val)
+              }
+            }
+          });
+        }
+      }]
+    }
+  },
+
+  methods: {
+    /**
+     * 提交表单
+     */
+    handleBtnClick () {
+      this.$refs.mainForm.submitForm().then(res =&gt; {
+        console.log(res)
+      })
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre>

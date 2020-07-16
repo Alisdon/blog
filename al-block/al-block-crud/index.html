@@ -17,21 +17,23 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>mac 创建 svn 仓库 | Alisdon</title>
-  <meta name="description" content="mac 创建 svn 仓库团队开发中代码版本管理是一个必不可少的工具，本篇文章将简单介绍如何在 macOS 中搭建 svn 版本服务 安装 svn检查安装开始之前，先检查系统中是否已经安装了 svn 1svn --version 如果出现版本信息，则表示已经安装成功，可跳过以下安装步骤至创建仓库 开始安装在 macOS 中，一般我建议使用 Homebrew 进行包管理，至于 Homebrew 本篇">
-<meta name="keywords" content="svn">
+  <title>al-block-crud 集成说明 | Alisdon</title>
+  <meta name="description" content="介绍Al-Block-Crud是一套基于Vue.js和Element UI的表格组件。al-block-crud 将 Element 的功能进行了封装。大部分功能可由配置 json 实现，在实现并扩展了 Element 表格组件功能的同时，降低了开发难度，减少了代码量，大大简化了开发流程。 文档 al-block-table 表格 al-block-form 表单 al-block-menu 菜单">
+<meta name="keywords" content="al-block">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mac 创建 svn 仓库">
-<meta property="og:url" content="https://alisdon.github.com/其他/mac 创建 svn 仓库/index.html">
+<meta property="og:title" content="al-block-crud 集成说明">
+<meta property="og:url" content="https://alisdon.github.com/al-block/al-block-crud/index.html">
 <meta property="og:site_name" content="Alisdon Blog">
-<meta property="og:description" content="mac 创建 svn 仓库团队开发中代码版本管理是一个必不可少的工具，本篇文章将简单介绍如何在 macOS 中搭建 svn 版本服务 安装 svn检查安装开始之前，先检查系统中是否已经安装了 svn 1svn --version 如果出现版本信息，则表示已经安装成功，可跳过以下安装步骤至创建仓库 开始安装在 macOS 中，一般我建议使用 Homebrew 进行包管理，至于 Homebrew 本篇">
+<meta property="og:description" content="介绍Al-Block-Crud是一套基于Vue.js和Element UI的表格组件。al-block-crud 将 Element 的功能进行了封装。大部分功能可由配置 json 实现，在实现并扩展了 Element 表格组件功能的同时，降低了开发难度，减少了代码量，大大简化了开发流程。 文档 al-block-table 表格 al-block-form 表单 al-block-menu 菜单">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2020-01-19T05:37:47.309Z">
+<meta property="og:image" content="https://alisdon.github.com/al-block/al-block-crud/alBockCrud/Wechat.jpeg">
+<meta property="og:updated_time" content="2020-07-16T10:24:28.593Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mac 创建 svn 仓库">
-<meta name="twitter:description" content="mac 创建 svn 仓库团队开发中代码版本管理是一个必不可少的工具，本篇文章将简单介绍如何在 macOS 中搭建 svn 版本服务 安装 svn检查安装开始之前，先检查系统中是否已经安装了 svn 1svn --version 如果出现版本信息，则表示已经安装成功，可跳过以下安装步骤至创建仓库 开始安装在 macOS 中，一般我建议使用 Homebrew 进行包管理，至于 Homebrew 本篇">
+<meta name="twitter:title" content="al-block-crud 集成说明">
+<meta name="twitter:description" content="介绍Al-Block-Crud是一套基于Vue.js和Element UI的表格组件。al-block-crud 将 Element 的功能进行了封装。大部分功能可由配置 json 实现，在实现并扩展了 Element 表格组件功能的同时，降低了开发难度，减少了代码量，大大简化了开发流程。 文档 al-block-table 表格 al-block-form 表单 al-block-menu 菜单">
+<meta name="twitter:image" content="https://alisdon.github.com/al-block/al-block-crud/alBockCrud/Wechat.jpeg">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://alisdon.github.com/其他/mac 创建 svn 仓库/index.html">
+  <link rel="canonical" href="https://alisdon.github.com/al-block/al-block-crud/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Alisdon Blog" type="application/atom+xml">
   
@@ -372,21 +374,21 @@
   <div class="slimContent">
     <nav id="toc" class="article-toc">
       <h3 class="toc-title">Catalogue</h3>
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#mac-创建-svn-仓库"><span class="toc-number">1.</span> <span class="toc-text">mac 创建 svn 仓库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-svn"><span class="toc-number">1.1.</span> <span class="toc-text">安装 svn</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#检查安装"><span class="toc-number">1.1.1.</span> <span class="toc-text">检查安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开始安装"><span class="toc-number">1.1.2.</span> <span class="toc-text">开始安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建仓库"><span class="toc-number">1.2.</span> <span class="toc-text">创建仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置权限"><span class="toc-number">1.3.</span> <span class="toc-text">配置权限</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#权限"><span class="toc-number">1.3.1.</span> <span class="toc-text">权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用户"><span class="toc-number">1.3.2.</span> <span class="toc-text">用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分组授权"><span class="toc-number">1.3.3.</span> <span class="toc-text">分组授权</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动服务"><span class="toc-number">1.4.</span> <span class="toc-text">启动服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#连接服务"><span class="toc-number">1.5.</span> <span class="toc-text">连接服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关闭服务"><span class="toc-number">1.6.</span> <span class="toc-text">关闭服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#方法一（推荐）："><span class="toc-number">1.6.1.</span> <span class="toc-text">方法一（推荐）：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法二"><span class="toc-number">1.6.2.</span> <span class="toc-text">方法二</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#至此"><span class="toc-number">1.7.</span> <span class="toc-text">至此</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文档"><span class="toc-number">2.</span> <span class="toc-text">文档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#功能"><span class="toc-number">3.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">4.</span> <span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CDN"><span class="toc-number">4.1.</span> <span class="toc-text">CDN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#npm（暂未放入-npm）"><span class="toc-number">4.2.</span> <span class="toc-text">npm（暂未放入 npm）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在项目中使用"><span class="toc-number">5.</span> <span class="toc-text">在项目中使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#访问-demo"><span class="toc-number">6.</span> <span class="toc-text">访问 demo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装依赖"><span class="toc-number">6.1.</span> <span class="toc-text">安装依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动服务"><span class="toc-number">6.2.</span> <span class="toc-text">启动服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#访问服务"><span class="toc-number">6.3.</span> <span class="toc-text">访问服务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#联系我"><span class="toc-number">7.</span> <span class="toc-text">联系我</span></a></li></ol>
     </nav>
   </div>
 </aside>
 
 <main class="main" role="main">
   <div class="content">
-  <article id="post-mac 创建 svn 仓库" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-al-block-crud" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      mac 创建 svn 仓库
+      al-block-crud 集成说明
     </h1>
   
 
@@ -394,20 +396,20 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/blog/其他/mac 创建 svn 仓库/" class="article-date">
-	  <time datetime="2020-01-19T02:35:49.000Z" itemprop="datePublished">2020-01-19</time>
+	<a href="/blog/al-block/al-block-crud/" class="article-date">
+	  <time datetime="2020-07-16T09:41:49.000Z" itemprop="datePublished">2020-07-16</time>
 	</a>
 </span>
         
   <span class="article-category">
     <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/blog/categories/其他/">其他</a>
+    <a class="article-category-link" href="/blog/categories/al-block/">al-block</a>
   </span>
 
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/blog/tags/svn/">svn</a>
+	<a class="article-tag-link" href="/blog/tags/al-block/">al-block</a>
   </span>
 
 
@@ -420,10 +422,10 @@
 	</span>
 
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/其他/mac 创建 svn 仓库/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/al-block/al-block-crud/#comments" class="article-comment-link">Comments</a></span>
         
 	
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 833(words)</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 818(words)</span>
 	
 	
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 3(minutes)</span>
@@ -433,62 +435,33 @@
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h1 id="mac-创建-svn-仓库"><a href="#mac-创建-svn-仓库" class="headerlink" title="mac 创建 svn 仓库"></a>mac 创建 svn 仓库</h1><p>团队开发中代码版本管理是一个必不可少的工具，本篇文章将简单介绍如何在 macOS 中搭建 svn 版本服务</p>
-<h2 id="安装-svn"><a href="#安装-svn" class="headerlink" title="安装 svn"></a>安装 svn</h2><h3 id="检查安装"><a href="#检查安装" class="headerlink" title="检查安装"></a>检查安装</h3><p>开始之前，先检查系统中是否已经安装了 svn</p>
-<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn <span class="comment">--version</span></span><br></pre></td></tr></table></figure>
-<p>如果出现版本信息，则表示已经安装成功，可跳过以下安装步骤至创建仓库</p>
-<h3 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h3><p>在 macOS 中，一般我建议使用 Homebrew 进行包管理，至于 Homebrew 本篇文章不做描述，不了解的可以自行百度</p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">brew </span><span class="keyword">install </span>svn</span><br></pre></td></tr></table></figure>
-<p>安装成功后，建议再检查安装一次，以确保能够正常使用</p>
-<h2 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h2><p>在安装成功之后咱们就可以创建代码仓库了</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svnadmin create .<span class="regexp">/svn/</span>repository<span class="regexp">/svn_test</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>./svn/repository/svn_test 为你想存放 svn 仓库的文件地址，svn_test 为当前仓库名称，这里换成你自己的即可</p>
-</blockquote>
-<p>正常情况下，你将可以在你刚刚输入的目录中看到新生成的文件夹了，但是 macOS 升级成 macOS catalina 10.15 后将会出现</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">zsh:</span> command not <span class="string">found:</span> svnadmin</span><br></pre></td></tr></table></figure>
-<p>这个是因为 Apple 在这个版本中移除了 svn 管理，所以导致了 svn 相关的命令失效，这里多说一句 Apple 的这个更新可能会导致一部分的软件需要重新安装，如果遇到了不能正常使用的软件，大家不妨重新安装试一试</p>
-<h2 id="配置权限"><a href="#配置权限" class="headerlink" title="配置权限"></a>配置权限</h2><p>安装成功后，进入到你刚刚设置的目录中，如我们设置的 ./svn/repository/svn_test，你将看见大致（只展示我们需要的部分）如下的目录</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">|-- conf</span></span><br><span class="line"><span class="string">|---- authz</span></span><br><span class="line"><span class="string">|---- hooks-env.tmpl</span></span><br><span class="line"><span class="string">|---- passwd</span></span><br><span class="line"><span class="string">|---- svnserve.conf</span></span><br><span class="line"><span class="string">|-- db</span></span><br><span class="line"><span class="string">|-- hooks</span></span><br><span class="line"><span class="string">|-- locks</span></span><br><span class="line"><span class="string">|-- format</span></span><br><span class="line"><span class="string">|-- README.txt</span></span><br></pre></td></tr></table></figure>
-<h3 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h3><p>打开 conf 下的 svnserve.conf 文件并做以下修改</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># anon-access = read</span></span><br><span class="line"><span class="attr">anon-access</span> = read</span><br><span class="line"></span><br><span class="line"><span class="comment"># auth-access = write</span></span><br><span class="line"><span class="attr">auth-access</span> = write</span><br><span class="line"></span><br><span class="line"><span class="comment"># password-db = passwd</span></span><br><span class="line"><span class="attr">password-db</span> = passwd</span><br><span class="line"></span><br><span class="line"><span class="comment"># authz-db = authz</span></span><br><span class="line"><span class="attr">authz-db</span> = authz</span><br></pre></td></tr></table></figure>
-<blockquote>
-<ol>
-<li>以上修改为上一行为原始配置，下一行为修改后的配置</li>
-<li>以上配置信息的含义请自行百度</li>
-</ol>
-</blockquote>
-<h3 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h3><p>打开 conf 下的 passwd 文件并做以下修改</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[users]</span></span><br><span class="line"></span><br><span class="line"><span class="attr">svnuser1</span> = <span class="number">123456</span></span><br><span class="line"><span class="attr">svnuser2</span> = <span class="number">123456</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>添加用户名为 svnuser1，密码为 123456 和用户名为 svnuser2，密码为 123456 的两位用户</p>
-</blockquote>
-<h3 id="分组授权"><a href="#分组授权" class="headerlink" title="分组授权"></a>分组授权</h3><p>打开 conf 下的 authz 文件并做以下修改</p>
-<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">[groups]</span></span><br><span class="line">svngroup = svnuser1,svnuser2</span><br><span class="line"></span><br><span class="line"><span class="string">[/]</span></span><br><span class="line">@svngroup=rw</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>rw为可读可写</p>
-</blockquote>
-<h2 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h2><p>返回控制台输入</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svnserve -d -r .<span class="regexp">/svn/</span>repository</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>这里需要控制所建仓库地址，不需要进行至仓库名称</p>
-</blockquote>
-<p>如果控制台没有报错则说明启动成功</p>
-<h2 id="连接服务"><a href="#连接服务" class="headerlink" title="连接服务"></a>连接服务</h2><p>启动成功后，我们将远程的代码进行拉去，尽管现在没有代码，我们也可以先将仓库拉下来用于后续代码管理</p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn checkout svn:<span class="string">//localhost/svn_test</span> <span class="params">--username=svnuser1</span> <span class="params">--password=123456</span> <span class="string">./code</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>将代码从 svn_test 下载到 ./code 目录下</p>
-</blockquote>
-<h2 id="关闭服务"><a href="#关闭服务" class="headerlink" title="关闭服务"></a>关闭服务</h2><p>因为 svn 服务就是一个进程，所以可以通过杀进程的方式进行管理</p>
-<h3 id="方法一（推荐）："><a href="#方法一（推荐）：" class="headerlink" title="方法一（推荐）："></a>方法一（推荐）：</h3><p>打开系统软件《活动监视器》 选择 svnserve 进行关闭即可。</p>
-<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>获取 svn 的 PID</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ps</span> -ef|<span class="keyword">grep</span> svn</span><br></pre></td></tr></table></figure>
-<p>杀掉进程</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> -9 <span class="variable">$1</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>$1 为上面获取到的 PID</p>
-</blockquote>
-<h2 id="至此"><a href="#至此" class="headerlink" title="至此"></a>至此</h2><p>这样一个 svn 代码管理仓库就搭建完成了，我们就可以用 svn 来进行我们的代码管理</p>
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><a href="http://47.103.55.103:3000/wanglf/al-block-crud" target="_blank" rel="noopener">Al-Block-Crud</a>是一套基于<a href="https://cn.vuejs.org/" target="_blank" rel="noopener">Vue.js</a>和<a href="http://element-cn.eleme.io/#/zh-CN" target="_blank" rel="noopener">Element UI</a>的表格组件。<code>al-block-crud</code> 将 <code>Element</code> 的功能进行了封装。大部分功能可由配置 <code>json</code> 实现，在实现并扩展了 <code>Element</code> 表格组件功能的同时，降低了开发难度，减少了代码量，大大简化了开发流程。</p>
+<h2 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h2><ul>
+<li><a href="./table">al-block-table 表格</a></li>
+<li><a href="./form">al-block-form 表单</a></li>
+<li><a href="./menu">al-block-menu 菜单</a></li>
+<li><a href="./dialog">al-block-dialog 模态框</a></li>
+</ul>
+<h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><ul>
+<li>继承了 Element 中表格所有功能</li>
+<li>继承了 Element 中表单所有功能</li>
+<li>使用 Element 中的组件渲染表格内容和表单内容</li>
+<li>表单校验</li>
+<li>表格内编辑</li>
+<li>渲染自定义组件</li>
+<li>菜单</li>
+<li>模态框</li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">'/lib/al-block-crud.min.js'</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="npm（暂未放入-npm）"><a href="#npm（暂未放入-npm）" class="headerlink" title="npm（暂未放入 npm）"></a>npm（暂未放入 npm）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i element-ui al-block-crud -S</span><br></pre></td></tr></table></figure>
+<h2 id="在项目中使用"><a href="#在项目中使用" class="headerlink" title="在项目中使用"></a>在项目中使用</h2><p>在使用的时候需要对组件进行配置，以下为所有默认配置，使用时可自定义完善配置。<br><em>项目配置以<code>axios</code>请求得到参数格式来进行案例说明：</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line">不分页返回的格式</span><br><span class="line">&#123;</span><br><span class="line">  ...axios.response,</span><br><span class="line">  status: 200,</span><br><span class="line">  statusText: <span class="string">'OK'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    &#123;</span><br><span class="line">      code: 200,</span><br><span class="line">      data: [],</span><br><span class="line">      msg: <span class="string">''</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">分页返回的格式</span><br><span class="line">&#123;</span><br><span class="line">  ...axios.response,</span><br><span class="line">  status: 200,</span><br><span class="line">  statusText: <span class="string">'OK'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    &#123;</span><br><span class="line">      code: 200,</span><br><span class="line">      data: &#123;</span><br><span class="line">        list: [],</span><br><span class="line">        pageSize: 10,</span><br><span class="line">        pageIndex: 1,</span><br><span class="line">        total: 10</span><br><span class="line">      &#125;</span><br><span class="line">      msg: <span class="string">''</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">在`main.js`中写入以下内容：</span><br><span class="line"></span><br><span class="line">```js</span><br><span class="line">import Vue from <span class="string">"vue"</span>;</span><br><span class="line">import ElementUI from <span class="string">"element-ui"</span>;</span><br><span class="line">import <span class="string">"element-ui/lib/theme-chalk/index.css"</span>;</span><br><span class="line"></span><br><span class="line">Vue.use(ElementUI);</span><br><span class="line">Vue.use(window.AlBlockCrud, &#123;</span><br><span class="line">  table: &#123;</span><br><span class="line">    // 分页相关配置</span><br><span class="line">    pagination: &#123;</span><br><span class="line">      // 布局</span><br><span class="line">      layout: <span class="string">"sizes, prev, pager, next, total, -&gt;"</span>,</span><br><span class="line">      // 下拉框的选项</span><br><span class="line">      sizes_value: [10, 20, 50, 100],</span><br><span class="line">      // 每页显示条数的key</span><br><span class="line">      size: <span class="string">"pageSize"</span>,</span><br><span class="line">      // 每页显示条数的默认值</span><br><span class="line">      size_default_value: 10,</span><br><span class="line">      // 当前页的key</span><br><span class="line">      index: <span class="string">"pageIndex"</span>,</span><br><span class="line">      // 当前页的默认值</span><br><span class="line">      index_default_value: 1,</span><br><span class="line">      // 总条数的key</span><br><span class="line">      total: <span class="string">"total"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    // 分页时数据源路径</span><br><span class="line">    path_data: <span class="string">"data.data.list"</span>,</span><br><span class="line">    // 不分页时的数据源路径</span><br><span class="line">    path_data_no_pagination: <span class="string">"data.data"</span>,</span><br><span class="line">    // 每页显示条数的路径</span><br><span class="line">    path_size: <span class="string">"data.data.pageSize"</span>,</span><br><span class="line">    // 当前页的路径</span><br><span class="line">    path_index: <span class="string">"data.data.pageIndex"</span>,</span><br><span class="line">    // 总条数的路径</span><br><span class="line">    path_total: <span class="string">"data.data.total"</span>,</span><br><span class="line">    // 列表默认高度，可在使用中覆盖，可设置[<span class="string">'auto'</span>, <span class="string">'100%'</span>, Number + <span class="string">'px'</span>]</span><br><span class="line">    height: <span class="string">"auto"</span>,</span><br><span class="line">    // 是否默认开启边框，可在使用中覆盖</span><br><span class="line">    border: <span class="literal">true</span>,</span><br><span class="line">    // 是否默认开启斑马条纹，可在使用中覆盖</span><br><span class="line">    stripe: <span class="literal">true</span>,</span><br><span class="line">    // 默认表头样式，可在使用中覆盖</span><br><span class="line">    header_cell_style: &#123;&#125;,</span><br><span class="line">    // 展示加载中</span><br><span class="line">    show_loading: <span class="literal">true</span>,</span><br><span class="line">    // 请求失败的回调</span><br><span class="line">    on_request_error: <span class="keyword">function</span>(error) &#123;</span><br><span class="line">      // 获取服务端返回的 data 值</span><br><span class="line">      const serverResult = error.data || &#123;&#125;;</span><br><span class="line">      // 提示信息</span><br><span class="line">      this.<span class="variable">$message</span>.error(serverResult.msg || <span class="string">"系统错误"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  form: &#123;</span><br><span class="line">    // 表单验证触发方式</span><br><span class="line">    trigger: [<span class="string">"blur"</span>, <span class="string">"change"</span>],</span><br><span class="line">    // 是否需要验证特殊字符</span><br><span class="line">    need_valid_special_chart: <span class="literal">true</span>,</span><br><span class="line">    // 手机号正则</span><br><span class="line">    valid_regexp_phone: /1[3-9][0-9]&#123;9&#125;$/,</span><br><span class="line">    // 邮箱正则</span><br><span class="line">    valid_regexp_email: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,</span><br><span class="line">    // ip正则</span><br><span class="line">    valid_regexp_ip: /^(\d&#123;1,2&#125;|1\d\d|2[0-4]\d|25[0-5])(\.(\d&#123;1,2&#125;|1\d\d|2[0-4]\d|25[0-5]))&#123;3&#125;$/,</span><br><span class="line">    // 编码正则</span><br><span class="line">    valid_regexp_code: /^[a-zA-Z0-9]+$/,</span><br><span class="line">    // 特殊字符正则</span><br><span class="line">    valid_regexp_special_chart: /[`~!@<span class="comment">#$%^&amp;*()_\-+=&lt;&gt;?:"&#123;&#125;|,.\/;'\\[\]·~！@#￥%……&amp;*（）——\-+=&#123;&#125;|《》？：“”【】、；‘’，。、 ]/gim,</span></span><br><span class="line">    // 默认属性</span><br><span class="line">    default_options: &#123;</span><br><span class="line">      // 行占比</span><br><span class="line">      span: 12,</span><br><span class="line">      // 行间距</span><br><span class="line">      gutter: 10,</span><br><span class="line">      // 输入框默认属性</span><br><span class="line">      input: &#123;&#125;,</span><br><span class="line">      // 下拉框默认属性</span><br><span class="line">      select: &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">new Vue(&#123;</span><br><span class="line">  el: <span class="string">"#app"</span>,</span><br><span class="line">  render: h =&gt; h(App)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>至此，你就可以愉快的使用<code>Al-Block-Crud</code>组件了</p>
+<h2 id="访问-demo"><a href="#访问-demo" class="headerlink" title="访问 demo"></a>访问 demo</h2><!--[案例文件](./example/Example.vue)-->
+<h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span></span><br></pre></td></tr></table></figure>
+<h3 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h3><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">run</span><span class="bash"> serve</span></span><br></pre></td></tr></table></figure>
+<h3 id="访问服务"><a href="#访问服务" class="headerlink" title="访问服务"></a>访问服务</h3><p><a href="http://localhost:8080/example/" target="_blank" rel="noopener">点击访问</a></p>
+<h2 id="联系我"><a href="#联系我" class="headerlink" title="联系我"></a>联系我</h2><p><img src="./alBockCrud/Wechat.jpeg" alt=""></p>
 
       
     </div>
@@ -498,7 +471,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://alisdon.github.com/其他/mac 创建 svn 仓库/" title="mac 创建 svn 仓库" target="_blank" rel="external">https://alisdon.github.com/其他/mac 创建 svn 仓库/</a>
+      <a href="https://alisdon.github.com/al-block/al-block-crud/" title="al-block-crud 集成说明" target="_blank" rel="external">https://alisdon.github.com/al-block/al-block-crud/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -544,13 +517,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/blog/css/text-align-两端对齐/" title="text-align 两端对齐"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/blog/其他/docker镜像/" title="docker 镜像"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/blog/al-block/al-block-crud/dialog/" title="al-block-dialog 使用说明"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
