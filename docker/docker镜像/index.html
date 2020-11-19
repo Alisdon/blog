@@ -310,31 +310,6 @@
           <li>
             
             <div class="item-thumb">
-              <a href="/blog/al-block/al-block-crud/form/" class="thumb">
-    
-    
-        <span class="thumb-image thumb-none"></span>
-    
-</a>
-
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category">
-                <a class="category-link" href="/blog/categories/al-block/">al-block</a>
-              </p>
-              <p class="item-title">
-                <a href="/blog/al-block/al-block-crud/form/" class="title">al-block-form 使用说明</a>
-              </p>
-              <p class="item-date">
-                <time datetime="2020-07-16T09:41:49.000Z" itemprop="datePublished">2020-07-16</time>
-              </p>
-            </div>
-          </li>
-          
-          <li>
-            
-            <div class="item-thumb">
               <a href="/blog/al-block/al-block-crud/menu/" class="thumb">
     
     
@@ -350,6 +325,31 @@
               </p>
               <p class="item-title">
                 <a href="/blog/al-block/al-block-crud/menu/" class="title">al-block-menu 使用说明</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-16T09:41:49.000Z" itemprop="datePublished">2020-07-16</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/al-block/al-block-crud/form/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/al-block/">al-block</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/al-block/al-block-crud/form/" class="title">al-block-form 使用说明</a>
               </p>
               <p class="item-date">
                 <time datetime="2020-07-16T09:41:49.000Z" itemprop="datePublished">2020-07-16</time>
@@ -486,7 +486,7 @@
 <blockquote>
 <p>与上面的说明一致</p>
 </blockquote>
-<h3 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h3><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it <span class="string">[CONTAINER ID]</span> /bin/bash</span><br></pre></td></tr></table></figure>
+<h3 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it [CONTAINER ID] /bin/bash</span><br></pre></td></tr></table></figure>
 <h3 id="访问地址"><a href="#访问地址" class="headerlink" title="访问地址"></a>访问地址</h3><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span><span class="comment">//localhost:13050</span></span><br></pre></td></tr></table></figure>
 <h2 id="gitlab"><a href="#gitlab" class="headerlink" title="gitlab"></a>gitlab</h2><h3 id="获取镜像-3"><a href="#获取镜像-3" class="headerlink" title="获取镜像"></a>获取镜像</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">docker</span> pull gitlab/gitlab-ce</span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -508,11 +508,11 @@
  <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置http协议所使用的访问地址,不加端口号默认为80</span></span><br><span class="line"><span class="attribute">external_url</span> <span class="string">'http://192.168.0.101'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置ssh协议所使用的访问地址和端口</span></span><br><span class="line">gitlab_rails[<span class="string">'gitlab_ssh_host'</span>] = <span class="string">'192.168.0.101'</span></span><br><span class="line">gitlab_rails[<span class="string">'gitlab_shell_ssh_port'</span>] = <span class="number">222</span> <span class="comment"># 此端口是run时22端口映射的222端口</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>修改$PWD/gitlab/data/gitlab-rails/etc/gitlab.yml</p>
- <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">找到关键字</span> <span class="string">*</span> <span class="comment">## Web server settings * </span></span><br><span class="line"><span class="string">将host的值改成映射的外部主机ip地址和端口</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## GitLab settings</span></span><br><span class="line"><span class="attr">gitlab:</span></span><br><span class="line">     <span class="comment">## Web server settings (<span class="doctag">note:</span> host is the FQDN, do not include http://)</span></span><br><span class="line"><span class="attr">     host:</span> <span class="number">192.168</span><span class="number">.0</span><span class="number">.101</span></span><br><span class="line"><span class="attr">     port:</span> <span class="number">22</span></span><br><span class="line"><span class="attr">     https:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">找到关键字</span> <span class="string">*</span> <span class="comment">## Web server settings * </span></span><br><span class="line"><span class="string">将host的值改成映射的外部主机ip地址和端口</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## GitLab settings</span></span><br><span class="line"><span class="attr">gitlab:</span></span><br><span class="line">     <span class="comment">## Web server settings (note: host is the FQDN, do not include http://)</span></span><br><span class="line"><span class="attr">     host:</span> <span class="number">192.168</span><span class="number">.0</span><span class="number">.101</span></span><br><span class="line"><span class="attr">     port:</span> <span class="number">22</span></span><br><span class="line"><span class="attr">     https:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>因为是容器，所以要进入到gitlab容器中执行命令</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker exec -ti gitlab <span class="regexp">/bin/</span>bash</span><br><span class="line"></span><br><span class="line">gitlab-ctl reconfigure <span class="comment"># 修改配置</span></span><br><span class="line">gitlab-ctl restart	   <span class="comment"># 重启</span></span><br><span class="line">gitlab-ctl status</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -ti gitlab /bin/bash</span><br><span class="line"></span><br><span class="line">gitlab-ctl reconfigure <span class="comment"># 修改配置</span></span><br><span class="line">gitlab-ctl restart	   <span class="comment"># 重启</span></span><br><span class="line">gitlab-ctl status</span><br></pre></td></tr></table></figure>
 <h3 id="访问地址-1"><a href="#访问地址-1" class="headerlink" title="访问地址"></a>访问地址</h3><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span><span class="comment">//192.168.0.101:8008</span></span><br></pre></td></tr></table></figure>
 <h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h2><h3 id="获取镜像-4"><a href="#获取镜像-4" class="headerlink" title="获取镜像"></a>获取镜像</h3><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">docker pull nginx</span></span><br></pre></td></tr></table></figure>
 <h3 id="运行容器-4"><a href="#运行容器-4" class="headerlink" title="运行容器"></a>运行容器</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">run</span> -d -p <span class="number">80</span>:<span class="number">80</span>  <span class="comment">--name nginx nginx</span></span><br></pre></td></tr></table></figure>
