@@ -277,14 +277,14 @@
   label: &apos;render组件&apos;,
   component: &apos;render&apos;,
   name: &apos;render&apos;,
-  dataSource: (data, h) =&gt; {
+  dataSource: (formData, h) =&gt; {
     return h(&quot;el-color-picker&quot;, {
       props: {
-        value: this.formMap.formData.render
+        value: formData.render
       },
       on: {
         change: val =&gt; {
-          this.$set(this.formMap.formData, &apos;render&apos;, val)
+          this.$set(formData, &apos;render&apos;, val)
         }
       }
     });
@@ -319,7 +319,7 @@ export default {
         label: &apos;输入框&apos;,
         component: &apos;input&apos;,
         name: &apos;input&apos;,
-        show: () =&gt; true,
+        show: (formData) =&gt; Boolean(formData.id), // 当存在id时显示
         rules: {
           required: {
             message: &apos;请输入输入框&apos;
