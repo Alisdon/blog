@@ -1,6 +1,6 @@
 <hr>
-<p>title: al-block-table 使用说明<br>date: 2020-07-16 17:41:49<br>tags: al-block<br>category: al-block</p>
-<h2 id="hidden-true"><a href="#hidden-true" class="headerlink" title="hidden: true"></a>hidden: true</h2><h2 id="列表篇"><a href="#列表篇" class="headerlink" title="列表篇"></a>列表篇</h2><p><code>Al-Block-Crud</code>对列表进行了二次封装，意为开发带来更多的便利，减少开发时多余代码的<code>Ctrl+c</code>、<code>Ctrl+v</code>。</p>
+<p>title: al-block-table 使用说明<br>date: 2020-07-16 17:41:49<br>tags: al-block</p>
+<h2 id="category-al-block"><a href="#category-al-block" class="headerlink" title="category: al-block"></a>category: al-block</h2><h2 id="列表篇"><a href="#列表篇" class="headerlink" title="列表篇"></a>列表篇</h2><p><code>Al-Block-Crud</code>对列表进行了二次封装，意为开发带来更多的便利，减少开发时多余代码的<code>Ctrl+c</code>、<code>Ctrl+v</code>。</p>
 <h3 id="功能说明"><a href="#功能说明" class="headerlink" title="功能说明"></a>功能说明</h3><ul>
 <li style="list-style: none"><input type="checkbox" checked></input> 本地数据或远程数据展示</li>
 <li style="list-style: none"><input type="checkbox" checked></input> 初始选中状态设置</li>
@@ -154,6 +154,13 @@ pagination: {
 <td style="text-align:left"></td>
 </tr>
 <tr>
+<td>dicts</td>
+<td style="text-align:left">字典数据, 数组内容由注册时决定</td>
+<td style="text-align:left">Array/Function</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">如传入[{ value: ‘1’, label: ‘文本’, type: ‘primary’ }] , value 和 label 由注册时映射. type 为 elTag 的type, 不传则直接显示文本</td>
+</tr>
+<tr>
 <td>render</td>
 <td style="text-align:left">列渲染函数。可编写<a href="https://cn.vuejs.org/v2/guide/render-function.html#%E5%9F%BA%E7%A1%80">render 函数</a>，或安装 jsx 插件进行开发</td>
 <td style="text-align:left">Function</td>
@@ -226,8 +233,9 @@ pagination: {
 </table>
 <h3 id="操作项-handle-说明"><a href="#操作项-handle-说明" class="headerlink" title="操作项 handle 说明"></a>操作项 handle 说明</h3><pre><code>handle: [{
   html: &apos;&lt;i class=&quot;el-icon-edit&quot;&gt;&lt;/i&gt;编辑&apos;,// 当前按钮的html
+  show: rows =&gt; rows.row.age &gt; 18,        // 是否显示
   disabled: rows =&gt; rows.row.age &gt; 18,    // 是否不可用
-  type: &apos;text&apos;,                           // 按钮类型
+  type: &apos;button&apos;,                         // 按钮类型
   style: &apos;&apos;,                              // 按钮样式
   click: rows =&gt; console.log(rows)        // 按钮点击事件
 }]
@@ -252,18 +260,19 @@ export default {
         },
         columns: [
           { field: &apos;name&apos;, label: &apos;姓名&apos; },
-          { field: &apos;age&apos;, label: &apos;年龄&apos; },
-          { field: &apos;sex&apos;, label: &apos;性别&apos;,
-            render: (rows, h) =&gt; {
-              return rows.row.sex === &apos;0&apos;
-                ? h(&apos;el-tag&apos;, {props: {type: &apos;default&apos;}}, &apos;男&apos;)
-                : h(&apos;el-tag&apos;, {props: {type: &apos;success&apos;}}, &apos;女&apos;)
+          { field: &apos;age&apos;, label: &apos;年龄&apos;,
+            render: ({ row }, h) {
+              return row.age &gt; 18 ? h(&apos;span&apos;, {}, &apos;成人&apos;) : h(&apos;span&apos;, {}, &apos;未成年&apos;)
             }
           },
+          { field: &apos;sex&apos;, label: &apos;性别&apos;,
+            dicts: [
+              { label: &apos;男&apos;, value: 1, type: &apos;default&apos; },
+              { label: &apos;女&apos;, value: 0, type: &apos;warning&apos; },
+            ]
+          },
           { field: &apos;&apos;, label: &apos;操作&apos;,
-            options: {
-              width: &apos;120px&apos;
-            },
+            options: { width: &apos;120px&apos; },
             handle: [{
               html: &apos;&lt;i class=&quot;el-icon-edit&quot;&gt;&lt;/i&gt;编辑&apos;,
               type: &apos;primary&apos;,
