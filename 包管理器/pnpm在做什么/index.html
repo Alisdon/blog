@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>pnpm在做什么 | Alisdon</title>
+  <meta name="description" content="简介 pnpm和npm/yarn本质是相同, 都是一个包管理工具, 但相对npm和yarn而言具有如下特征:  节约磁盘空间并提升安装速度 创建非扁平化的 node_modules 文件夹   这是官方所表达设计pnpm的初衷!  依赖管理方式嵌套结构npm1/npm2采用的是和package.json文件中依赖与次依赖形成的树形结构而生成的node_modules目录结构, 再通过递归安装所有次">
+<meta name="keywords" content="pnpm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pnpm在做什么">
+<meta property="og:url" content="https://alisdon.github.com/包管理器/pnpm在做什么/index.html">
+<meta property="og:site_name" content="Alisdon Blog">
+<meta property="og:description" content="简介 pnpm和npm/yarn本质是相同, 都是一个包管理工具, 但相对npm和yarn而言具有如下特征:  节约磁盘空间并提升安装速度 创建非扁平化的 node_modules 文件夹   这是官方所表达设计pnpm的初衷!  依赖管理方式嵌套结构npm1/npm2采用的是和package.json文件中依赖与次依赖形成的树形结构而生成的node_modules目录结构, 再通过递归安装所有次">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="https://alisdon.github.com/包管理器/pnpm在做什么/logo.png">
+<meta property="og:image" content="https://alisdon.github.com/包管理器/pnpm在做什么/npm1*2.png">
+<meta property="og:image" content="https://alisdon.github.com/包管理器/pnpm在做什么/npm1.png">
+<meta property="og:image" content="https://alisdon.github.com/包管理器/pnpm在做什么/pnpm.jpeg">
+<meta property="og:image" content="https://alisdon.github.com/包管理器/pnpm在做什么/test.png">
+<meta property="og:image" content="https://alisdon.github.com/包管理器/pnpm在做什么/deno.jpeg">
+<meta property="og:updated_time" content="2022-08-10T14:13:12.620Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="pnpm在做什么">
+<meta name="twitter:description" content="简介 pnpm和npm/yarn本质是相同, 都是一个包管理工具, 但相对npm和yarn而言具有如下特征:  节约磁盘空间并提升安装速度 创建非扁平化的 node_modules 文件夹   这是官方所表达设计pnpm的初衷!  依赖管理方式嵌套结构npm1/npm2采用的是和package.json文件中依赖与次依赖形成的树形结构而生成的node_modules目录结构, 再通过递归安装所有次">
+<meta name="twitter:image" content="https://alisdon.github.com/包管理器/pnpm在做什么/logo.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://alisdon.github.com/包管理器/pnpm在做什么/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Alisdon Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/blog/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/Alisdon" target="_blank">
+          <img class="img-circle img-rotate" src="/blog/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Alisdon</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> ChengDu, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archive">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/blog/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/blog/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/Alisdon" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/Alisdon" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>感谢光临本博客，博主将持续更新前端知识技术帖</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/als-block/">als-block</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/css/">css</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/mmzsblog/">mmzsblog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/其他/">其他</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/包管理器/">包管理器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/小程序/">小程序</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/服务端/">服务端</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/混合开发/">混合开发</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/blog/tags/als-block/" style="font-size: 14px;">als-block</a> <a href="/blog/tags/css/" style="font-size: 13.33px;">css</a> <a href="/blog/tags/docker基础/" style="font-size: 13px;">docker基础</a> <a href="/blog/tags/git/" style="font-size: 13px;">git</a> <a href="/blog/tags/mmzsblog/" style="font-size: 13px;">mmzsblog</a> <a href="/blog/tags/nginx/" style="font-size: 13px;">nginx</a> <a href="/blog/tags/node/" style="font-size: 13px;">node</a> <a href="/blog/tags/pnpm/" style="font-size: 13px;">pnpm</a> <a href="/blog/tags/svn/" style="font-size: 13px;">svn</a> <a href="/blog/tags/uni-app/" style="font-size: 13px;">uni-app</a> <a href="/blog/tags/其他/" style="font-size: 13.33px;">其他</a> <a href="/blog/tags/小程序/" style="font-size: 13.67px;">小程序</a> <a href="/blog/tags/微信小程序/" style="font-size: 13.33px;">微信小程序</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2021/08/">August 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2021/06/">June 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/07/">July 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/05/">May 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/02/">February 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2019/03/">March 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2018/12/">December 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2018/10/">October 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2018/07/">July 2018</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/包管理器/pnpm在做什么/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/包管理器/">包管理器</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/包管理器/pnpm在做什么/" class="title">pnpm在做什么</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-08-03T13:07:16.000Z" itemprop="datePublished">2022-08-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/小程序/小程序申请步骤及条件/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/小程序/">小程序</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/小程序/小程序申请步骤及条件/" class="title">小程序申请步骤及条件</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-08-14T05:55:37.000Z" itemprop="datePublished">2021-08-14</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/小程序/微信小程序发布流程/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/小程序/">小程序</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/小程序/微信小程序发布流程/" class="title">微信小程序发布流程</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-06-26T09:41:49.000Z" itemprop="datePublished">2021-06-26</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/小程序/微信小程序云开发/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/小程序/">小程序</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/小程序/微信小程序云开发/" class="title">微信小程序云开发</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-06-24T09:41:49.000Z" itemprop="datePublished">2021-06-24</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/als-block/als-block-crud/menu/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/als-block/">als-block</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/als-block/als-block-crud/menu/" class="title">als-block-menu 使用说明</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-16T09:41:49.000Z" itemprop="datePublished">2020-07-16</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#依赖管理方式"><span class="toc-number">2.</span> <span class="toc-text">依赖管理方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#嵌套结构"><span class="toc-number">2.1.</span> <span class="toc-text">嵌套结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#扁平结构"><span class="toc-number">2.2.</span> <span class="toc-text">扁平结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#幽灵依赖"><span class="toc-number">2.2.1.</span> <span class="toc-text">幽灵依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#依赖分身"><span class="toc-number">2.2.2.</span> <span class="toc-text">依赖分身</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结构不确定性"><span class="toc-number">2.2.3.</span> <span class="toc-text">结构不确定性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pnpm"><span class="toc-number">2.3.</span> <span class="toc-text">pnpm</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#符号链接"><span class="toc-number">2.3.1.</span> <span class="toc-text">符号链接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#对比图"><span class="toc-number">2.3.2.</span> <span class="toc-text">对比图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#是否pnpm就是最好的解决方案"><span class="toc-number">2.3.3.</span> <span class="toc-text">是否pnpm就是最好的解决方案?</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#包管理器的探索"><span class="toc-number">3.</span> <span class="toc-text">包管理器的探索</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Deno"><span class="toc-number">3.1.</span> <span class="toc-text">Deno</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#yarn-Plug’n’Play-yarn-PnP"><span class="toc-number">3.2.</span> <span class="toc-text">yarn Plug’n’Play(yarn PnP)</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-pnpm在做什么" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      pnpm在做什么
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/blog/包管理器/pnpm在做什么/" class="article-date">
+	  <time datetime="2022-08-03T13:07:16.000Z" itemprop="datePublished">2022-08-03</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/blog/categories/包管理器/">包管理器</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/blog/tags/pnpm/">pnpm</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/blog/包管理器/pnpm在做什么/" class="leancloud_visitors"  data-flag-title="pnpm在做什么">0</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/包管理器/pnpm在做什么/#comments" class="article-comment-link">Comments</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 2.4k(words)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 9(minutes)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><img src="./logo.png" alt=""></p>
+<p><strong>pnpm和npm/yarn本质是相同, 都是一个包管理工具</strong>, 但相对npm和yarn而言具有如下特征:</p>
+<ol>
+<li>节约磁盘空间并提升安装速度</li>
+<li>创建非扁平化的 node_modules 文件夹</li>
+</ol>
+<blockquote>
+<p>这是官方所表达设计pnpm的初衷!</p>
+</blockquote>
+<h2 id="依赖管理方式"><a href="#依赖管理方式" class="headerlink" title="依赖管理方式"></a>依赖管理方式</h2><h3 id="嵌套结构"><a href="#嵌套结构" class="headerlink" title="嵌套结构"></a>嵌套结构</h3><p>npm1/npm2采用的是和package.json文件中依赖与次依赖形成的树形结构而生成的node_modules目录结构, 再通过递归安装所有次级依赖所依赖的模块.</p>
+<p>以项目中安装了 A | B 两个模块, A 模块依赖了 C | D 模块为例所生成的目录结构将如下所示:</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">node_modules</span><br><span class="line">├─ A@<span class="number">1.0</span><span class="number">.0</span></span><br><span class="line">|  ├─ node_modules</span><br><span class="line">|  |  ├─ C@<span class="number">1.0</span><span class="number">.0</span></span><br><span class="line">|  |  ├─ D@<span class="number">1.0</span><span class="number">.0</span></span><br><span class="line">├─ B@<span class="number">1.0</span><span class="number">.0</span></span><br></pre></td></tr></table></figure>
+<p>对于这种各模块间互不关联的情景下如果不出意外这将是一个不错的解决方案,  但意外还是发生了.</p>
+<p>以项目中安装了A | B 两个模块, A | B 同时依赖了 C | D 模块为例所生成的目录结构如下所示:</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">node_modules</span><br><span class="line">├─ A@<span class="number">1.0</span><span class="number">.0</span></span><br><span class="line">|  ├─ node_modules</span><br><span class="line">|  |  ├─ C@<span class="number">1.0</span><span class="number">.0</span></span><br><span class="line">|  |  ├─ D@<span class="number">1.0</span><span class="number">.0</span></span><br><span class="line">├─ B@<span class="number">1.0</span><span class="number">.0</span></span><br><span class="line">|  ├─ node_modules</span><br><span class="line">|  |  ├─ C@<span class="number">1.0</span><span class="number">.0</span></span><br><span class="line">|  |  ├─ D@<span class="number">1.0</span><span class="number">.0</span></span><br></pre></td></tr></table></figure>
+<p>此时我们就可以发现2个问题</p>
+<ol>
+<li>相同包重复安装, 将导致项目体积过大, 占用了过多的磁盘空间</li>
+<li>依赖层级较深时引用地址将变得很长, 在window下将出现一些莫名问题.</li>
+</ol>
+<p>社区里面也出现了诸如此类的“嘲讽”图片</p>
+<p><img src="./npm1*2.png" width="40%"><img src="./npm1.png" width="40%" style="vertical-align: top"></p>
+<h3 id="扁平结构"><a href="#扁平结构" class="headerlink" title="扁平结构"></a>扁平结构</h3><p>在这个阶段(<strong>目前npm和yarn都处于这个阶段</strong>), npm和yarn都将依赖进行了扁平化的管理即将依赖都提出到node_modules目录下, 不再有很深层次的嵌套关系. </p>
+<p>以上方 A | B 模块都依赖 C | D 模块为例所生成的目录结构如下所示:</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">node_modules</span><br><span class="line">├─ C@<span class="number">1.0</span><span class="number">.0</span></span><br><span class="line">├─ D@<span class="number">1.0</span><span class="number">.0</span></span><br><span class="line">├─ A@<span class="number">1.0</span><span class="number">.0</span></span><br><span class="line">├─ B@<span class="number">1.0</span><span class="number">.0</span></span><br></pre></td></tr></table></figure>
+<p>对于扁平化后的目录结构, 根据 node require 的加载机制，会不停往上级的node_modules当中去找，如果找到相同版本的包就不会重新安装，这解决了大量包重复安装的问题，而且依赖层级也不会太深。</p>
+<p>同样, 理想很丰满, 现实很骨感, 在我们平时使用中不可能会这么“规矩”.</p>
+<p>比如我们在 B 模块中使用的是 <a href="mailto:D@1.0.1" target="_blank" rel="noopener">D@1.0.1</a> 这个版本而不是 <a href="mailto:D@1.0.0" target="_blank" rel="noopener">D@1.0.0</a> 这个版版, 新的流程将会是如下所示</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">node_modules</span><br><span class="line">├─ C@<span class="number">1.0</span><span class="number">.0</span></span><br><span class="line">├─ D@<span class="number">1.0</span><span class="number">.0</span></span><br><span class="line">├─ A@<span class="number">1.0</span><span class="number">.0</span></span><br><span class="line">├─ B@<span class="number">1.0</span><span class="number">.0</span></span><br><span class="line">|  ├─ node_modules</span><br><span class="line">|  |  ├─ D@<span class="number">1.0</span><span class="number">.1</span></span><br></pre></td></tr></table></figure>
+<p>亦或者</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">node_modules</span><br><span class="line">├─ C@<span class="number">1.0</span><span class="number">.0</span></span><br><span class="line">├─ D@<span class="number">1.0</span><span class="number">.1</span></span><br><span class="line">├─ A@<span class="number">1.0</span><span class="number">.0</span></span><br><span class="line">|  ├─ node_modules</span><br><span class="line">|  |  ├─ D@<span class="number">1.0</span><span class="number">.0</span></span><br><span class="line">├─ B@<span class="number">1.0</span><span class="number">.0</span></span><br></pre></td></tr></table></figure>
+<p>但由此却又诞生了“幽灵依赖” 和 “依赖分身”以及<del>node_modules的结构不稳定性</del></p>
+<h4 id="幽灵依赖"><a href="#幽灵依赖" class="headerlink" title="幽灵依赖"></a>幽灵依赖</h4><p>幽灵依赖是指在 package.json 中未定义的依赖，但项目中依然可以正确地被引用到。如例子中的 C | D 依赖</p>
+<h4 id="依赖分身"><a href="#依赖分身" class="headerlink" title="依赖分身"></a>依赖分身</h4><p>依赖分身是指出现重名但不同版本的依赖安装, 此时的模块只能重复安装到模块所依赖的node_modules下, 若存在多个不同模块依赖与根node_modules不同的版本时将重复安装(此时和npm1/2嵌套时期生成的结构相同)</p>
+<h4 id="结构不确定性"><a href="#结构不确定性" class="headerlink" title="结构不确定性"></a>结构不确定性</h4><p>由于不同的操作系统对依赖的安装顺序不同, 在安装依赖时不同系统间将诞生不一样的目录结构. 而解决方案就是<code>lock</code>文件, 无论是package-lock.json(<a href="mailto:npm@5.x" target="_blank" rel="noopener">npm@5.x</a>后出现)还是yarn.lock, 都是为了稳定的结构而诞生的.</p>
+<h3 id="pnpm"><a href="#pnpm" class="headerlink" title="pnpm"></a>pnpm</h3><h4 id="符号链接"><a href="#符号链接" class="headerlink" title="符号链接"></a>符号链接</h4><blockquote>
+<p>符号连接又称为软链接, 类如window系统中的 <em>快捷方式</em>, 对符号链接文件进行读写的程序会表现得直接对目标文件进行操作.</p>
+</blockquote>
+<p>pnpm 的 node_modules 布局就是使用符号链接来创建依赖项的嵌套结构。在node_modules下存在一个全局的缓存池 .pnpm 文件夹, 在这个文件夹中将存放通过硬链接拷贝过来的真实文件, 通过符号连接访问时访问的其实是.pnpm中存在的目标文件.</p>
+<p>还是以 A | B 模块都依赖 C | D 模块为例所生成的目录结构如下所示:</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">node_modules</span><br><span class="line">├─ .pnpm</span><br><span class="line">|<span class="string">  ├─ D@1.0.0</span></span><br><span class="line">|<span class="string">  </span>|<span class="string">  ├─ node_modules</span></span><br><span class="line">|<span class="string">  </span>|<span class="string">  </span>|<span class="string">  ├─ D -&gt; &lt;store&gt;/D</span></span><br><span class="line">|<span class="string">  ├─ C@1.0.0</span></span><br><span class="line">|<span class="string">  </span>|<span class="string">  ├─ node_modules</span></span><br><span class="line">|<span class="string">  </span>|<span class="string">  </span>|<span class="string">  ├─ C -&gt; &lt;store&gt;/C</span></span><br><span class="line">|<span class="string">  ├─ A@1.0.0</span></span><br><span class="line">|<span class="string">  </span>|<span class="string">  ├─ node_modules</span></span><br><span class="line">|<span class="string">  </span>|<span class="string">  </span>|<span class="string">  ├─ A -&gt; &lt;store&gt;/A</span></span><br><span class="line">|<span class="string">  </span>|<span class="string">  </span>|<span class="string">  ├─ C -&gt; ../../C@1.0.0/node_modules/C</span></span><br><span class="line">|<span class="string">  </span>|<span class="string">  </span>|<span class="string">  ├─ D -&gt; ../../D@1.0.0/node_modules/D</span></span><br><span class="line">|<span class="string">  ├─ B@1.0.0</span></span><br><span class="line">|<span class="string">  </span>|<span class="string">  ├─ node_modules</span></span><br><span class="line">|<span class="string">  </span>|<span class="string">  </span>|<span class="string">  ├─ B -&gt; &lt;store&gt;/B</span></span><br><span class="line">|<span class="string">  </span>|<span class="string">  </span>|<span class="string">  ├─ C -&gt; ../../C@1.0.0/node_modules/C</span></span><br><span class="line">|<span class="string">  </span>|<span class="string">  </span>|<span class="string">  ├─ D -&gt; ../../D@1.0.0/node_modules/D</span></span><br><span class="line"><span class="string">├─ A@1.0.0 -&gt; ./.pnpm/A@1.0.0/node_modules/A</span></span><br><span class="line"><span class="string">├─ B@1.0.0 -&gt; ./.pnpm/B@1.0.0/node_modules/B</span></span><br></pre></td></tr></table></figure>
+<p>如果在 B 模块中使用的是 <a href="mailto:D@1.0.1" target="_blank" rel="noopener">D@1.0.1</a> 这个版本而不是 <a href="mailto:D@1.0.0" target="_blank" rel="noopener">D@1.0.0</a> 这个版版, 新的流程将会是如下所示</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">node_modules</span><br><span class="line">├─ .pnpm</span><br><span class="line">|<span class="string">  ├─ D@1.0.0</span></span><br><span class="line">|<span class="string">  </span>|<span class="string">  ├─ node_modules</span></span><br><span class="line">|<span class="string">  </span>|<span class="string">  </span>|<span class="string">  ├─ D -&gt; &lt;store&gt;/D</span></span><br><span class="line">|<span class="string">  ├─ D@1.0.1</span></span><br><span class="line">|<span class="string">  </span>|<span class="string">  ├─ node_modules</span></span><br><span class="line">|<span class="string">  </span>|<span class="string">  </span>|<span class="string">  ├─ D -&gt; &lt;store&gt;/D</span></span><br><span class="line">|<span class="string">  ├─ C@1.0.0</span></span><br><span class="line">|<span class="string">  </span>|<span class="string">  ├─ node_modules</span></span><br><span class="line">|<span class="string">  </span>|<span class="string">  </span>|<span class="string">  ├─ C -&gt; &lt;store&gt;/C</span></span><br><span class="line">|<span class="string">  ├─ A@1.0.0</span></span><br><span class="line">|<span class="string">  </span>|<span class="string">  ├─ node_modules</span></span><br><span class="line">|<span class="string">  </span>|<span class="string">  </span>|<span class="string">  ├─ A -&gt; &lt;store&gt;/A</span></span><br><span class="line">|<span class="string">  </span>|<span class="string">  </span>|<span class="string">  ├─ C -&gt; ../../C@1.0.0/node_modules/C</span></span><br><span class="line">|<span class="string">  </span>|<span class="string">  </span>|<span class="string">  ├─ D -&gt; ../../D@1.0.0/node_modules/D</span></span><br><span class="line">|<span class="string">  ├─ B@1.0.0</span></span><br><span class="line">|<span class="string">  </span>|<span class="string">  ├─ node_modules</span></span><br><span class="line">|<span class="string">  </span>|<span class="string">  </span>|<span class="string">  ├─ B -&gt; &lt;store&gt;/B</span></span><br><span class="line">|<span class="string">  </span>|<span class="string">  </span>|<span class="string">  ├─ C -&gt; ../../C@1.0.0/node_modules/C</span></span><br><span class="line">|<span class="string">  </span>|<span class="string">  </span>|<span class="string">  ├─ D -&gt; ../../D@1.0.1/node_modules/D</span></span><br><span class="line"><span class="string">├─ A@1.0.0 -&gt; ./.pnpm/A@1.0.0/node_modules/A</span></span><br><span class="line"><span class="string">├─ B@1.0.0 -&gt; ./.pnpm/B@1.0.0/node_modules/B</span></span><br></pre></td></tr></table></figure>
+<p>这里借用一下官方的关联关系图</p>
+<p><img src="./pnpm.jpeg" width="80%"></p>
+<p>由上方代码结构和官方关系图可得知如下结果:</p>
+<ol>
+<li>相同的依赖只会安装一次, 不同模块间相同的依赖, 通过符号链接进行关联. 解决了重复安装、依赖分身的问题.</li>
+<li>根节点只存在package.json中所注入的依赖, 解决了幽灵依赖的问题.</li>
+<li>是用符号链接的方式即解决了依赖路径过长的问题.</li>
+</ol>
+<p><strong>所以基于链接的优势, pnpm 的安装速度会比npm/yarn快近2倍的优势, 同时也大大节约了磁盘的占用空间</strong></p>
+<h4 id="对比图"><a href="#对比图" class="headerlink" title="对比图"></a>对比图</h4><p>针对上方一系列的操作后, 效果如下:</p>
+<p><img src="./test.png" width="80%"></p>
+<h4 id="是否pnpm就是最好的解决方案"><a href="#是否pnpm就是最好的解决方案" class="headerlink" title="是否pnpm就是最好的解决方案?"></a>是否pnpm就是最好的解决方案?</h4><p>首先任何一个解决方案都是当下最好的一个解决方案, 但并不代表这将是最终方案. pnpm依旧存在以下问题:</p>
+<ol>
+<li>符号链接兼容性. 存在符号链接不能适用的一些场景，比如 Electron 应用、部署在 lambda 上的应用无法使用 pnpm</li>
+<li>子依赖被提升到同级的目录结构. 虽然由于 Node.js 的父目录上溯寻址逻辑，可以实现兼容。但对于类似 Egg、Webpack 的插件加载逻辑，在用到相对路径的地方，需要去适配</li>
+<li>不同应用的依赖是硬链接到同一份文件，如果在调试时修改了文件，有可能会无意中影响到其他项目</li>
+</ol>
+<h2 id="包管理器的探索"><a href="#包管理器的探索" class="headerlink" title="包管理器的探索"></a>包管理器的探索</h2><h3 id="Deno"><a href="#Deno" class="headerlink" title="Deno"></a>Deno</h3><p>Node.JS作者Ryan在JSConf上曾表示node_modules是他对Node的十大遗憾之一, 并在后续介绍并推荐了自己的新作Deno. </p>
+<p><img src="./deno.jpeg" width="80%"></p>
+<p>在Deno中不需要package.json和node_modules，而是将引入源、包名、版本号、模块名全部塞进了 URL 里，通过URL导入依赖并进行全局统一缓存，不仅节省了磁盘空间，也优化了项目结构。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> asserts <span class="keyword">from</span> <span class="string">'https://deno.land/std@0.125.0/testing/asserts.ts'</span>;</span><br></pre></td></tr></table></figure>
+<p>因此Deno中没有包管理器的概念，对于项目中的依赖管理，Deno提供了这样一种方案。由开发者创建dep.ts，此文件中引用了所有必需的远程依赖关系，并且重新导出了所需的方法和类。本地模块从dep.ts统一导入所需方法和类，避免单独使用URL导入外部依赖可能造成的不一致的问题。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// dep.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; </span><br><span class="line">	asset, </span><br><span class="line">	assetEquals </span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">'https://deno.land/std@0.125.0/testing/asserts.ts'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// index.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; asset &#125; <span class="keyword">from</span> <span class="string">'./deps.ts'</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="yarn-Plug’n’Play-yarn-PnP"><a href="#yarn-Plug’n’Play-yarn-PnP" class="headerlink" title="yarn Plug’n’Play(yarn PnP)"></a>yarn Plug’n’Play(yarn PnP)</h3><p>yarn 也意识到了在之前版本里存在的问题, 于是在2020年1月发布了v2版本的重大更新, 其中一项重要更新就是 Plug’n’Play（Plug’n’Play = Plug and Play = PnP，即插即用）。</p>
+<p>现阶段 yarn install 操作会执行以下 4 个步骤：</p>
+<ol>
+<li>将依赖包的版本区间解析为某个具体的版本号</li>
+<li>下载对应版本依赖的 tar 包到本地离线镜像</li>
+<li>将依赖从离线镜像解压到本地缓存</li>
+<li>将依赖从缓存拷贝到当前目录的 node_modules 目录</li>
+</ol>
+<p>其中第 4 步同样涉及大量的文件 I/O，导致安装依赖时效率不高（尤其是在 CI 环境，每次都需要安装全部依赖）。</p>
+<p>PnP 的具体工作原理是: 作为把依赖从缓存拷贝到 node_modules 的替代方案，Yarn 会维护一张名为 .pnp.js 文件的静态映射表，该表中包含了以下信息：</p>
+<ul>
+<li>当前依赖树中包含了哪些依赖包的哪些版本</li>
+<li>这些依赖包是如何互相关联的</li>
+<li>这些依赖包在文件系统中的具体位置</li>
+</ul>
+<p>.pnp.js 文件中还包含了一个特殊的 resolver，Yarn 会利用这个特殊的 resolver 来处理 require() 请求，该 resolver 会根据 .pnp.js 文件中包含的静态映射表直接确定依赖在文件系统中的具体位置，从而避免了现有实现在处理依赖引用时的 I/O 操作。</p>
+<!--参考链接: 
+
+1. https://juejin.cn/post/7036319707590295565
+2. https://pnpm.io/zh/symlinked-node-modules-structure
+3. https://zhuanlan.zhihu.com/p/165041115
+4. https://www.jianshu.com/p/a805e182798f-->
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://alisdon.github.com/包管理器/pnpm在做什么/" title="pnpm在做什么" target="_blank" rel="external">https://alisdon.github.com/包管理器/pnpm在做什么/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/Alisdon" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/blog/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/Alisdon" target="_blank"><span class="text-dark">Alisdon</span><small class="ml-1x">Web Developer</small></a></h3>
+        <div>Focus on coding</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/blog/小程序/小程序申请步骤及条件/" title="小程序申请步骤及条件"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,twitter" data-mobile-sites="weibo,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/blog/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/blog/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/Alisdon" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/Alisdon" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+        &copy; 2022 Alisdon
+	<p>
+	  <span id="busuanzi_container_page_pv">总访问量：
+	    <span id="busuanzi_value_page_pv">0</span>
+	  </span>
+	  <span class="post-meta-divider">|</span>
+	  <span id="busuanzi_container_page_uv">总访客量：
+	    <span id="busuanzi_value_page_uv">0</span>
+	  </span>
+	</p>
+        
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="/blog/js/jquery.min.js"><\/script>')
+</script>
+<script src="/blog/js/plugin.min.js"></script>
+<script src="/blog/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/blog/js/insight.js"></script>
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!-- custom analytics part create by xiamo -->
+<script defer src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
+<script defer>
+AV.init({
+  appId: 'gckYbaB5kqh6zHkwDs2TNFnV-gzGzoHsz',
+  appKey: 'vU551WFpBhylUnuiap7jqnQ2'
+});
+
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+		var visitors= $('.leancloud_visitors');
+		query.greaterThanOrEqualTo("time", 0);		
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {				
+					return;
+				}
+				var data = results;
+				visitors.each(function(){
+					var url = $(this).attr('id').trim();					
+					for (var i = 0; i < data.length; i++) {
+						var object = data[i];
+						var content = object.get('time');
+						var _url = object.get('url')
+						if(url == _url){
+							$(this).text(content);
+						}
+					}
+				})
+				
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content = counter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = newcounter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else {
+		showTime(Counter);
+	}
+}); 
+</script>
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: true,
+    appId: 'gckYbaB5kqh6zHkwDs2TNFnV-gzGzoHsz',
+    appKey: 'vU551WFpBhylUnuiap7jqnQ2',
+    placeholder: '说点什么吧',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+
+</body>
+</html>
