@@ -17,23 +17,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>als-block-crud 使用说明 | Alisdon</title>
-  <meta name="description" content="介绍Als-Block-Crud是一套基于Vue.js和Element UI的表格组件。als-block-crud 将 Element 的功能进行了封装。大部分功能可由配置 json 实现，在实现并扩展了 Element 表格组件功能的同时，降低了开发难度，减少了代码量，大大简化了开发流程。 文档 als-block-table 表格 als-block-form 表单 als-block-me">
+  <title>als-block-wxmp 插件使用说明 | Alisdon</title>
+  <meta name="description" content="页面拦截由于系统存在部分需要登录和输入锁屏密码的界面, 所以该拦截存在以下配置项:    属性 默认值 说明     auth true 是否需要授权   authRouterType redirectTo 跳转到授权页面的方式   authPage ‘’ 授权页面路径   login true 是否需要登录   loginRouterType redirectTo 跳转到登录页面的方式   lo">
 <meta name="keywords" content="als-block">
 <meta property="og:type" content="article">
-<meta property="og:title" content="als-block-crud 使用说明">
-<meta property="og:url" content="https://alisdon.github.com/als-block/als-block-crud/index.html">
+<meta property="og:title" content="als-block-wxmp 插件使用说明">
+<meta property="og:url" content="https://alisdon.github.com/als-block/als-block-wxmp/index.html">
 <meta property="og:site_name" content="Alisdon Blog">
-<meta property="og:description" content="介绍Als-Block-Crud是一套基于Vue.js和Element UI的表格组件。als-block-crud 将 Element 的功能进行了封装。大部分功能可由配置 json 实现，在实现并扩展了 Element 表格组件功能的同时，降低了开发难度，减少了代码量，大大简化了开发流程。 文档 als-block-table 表格 als-block-form 表单 als-block-me">
+<meta property="og:description" content="页面拦截由于系统存在部分需要登录和输入锁屏密码的界面, 所以该拦截存在以下配置项:    属性 默认值 说明     auth true 是否需要授权   authRouterType redirectTo 跳转到授权页面的方式   authPage ‘’ 授权页面路径   login true 是否需要登录   loginRouterType redirectTo 跳转到登录页面的方式   lo">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="https://alisdon.github.com/als-block/als-block-crud/Wechat.jpeg">
-<meta property="og:updated_time" content="2022-08-10T14:51:16.577Z">
+<meta property="og:updated_time" content="2022-08-10T14:51:22.100Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="als-block-crud 使用说明">
-<meta name="twitter:description" content="介绍Als-Block-Crud是一套基于Vue.js和Element UI的表格组件。als-block-crud 将 Element 的功能进行了封装。大部分功能可由配置 json 实现，在实现并扩展了 Element 表格组件功能的同时，降低了开发难度，减少了代码量，大大简化了开发流程。 文档 als-block-table 表格 als-block-form 表单 als-block-me">
-<meta name="twitter:image" content="https://alisdon.github.com/als-block/als-block-crud/Wechat.jpeg">
+<meta name="twitter:title" content="als-block-wxmp 插件使用说明">
+<meta name="twitter:description" content="页面拦截由于系统存在部分需要登录和输入锁屏密码的界面, 所以该拦截存在以下配置项:    属性 默认值 说明     auth true 是否需要授权   authRouterType redirectTo 跳转到授权页面的方式   authPage ‘’ 授权页面路径   login true 是否需要登录   loginRouterType redirectTo 跳转到登录页面的方式   lo">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://alisdon.github.com/als-block/als-block-crud/index.html">
+  <link rel="canonical" href="https://alisdon.github.com/als-block/als-block-wxmp/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Alisdon Blog" type="application/atom+xml">
   
@@ -374,21 +372,21 @@
   <div class="slimContent">
     <nav id="toc" class="article-toc">
       <h3 class="toc-title">Catalogue</h3>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文档"><span class="toc-number">2.</span> <span class="toc-text">文档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#功能"><span class="toc-number">3.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">4.</span> <span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CDN"><span class="toc-number">4.1.</span> <span class="toc-text">CDN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#npm（暂未放入-npm）"><span class="toc-number">4.2.</span> <span class="toc-text">npm（暂未放入 npm）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在项目中使用"><span class="toc-number">5.</span> <span class="toc-text">在项目中使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#联系我"><span class="toc-number">6.</span> <span class="toc-text">联系我</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#页面拦截"><span class="toc-number">1.</span> <span class="toc-text">页面拦截</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#路由函数"><span class="toc-number">2.</span> <span class="toc-text">路由函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#请求组件"><span class="toc-number">3.</span> <span class="toc-text">请求组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#实例化配置项"><span class="toc-number">3.1.</span> <span class="toc-text">实例化配置项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#请求配置项"><span class="toc-number">3.2.</span> <span class="toc-text">请求配置项</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#消息组件"><span class="toc-number">4.</span> <span class="toc-text">消息组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缓存组件"><span class="toc-number">5.</span> <span class="toc-text">缓存组件</span></a></li></ol>
     </nav>
   </div>
 </aside>
 
 <main class="main" role="main">
   <div class="content">
-  <article id="post-als-block-crud" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-als-block-wxmp" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      als-block-crud 使用说明
+      als-block-wxmp 插件使用说明
     </h1>
   
 
@@ -396,8 +394,8 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/blog/als-block/als-block-crud/" class="article-date">
-	  <time datetime="2020-07-16T09:41:49.000Z" itemprop="datePublished">2020-07-16</time>
+	<a href="/blog/als-block/als-block-wxmp/" class="article-date">
+	  <time datetime="2020-07-17T09:41:49.000Z" itemprop="datePublished">2020-07-17</time>
 	</a>
 </span>
         
@@ -424,50 +422,169 @@
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/blog/als-block/als-block-crud/" class="leancloud_visitors"  data-flag-title="als-block-crud 使用说明">0</span>
+    	<span id="/blog/als-block/als-block-wxmp/" class="leancloud_visitors"  data-flag-title="als-block-wxmp 插件使用说明">0</span>
     </span>
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/als-block/als-block-crud/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/als-block/als-block-wxmp/#comments" class="article-comment-link">Comments</a></span>
         
 	
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 843(words)</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 990(words)</span>
 	
 	
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 3(minutes)</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 4(minutes)</span>
 	
 
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><a href="http://47.103.55.103:3000/wanglf/al-block-crud" target="_blank" rel="noopener">Als-Block-Crud</a>是一套基于<a href="https://cn.vuejs.org/" target="_blank" rel="noopener">Vue.js</a>和<a href="http://element-cn.eleme.io/#/zh-CN" target="_blank" rel="noopener">Element UI</a>的表格组件。<code>als-block-crud</code> 将 <code>Element</code> 的功能进行了封装。大部分功能可由配置 <code>json</code> 实现，在实现并扩展了 <code>Element</code> 表格组件功能的同时，降低了开发难度，减少了代码量，大大简化了开发流程。</p>
-<h2 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h2><ul>
-<li><a href="./table/">als-block-table 表格</a></li>
-<li><a href="./form/">als-block-form 表单</a></li>
-<li><a href="./menu/">als-block-menu 菜单</a></li>
-<li><a href="./dialog/">als-block-dialog 模态框</a></li>
-</ul>
-<h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><ul>
-<li>继承了 Element 中表格所有功能</li>
-<li>继承了 Element 中表单所有功能</li>
-<li>使用 Element 中的组件渲染表格内容和表单内容</li>
-<li>表单校验</li>
-<li>表格内编辑</li>
-<li>渲染自定义组件</li>
-<li>菜单</li>
-<li>模态框</li>
-</ul>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">'./als-block-crud.min.js'</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+        <h2 id="页面拦截"><a href="#页面拦截" class="headerlink" title="页面拦截"></a>页面拦截</h2><p>由于系统存在部分需要登录和输入锁屏密码的界面, 所以该拦截存在以下配置项:</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>auth</td>
+<td>true</td>
+<td>是否需要授权</td>
+</tr>
+<tr>
+<td>authRouterType</td>
+<td>redirectTo</td>
+<td>跳转到授权页面的方式</td>
+</tr>
+<tr>
+<td>authPage</td>
+<td>‘’</td>
+<td>授权页面路径</td>
+</tr>
+<tr>
+<td>login</td>
+<td>true</td>
+<td>是否需要登录</td>
+</tr>
+<tr>
+<td>loginRouterType</td>
+<td>redirectTo</td>
+<td>跳转到登录页面的方式</td>
+</tr>
+<tr>
+<td>loginPage</td>
+<td>‘’</td>
+<td>登录页面路径</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 注册拦截器</span></span><br><span class="line"><span class="keyword">const</span> &#123; Interceptor &#125; = <span class="built_in">require</span>(<span class="string">'./al-wxmp.min.js'</span>);</span><br><span class="line"><span class="keyword">new</span> Interceptor(&#123;</span><br><span class="line">  auth: <span class="literal">true</span>,</span><br><span class="line">  authRouterType: <span class="string">'redirectTo'</span>,</span><br><span class="line">  authPage: <span class="string">'/pages/login/auth/auth'</span>,</span><br><span class="line">  login: <span class="literal">true</span>,</span><br><span class="line">  loginRouterType: <span class="string">'reLaunch'</span>,</span><br><span class="line">  loginPage: <span class="string">'/pages/login/auth/auth'</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用拦截器</span></span><br><span class="line">Page(&#123;</span><br><span class="line">  interceptor: &#123;</span><br><span class="line">    auth: <span class="literal">true</span>,</span><br><span class="line">    login: <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="路由函数"><a href="#路由函数" class="headerlink" title="路由函数"></a>路由函数</h2><p>由于小程序中带有参数的页面跳转略微复杂, 所以对页面跳转进行一层包裹</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; Router &#125; = <span class="built_in">require</span>(<span class="string">'./al-wxmp.min.js'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 保留当前页面，跳转到应用内的某个页面</span></span><br><span class="line">Router.navigateTo(</span><br><span class="line">  <span class="string">'/pages/index/index'</span>, </span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">1234567890</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">auth</span>: <span class="literal">false</span> &#125;</span><br><span class="line">)</span><br><span class="line"><span class="comment">// 关闭所有页面，打开到应用内的某个页面</span></span><br><span class="line">Router.reLaunch(</span><br><span class="line">  <span class="string">'/pages/index/index'</span>, </span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">1234567890</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">auth</span>: <span class="literal">false</span> &#125;</span><br><span class="line">)</span><br><span class="line"><span class="comment">// 关闭当前页面，跳转到应用内的某个页面</span></span><br><span class="line">Router.redirectTo(</span><br><span class="line">  <span class="string">'/pages/index/index'</span>, </span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">1234567890</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">auth</span>: <span class="literal">false</span> &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>由于服务器过期, 可在底部联系作者</p>
+<p>Tips: 路由组件传递参数格式一致, 均为(路径[String], 参数[String|Object], <a href="#页面拦截">拦截器参数</a>(不传则使用注册拦截器时的参数配置))</p>
 </blockquote>
-<h3 id="npm（暂未放入-npm）"><a href="#npm（暂未放入-npm）" class="headerlink" title="npm（暂未放入 npm）"></a>npm（暂未放入 npm）</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i element-ui als-block-crud -S</span><br></pre></td></tr></table></figure>
-<h2 id="在项目中使用"><a href="#在项目中使用" class="headerlink" title="在项目中使用"></a>在项目中使用</h2><p>在使用的时候需要对组件进行配置，以下为所有默认配置，使用时可自定义完善配置。<br><em>项目配置以<code>axios</code>请求得到参数格式来进行案例说明：</em></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">不分页返回的格式</span><br><span class="line">&#123;</span><br><span class="line">  ...axios.response,</span><br><span class="line">  status: <span class="number">200</span>,</span><br><span class="line">  statusText: <span class="string">'OK'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    &#123;</span><br><span class="line">      code: <span class="number">200</span>,</span><br><span class="line">      data: [],</span><br><span class="line">      msg: <span class="string">''</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">分页返回的格式</span><br><span class="line">&#123;</span><br><span class="line">  ...axios.response,</span><br><span class="line">  status: <span class="number">200</span>,</span><br><span class="line">  statusText: <span class="string">'OK'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    &#123;</span><br><span class="line">      code: <span class="number">200</span>,</span><br><span class="line">      data: &#123;</span><br><span class="line">        list: [],</span><br><span class="line">        pageSize: <span class="number">10</span>,</span><br><span class="line">        pageIndex: <span class="number">1</span>,</span><br><span class="line">        total: <span class="number">10</span></span><br><span class="line">      &#125;</span><br><span class="line">      msg: <span class="string">''</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在<code>main.js</code>中写入以下内容：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">"vue"</span>;</span><br><span class="line"><span class="keyword">import</span> ElementUI <span class="keyword">from</span> <span class="string">"element-ui"</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">"element-ui/lib/theme-chalk/index.css"</span>;</span><br><span class="line"></span><br><span class="line">Vue.use(ElementUI);</span><br><span class="line">Vue.use(<span class="built_in">window</span>.AlsBlockCrud, &#123;</span><br><span class="line">  table: &#123;</span><br><span class="line">    <span class="comment">// 分页相关配置</span></span><br><span class="line">    pagination: &#123;</span><br><span class="line">      <span class="comment">// 布局</span></span><br><span class="line">      layout: <span class="string">"sizes, prev, pager, next, total, -&gt;"</span>,</span><br><span class="line">      <span class="comment">// 下拉框的选项</span></span><br><span class="line">      sizes_value: [<span class="number">10</span>, <span class="number">20</span>, <span class="number">50</span>, <span class="number">100</span>],</span><br><span class="line">      <span class="comment">// 每页显示条数的key</span></span><br><span class="line">      size: <span class="string">"pageSize"</span>,</span><br><span class="line">      <span class="comment">// 每页显示条数的默认值</span></span><br><span class="line">      size_default_value: <span class="number">10</span>,</span><br><span class="line">      <span class="comment">// 当前页的key</span></span><br><span class="line">      index: <span class="string">"pageIndex"</span>,</span><br><span class="line">      <span class="comment">// 当前页的默认值</span></span><br><span class="line">      index_default_value: <span class="number">1</span>,</span><br><span class="line">      <span class="comment">// 总条数的key</span></span><br><span class="line">      total: <span class="string">"total"</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 分页时数据源路径</span></span><br><span class="line">    path_data: <span class="string">"data.data.list"</span>,</span><br><span class="line">    <span class="comment">// 不分页时的数据源路径</span></span><br><span class="line">    path_data_no_pagination: <span class="string">"data.data"</span>,</span><br><span class="line">    <span class="comment">// 每页显示条数的路径</span></span><br><span class="line">    path_size: <span class="string">"data.data.pageSize"</span>,</span><br><span class="line">    <span class="comment">// 当前页的路径</span></span><br><span class="line">    path_index: <span class="string">"data.data.pageIndex"</span>,</span><br><span class="line">    <span class="comment">// 总条数的路径</span></span><br><span class="line">    path_total: <span class="string">"data.data.total"</span>,</span><br><span class="line">    <span class="comment">// 列表默认高度，可在使用中覆盖，可设置['auto', '100%', Number + 'px']</span></span><br><span class="line">    height: <span class="string">"auto"</span>,</span><br><span class="line">    <span class="comment">// 是否默认开启边框，可在使用中覆盖</span></span><br><span class="line">    border: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">// 是否默认开启斑马条纹，可在使用中覆盖</span></span><br><span class="line">    stripe: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">// 默认表头样式，可在使用中覆盖</span></span><br><span class="line">    header_cell_style: &#123;&#125;,</span><br><span class="line">    <span class="comment">// 展示加载中</span></span><br><span class="line">    show_loading: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">// 字典映射</span></span><br><span class="line">    dict_props: &#123;</span><br><span class="line">    	<span class="comment">// 映射的 value</span></span><br><span class="line">      value: <span class="string">"value"</span>,</span><br><span class="line">      <span class="comment">// 映射的 名称</span></span><br><span class="line">      label: <span class="string">"label"</span>,</span><br><span class="line">      <span class="comment">// 如果没有对应值需要显示的内容</span></span><br><span class="line">      emptyValue: <span class="string">""</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 请求失败的回调</span></span><br><span class="line">    on_request_error: <span class="function"><span class="keyword">function</span>(<span class="params">error</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// 获取服务端返回的 data 值</span></span><br><span class="line">      <span class="keyword">const</span> serverResult = error.data || &#123;&#125;;</span><br><span class="line">      <span class="comment">// 提示信息</span></span><br><span class="line">      <span class="keyword">this</span>.$message.error(serverResult.msg || <span class="string">"系统错误"</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  form: &#123;</span><br><span class="line">    <span class="comment">// 表单验证触发方式</span></span><br><span class="line">    trigger: [<span class="string">"blur"</span>, <span class="string">"change"</span>],</span><br><span class="line">    <span class="comment">// 是否需要验证特殊字符</span></span><br><span class="line">    need_valid_special_chart: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">// 手机号正则</span></span><br><span class="line">    valid_regexp_phone: <span class="regexp">/1[3-9][0-9]&#123;9&#125;$/</span>,</span><br><span class="line">    <span class="comment">// 邮箱正则</span></span><br><span class="line">    valid_regexp_email: <span class="regexp">/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/</span>,</span><br><span class="line">    <span class="comment">// ip正则</span></span><br><span class="line">    valid_regexp_ip: <span class="regexp">/^(\d&#123;1,2&#125;|1\d\d|2[0-4]\d|25[0-5])(\.(\d&#123;1,2&#125;|1\d\d|2[0-4]\d|25[0-5]))&#123;3&#125;$/</span>,</span><br><span class="line">    <span class="comment">// 编码正则</span></span><br><span class="line">    valid_regexp_code: <span class="regexp">/^[a-zA-Z0-9]+$/</span>,</span><br><span class="line">    <span class="comment">// 特殊字符正则</span></span><br><span class="line">    valid_regexp_special_chart: <span class="regexp">/[`~!@#$%^&amp;*()_\-+=&lt;&gt;?:"&#123;&#125;|,.\/;'\\[\]·~！@#￥%……&amp;*（）——\-+=&#123;&#125;|《》？：“”【】、；‘’，。、 ]/gim</span>,</span><br><span class="line">    <span class="comment">// 默认属性</span></span><br><span class="line">    default_options: &#123;</span><br><span class="line">      <span class="comment">// 行占比</span></span><br><span class="line">      span: <span class="number">24</span>,</span><br><span class="line">      <span class="comment">// 行间距</span></span><br><span class="line">      gutter: <span class="number">0</span>,</span><br><span class="line">      <span class="comment">// 输入框默认属性</span></span><br><span class="line">      input: &#123;&#125;,</span><br><span class="line">      <span class="comment">// 下拉框默认属性</span></span><br><span class="line">      select: &#123;&#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">"#app"</span>,</span><br><span class="line">  render: <span class="function">(<span class="params">h</span>) =&gt;</span> h(App),</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>至此，你就可以愉快的使用<code>Als-Block-Crud</code>组件了</p>
-<h2 id="联系我"><a href="#联系我" class="headerlink" title="联系我"></a>联系我</h2><p><img src="./Wechat.jpeg" alt=""></p>
+<h2 id="请求组件"><a href="#请求组件" class="headerlink" title="请求组件"></a>请求组件</h2><p>由于请求能够做到更多的复用, 所以将此进行封装</p>
+<h3 id="实例化配置项"><a href="#实例化配置项" class="headerlink" title="实例化配置项"></a>实例化配置项</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>baseUrl</td>
+<td></td>
+<td>默认请求地址(后端网关地址)</td>
+</tr>
+<tr>
+<td>hideErrMsg</td>
+<td>false</td>
+<td>是否隐藏错误信息</td>
+</tr>
+<tr>
+<td>needReject</td>
+<td>false</td>
+<td>是否需要 Promise 的 catch 分之</td>
+</tr>
+<tr>
+<td>isSuccess</td>
+<td>(data) =&gt; data.code === 0</td>
+<td>是否成功的判断</td>
+</tr>
+<tr>
+<td>showErrMsgFn</td>
+<td>(error) =&gt; error.msg</td>
+<td></td>
+<td>“”</td>
+<td>返回错误信息的函数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="请求配置项"><a href="#请求配置项" class="headerlink" title="请求配置项"></a>请求配置项</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>baseUrl</td>
+<td></td>
+<td>默认请求地址(后端网关地址)</td>
+</tr>
+<tr>
+<td>hideErrMsg</td>
+<td>false</td>
+<td>是否隐藏错误信息</td>
+</tr>
+<tr>
+<td>needReject</td>
+<td>false</td>
+<td>是否需要 Promise 的 catch 分之</td>
+</tr>
+<tr>
+<td>headers</td>
+<td></td>
+<td>需要携带的headers</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 注册请求</span></span><br><span class="line"><span class="keyword">const</span> &#123; Request &#125; = <span class="built_in">require</span>(<span class="string">'./al-wxmp.min.js'</span>);</span><br><span class="line"><span class="keyword">new</span> Request(&#123;</span><br><span class="line">  baseUrl: <span class="string">'http://120.27.27.108:3000/'</span>,</span><br><span class="line">  hideErrMsg: <span class="literal">false</span>,</span><br><span class="line">  needReject: <span class="literal">false</span>,</span><br><span class="line">  isSuccess: <span class="function">(<span class="params">data</span>) =&gt;</span> data.code === <span class="number">0</span>,</span><br><span class="line">  showErrMsgFn: <span class="function">(<span class="params">error</span>) =&gt;</span> error.msg || <span class="string">""</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// GET 使用, 隐藏提示、返回catch分支</span></span><br><span class="line">Request.get(</span><br><span class="line">  <span class="string">'/user/get'</span>, </span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="string">'123'</span> &#125;, </span><br><span class="line">  &#123; <span class="attr">hideErrMsg</span>: <span class="literal">true</span>, <span class="attr">needReject</span>: <span class="literal">true</span> &#125;</span><br><span class="line">).then(<span class="built_in">console</span>.log).catch(<span class="built_in">console</span>.error)</span><br><span class="line"><span class="comment">// POST 使用, 设置headers</span></span><br><span class="line">Request.post(</span><br><span class="line">  <span class="string">'/user/save'</span>, </span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">'Alisdon'</span> &#125;, </span><br><span class="line">  &#123; <span class="attr">headers</span>: &#123; <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span> &#125; &#125;</span><br><span class="line">).then(<span class="built_in">console</span>.log)</span><br><span class="line"><span class="comment">// 使用其他 baseUrl</span></span><br><span class="line">Request.post(</span><br><span class="line">  <span class="string">'/user/login'</span>, </span><br><span class="line">  &#123; <span class="attr">userName</span>: <span class="string">'Alisdon'</span> &#125;, </span><br><span class="line">  &#123; <span class="attr">baseUrl</span>: <span class="string">'http://www.baidu.com'</span> &#125;</span><br><span class="line">).then(<span class="built_in">console</span>.log)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>无论是GET还是POST最多能接受3个参数, 依次为<em>请求地址</em>, <em>请求参数</em>, <em>请求配置项</em></p>
+</blockquote>
+<h2 id="消息组件"><a href="#消息组件" class="headerlink" title="消息组件"></a>消息组件</h2><p>由于消息存在大量的复用, 所以将此进行封装</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; Message &#125; = <span class="built_in">require</span>(<span class="string">'./al-wxmp.min.js'</span>);</span><br><span class="line"><span class="comment">// 注册消息组件</span></span><br><span class="line">wx.$message = Router;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 成功提示</span></span><br><span class="line">wx.$message.success(<span class="string">'成功提示'</span>);</span><br><span class="line"><span class="comment">// 成功提示</span></span><br><span class="line">wx.$message.error(<span class="string">'错误提示'</span>);</span><br><span class="line"><span class="comment">// 弹框提示</span></span><br><span class="line">wx.$message.modal(<span class="string">'敏感操作, 是否继续?'</span>).then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  wx.$message.success(<span class="string">'操作成功'</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>此处的成功和失败没有区分, 所以将表现一致, 但希望依旧按照业务使用, 方便后期修改</p>
+</blockquote>
+<h2 id="缓存组件"><a href="#缓存组件" class="headerlink" title="缓存组件"></a>缓存组件</h2><p>本插件提供了便利的缓存功能, 其中内置了用户信息(userinfo)的处理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; Storage &#125; = <span class="built_in">require</span>(<span class="string">'./al-wxmp.min.js'</span>);</span><br><span class="line"><span class="comment">// 注册缓存</span></span><br><span class="line">wx.$storage = Storage;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 用户信息的获取</span></span><br><span class="line"><span class="keyword">const</span> userInfo = wx.$storage.userinfo;</span><br><span class="line"><span class="comment">// 用户信息的设置, 支持增量修改</span></span><br><span class="line">wx.$storage.userinfo = &#123; <span class="attr">name</span>: <span class="string">'alisdon'</span> &#125;</span><br><span class="line"><span class="comment">// 清除用户信息</span></span><br><span class="line">wx.$storage.userinfo = <span class="string">'clean'</span>;</span><br></pre></td></tr></table></figure>
+<p>缓存组件还支持自定义扩展</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>extend</td>
+<td>(key, storageKey, type) =&gt; void</td>
+<td>key 为自定义扩展的关键属性, storageKey 为数据缓存的key, type 为需要缓存数据的类型, 支持 ‘string’ 和 ‘object’, 其中鉴于系统内置方法, <strong>key 不能使用 ‘userinfo’ 和 ‘extend’, storageKey 不能是用 ‘A_UI’</strong></td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; Storage &#125; = <span class="built_in">require</span>(<span class="string">'./al-wxmp.min.js'</span>);</span><br><span class="line"><span class="comment">// 自定义扩展</span></span><br><span class="line">Storage.extend(<span class="string">'token'</span>, <span class="string">'A_TICKET'</span>, <span class="string">'string'</span>);</span><br><span class="line"><span class="comment">// 注册缓存</span></span><br><span class="line">wx.$storage = Storage;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取自定义的内容</span></span><br><span class="line"><span class="keyword">const</span> token = wx.$storage.token;</span><br><span class="line"><span class="comment">// 增量修改自定义内容</span></span><br><span class="line">wx.$storage.token = <span class="string">'1234567890'</span></span><br><span class="line"><span class="comment">// 清除自定义信息</span></span><br><span class="line">wx.$storage.token = <span class="string">'clean'</span>;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -477,7 +594,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://alisdon.github.com/als-block/als-block-crud/" title="als-block-crud 使用说明" target="_blank" rel="external">https://alisdon.github.com/als-block/als-block-crud/</a>
+      <a href="https://alisdon.github.com/als-block/als-block-wxmp/" title="als-block-wxmp 插件使用说明" target="_blank" rel="external">https://alisdon.github.com/als-block/als-block-wxmp/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -524,12 +641,12 @@
   <ul class="pager pull-left">
     
     <li class="prev">
-      <a href="/blog/als-block/als-block-wxmp/" title="als-block-wxmp 插件使用说明"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+      <a href="/blog/小程序/微信小程序云开发/" title="微信小程序云开发"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
     </li>
     
     
     <li class="next">
-      <a href="/blog/als-block/als-block-crud/dialog/" title="als-block-dialog 使用说明"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/blog/als-block/als-block-crud/" title="als-block-crud 使用说明"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
