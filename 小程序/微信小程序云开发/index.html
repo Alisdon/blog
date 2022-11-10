@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>微信小程序云开发 | Alisdon</title>
+  <meta name="description" content="微信小程序云开发是什么 小程序·云开发是微信团队联合腾讯云推出的专业的小程序开发服务。 开发者可以使用云开发快速开发小程序、小游戏、公众号网页等，并且原生打通微信开放能力。 开发者无需搭建服务器，可免鉴权直接使用平台提供的 API 进行业务开发。  以上为微信小程序官方给出的云开发解释, 简单的说云开发使用的是腾讯的服务器存储后端数据，传统的是自备服务器. 云开发的优缺点开局先上对比图  优势说">
+<meta name="keywords" content="小程序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小程序云开发">
+<meta property="og:url" content="https://alisdon.github.com/小程序/微信小程序云开发/index.html">
+<meta property="og:site_name" content="Alisdon Blog">
+<meta property="og:description" content="微信小程序云开发是什么 小程序·云开发是微信团队联合腾讯云推出的专业的小程序开发服务。 开发者可以使用云开发快速开发小程序、小游戏、公众号网页等，并且原生打通微信开放能力。 开发者无需搭建服务器，可免鉴权直接使用平台提供的 API 进行业务开发。  以上为微信小程序官方给出的云开发解释, 简单的说云开发使用的是腾讯的服务器存储后端数据，传统的是自备服务器. 云开发的优缺点开局先上对比图  优势说">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="https://alisdon.github.com/小程序/微信小程序云开发/云开发/tradition.jpeg">
+<meta property="og:image" content="https://alisdon.github.com/小程序/微信小程序云开发/云开发/cloud.jpeg">
+<meta property="og:updated_time" content="2021-09-02T02:03:54.906Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信小程序云开发">
+<meta name="twitter:description" content="微信小程序云开发是什么 小程序·云开发是微信团队联合腾讯云推出的专业的小程序开发服务。 开发者可以使用云开发快速开发小程序、小游戏、公众号网页等，并且原生打通微信开放能力。 开发者无需搭建服务器，可免鉴权直接使用平台提供的 API 进行业务开发。  以上为微信小程序官方给出的云开发解释, 简单的说云开发使用的是腾讯的服务器存储后端数据，传统的是自备服务器. 云开发的优缺点开局先上对比图  优势说">
+<meta name="twitter:image" content="https://alisdon.github.com/小程序/微信小程序云开发/云开发/tradition.jpeg">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://alisdon.github.com/小程序/微信小程序云开发/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Alisdon Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/blog/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/Alisdon" target="_blank">
+          <img class="img-circle img-rotate" src="/blog/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Alisdon</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> ChengDu, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archive">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/blog/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/blog/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/Alisdon" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/Alisdon" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>感谢光临本博客，博主将持续更新前端知识技术帖</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/als-block/">als-block</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/css/">css</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/mmzsblog/">mmzsblog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/其他/">其他</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/包管理器/">包管理器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/小程序/">小程序</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/服务端/">服务端</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/混合开发/">混合开发</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/blog/tags/als-block/" style="font-size: 14px;">als-block</a> <a href="/blog/tags/css/" style="font-size: 13.33px;">css</a> <a href="/blog/tags/docker基础/" style="font-size: 13px;">docker基础</a> <a href="/blog/tags/git/" style="font-size: 13px;">git</a> <a href="/blog/tags/mmzsblog/" style="font-size: 13px;">mmzsblog</a> <a href="/blog/tags/nginx/" style="font-size: 13px;">nginx</a> <a href="/blog/tags/node/" style="font-size: 13px;">node</a> <a href="/blog/tags/pnpm/" style="font-size: 13px;">pnpm</a> <a href="/blog/tags/svn/" style="font-size: 13px;">svn</a> <a href="/blog/tags/uni-app/" style="font-size: 13px;">uni-app</a> <a href="/blog/tags/其他/" style="font-size: 13.67px;">其他</a> <a href="/blog/tags/小程序/" style="font-size: 13.67px;">小程序</a> <a href="/blog/tags/微信小程序/" style="font-size: 13.33px;">微信小程序</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2022/11/">November 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2021/08/">August 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2021/06/">June 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/07/">July 2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/02/">February 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2019/03/">March 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2018/12/">December 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2018/10/">October 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2018/07/">July 2018</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/其他/关于代码质量的一些思考/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/其他/">其他</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/其他/关于代码质量的一些思考/" class="title">关于代码质量的一些思考</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-11-02T08:51:01.923Z" itemprop="datePublished">2022-11-02</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/包管理器/pnpm在做什么/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/包管理器/">包管理器</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/包管理器/pnpm在做什么/" class="title">pnpm在做什么</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-08-03T13:07:16.000Z" itemprop="datePublished">2022-08-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/小程序/小程序申请步骤及条件/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/小程序/">小程序</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/小程序/小程序申请步骤及条件/" class="title">小程序申请步骤及条件</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-08-14T05:55:37.000Z" itemprop="datePublished">2021-08-14</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/小程序/微信小程序发布流程/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/小程序/">小程序</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/小程序/微信小程序发布流程/" class="title">微信小程序发布流程</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-06-26T09:41:49.000Z" itemprop="datePublished">2021-06-26</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/小程序/微信小程序云开发/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/小程序/">小程序</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/小程序/微信小程序云开发/" class="title">微信小程序云开发</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-06-24T09:41:49.000Z" itemprop="datePublished">2021-06-24</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#微信小程序云开发是什么"><span class="toc-number">1.</span> <span class="toc-text">微信小程序云开发是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#云开发的优缺点"><span class="toc-number">2.</span> <span class="toc-text">云开发的优缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#优势说明"><span class="toc-number">2.1.</span> <span class="toc-text">优势说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#劣势说明"><span class="toc-number">2.2.</span> <span class="toc-text">劣势说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#云开发后期是否能够剥离出来使用自己的服务器"><span class="toc-number">3.</span> <span class="toc-text">云开发后期是否能够剥离出来使用自己的服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#云开发计费模式"><span class="toc-number">4.</span> <span class="toc-text">云开发计费模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-微信小程序云开发" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      微信小程序云开发
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/blog/小程序/微信小程序云开发/" class="article-date">
+	  <time datetime="2021-06-24T09:41:49.000Z" itemprop="datePublished">2021-06-24</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/blog/categories/小程序/">小程序</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/blog/tags/小程序/">小程序</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/blog/小程序/微信小程序云开发/" class="leancloud_visitors"  data-flag-title="微信小程序云开发">0</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/小程序/微信小程序云开发/#comments" class="article-comment-link">Comments</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 1.4k(words)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 4(minutes)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <!--云开发转私服
+
+1. 个人账号云开发支付方式
+2. 数据加密
+1. 云开发与私服的不同
+2. 云开发的优势
+3. 云开发有哪些问题和风险
+4. 云开发管理端(web)如何解决
+5. 云开发后期是否能够剥离出来使用自己的服务器
+6. 云开发是否存在安全问题
+7. [什么是Node中间件](https://zhuanlan.zhihu.com/p/106853407)
+8. [Node中间件是什么意思](https://m.html.cn/qa/node-js/12090.html)
+8. [Node中间件模式是什么](https://juejin.cn/post/6844903619209199624)
+9. [中间件和插件有什么区别](https://cnodejs.org/topic/53f2b7af8f44dfa35140bca1)-->
+<h2 id="微信小程序云开发是什么"><a href="#微信小程序云开发是什么" class="headerlink" title="微信小程序云开发是什么"></a>微信小程序云开发是什么</h2><blockquote>
+<p>小程序·云开发是微信团队联合腾讯云推出的专业的小程序开发服务。</p>
+<p>开发者可以使用云开发快速开发小程序、小游戏、公众号网页等，并且原生打通微信开放能力。</p>
+<p>开发者无需搭建服务器，可免鉴权直接使用平台提供的 API 进行业务开发。</p>
+</blockquote>
+<p>以上为微信小程序官方给出的云开发解释, 简单的说云开发使用的是腾讯的服务器存储后端数据，传统的是自备服务器.</p>
+<h2 id="云开发的优缺点"><a href="#云开发的优缺点" class="headerlink" title="云开发的优缺点"></a>云开发的优缺点</h2><p>开局先上对比图</p>
+<p><img src="./云开发/tradition.jpeg" alt=""><br><img src="./云开发/cloud.jpeg" alt=""></p>
+<h3 id="优势说明"><a href="#优势说明" class="headerlink" title="优势说明"></a>优势说明</h3><p>由上图可以看出</p>
+<p><em>传统开发模式</em></p>
+<ul>
+<li><strong>开发效率低</strong>：过多的非业务逻辑需要处理，导致开发效率难以提升</li>
+<li><strong>资源投入高</strong>：无论是物理机托管，还是云主机维护，都需要较多的人力物力投入</li>
+<li><strong>产品上线慢</strong>：前后端联调、资源存储、部署等操作繁杂，上线流程耗时长</li>
+<li><strong>日常运维难</strong>：需时刻关注环境运行状况，管理相关资源，运维难度大</li>
+</ul>
+<p><em>云开发模式</em></p>
+<ul>
+<li><strong>高效开发</strong>：只需编写核心逻辑代码，内建小程序用户鉴权，无需关注后端配置与部署，专注于业务开发</li>
+<li><strong>节约成本</strong>：按请求数和资源的运行收费，极大节约时间和成本，提供一定量免费额度使用</li>
+<li><strong>官方生态</strong>：原生集成微信SDK，云相关API开箱即用；同时，通过云调用，可免鉴权直接调用微信开放接口</li>
+<li><strong>稳定可靠</strong>：底层资源由腾讯云提供专业支持，满足不同业务场景和需求，具备快速拓展能力，确保服务稳定，数据安全</li>
+</ul>
+<h3 id="劣势说明"><a href="#劣势说明" class="headerlink" title="劣势说明"></a>劣势说明</h3><ol>
+<li><strong>云函数运算时间不得超过3秒</strong>。超过3秒未处理完成，直接返回错误</li>
+<li><strong>云函数单次返回数据不得超过1M</strong>。超过1M直接报错</li>
+<li><strong>云函数读取数据库较慢</strong>。云函数 云数据库感觉应该在同一物理环境下，但其实并不是，应该处于不同的云端，因为读取100次数据就已经超过3秒了</li>
+<li><strong>云函数并发次数有限</strong>。这个文档里面配额写得很清楚，免费版并发数只有20次，这里的并发估计是每秒钟调用次数，因为确实很慢很慢, 据实践，每隔半秒调用一个云函数, 调用100遍，还是报告调用次数超限</li>
+<li><strong>云函数不适合做数据库的较大数量查询功能</strong>, 只适合进行10条左右的敏感数据读取，如用户信息等。</li>
+<li><strong>云函数读取云数据库单次最多读取100条</strong>。超过100条需要使用 skip() ,分多次将数据组合起来。</li>
+<li><strong>小程序前端读取云数据库单次最多读取20条</strong>。</li>
+<li><strong>对外开放限制多</strong>。由于小程序云开发自带的云数据库在小程序内部，外部要是想访问这个数据库则需要一个稍微复杂的流程：先使用官方接口获取到调用凭证，在通过这个凭证使用指定的接口来对数据库进行增删改查。此外这个流程中消耗的资源也是算在基础配置里的，每日请求上线5万次</li>
+<li><strong>后期移植不方便, 无法支持通用框架</strong>。如果企业完全使用云开发开发小程序，然后由于某种原因不能使用这种方式了，想独立部署后端的话，将要面临如何移植的问题。云开发太依赖微信平台了。</li>
+</ol>
+<h2 id="云开发后期是否能够剥离出来使用自己的服务器"><a href="#云开发后期是否能够剥离出来使用自己的服务器" class="headerlink" title="云开发后期是否能够剥离出来使用自己的服务器"></a>云开发后期是否能够剥离出来使用自己的服务器</h2><ol>
+<li>通过云函数转私有服务器调用接口</li>
+<li>修改小程序直接调用私有服务器接口, 其中登录状态还是又云函数提供</li>
+</ol>
+<h2 id="云开发计费模式"><a href="#云开发计费模式" class="headerlink" title="云开发计费模式"></a>云开发计费模式</h2><p>云开发计费方式目前分为三种: </p>
+<ul>
+<li><em>预付费：个人账户扣款</em>：适用于个人账户结算的小程序，目前仅支持微信支付</li>
+<li><em>预付费：腾讯云账户扣款</em>：适用于通过腾讯云账户统一结算的小程序</li>
+<li><em>按量付费：腾讯云账户扣款</em>：适用于暂时无法准确预估使用量的小程序，目前仅支持从腾讯云账户扣款</li>
+</ul>
+<blockquote>
+<p>系统默认使用的支付方式为按量付费：腾讯云账户扣款</p>
+<p>点击查看具体<a href="https://developers.weixin.qq.com/minigame/dev/wxcloud/billing/quota.html" target="_blank" rel="noopener">云开发计费相关</a></p>
+</blockquote>
+<p>云开发计费方式需要注意的有: </p>
+<ol>
+<li>切换至按量计费后无法再切换支付方式</li>
+<li>从账户余额被扣为负值时刻起，小程序·云开发资源在 12 小时内可继续使用且继续扣费，12 小时后未及时充值，系统将自动隔离资源且停止扣费。 7*24 小时后，若账户余额未充值到大于 0，按量计费环境将被回收。届时环境中的数据将被清除且不可恢复</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>根据目前情况来看, 小程序云开发是一个比较合适应用的一种开发模式, 在本应用中需要做以下几种处理: </p>
+<ol>
+<li>开通云开发静态资源管理</li>
+<li>开通云开发内容管理平台, 对应切换至按量付费方式</li>
+</ol>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://alisdon.github.com/小程序/微信小程序云开发/" title="微信小程序云开发" target="_blank" rel="external">https://alisdon.github.com/小程序/微信小程序云开发/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/Alisdon" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/blog/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/Alisdon" target="_blank"><span class="text-dark">Alisdon</span><small class="ml-1x">Web Developer</small></a></h3>
+        <div>Focus on coding</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/blog/小程序/微信小程序发布流程/" title="微信小程序发布流程"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/blog/als-block/als-block-wxmp/" title="als-block-wxmp 插件使用说明"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,twitter" data-mobile-sites="weibo,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/blog/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/blog/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/Alisdon" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/Alisdon" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+        &copy; 2022 Alisdon
+	<p>
+	  <span id="busuanzi_container_page_pv">总访问量：
+	    <span id="busuanzi_value_page_pv">0</span>
+	  </span>
+	  <span class="post-meta-divider">|</span>
+	  <span id="busuanzi_container_page_uv">总访客量：
+	    <span id="busuanzi_value_page_uv">0</span>
+	  </span>
+	</p>
+        
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="/blog/js/jquery.min.js"><\/script>')
+</script>
+<script src="/blog/js/plugin.min.js"></script>
+<script src="/blog/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/blog/js/insight.js"></script>
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!-- custom analytics part create by xiamo -->
+<script defer src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
+<script defer>
+AV.init({
+  appId: 'gckYbaB5kqh6zHkwDs2TNFnV-gzGzoHsz',
+  appKey: 'vU551WFpBhylUnuiap7jqnQ2'
+});
+
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+		var visitors= $('.leancloud_visitors');
+		query.greaterThanOrEqualTo("time", 0);		
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {				
+					return;
+				}
+				var data = results;
+				visitors.each(function(){
+					var url = $(this).attr('id').trim();					
+					for (var i = 0; i < data.length; i++) {
+						var object = data[i];
+						var content = object.get('time');
+						var _url = object.get('url')
+						if(url == _url){
+							$(this).text(content);
+						}
+					}
+				})
+				
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content = counter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = newcounter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else {
+		showTime(Counter);
+	}
+}); 
+</script>
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: true,
+    appId: 'gckYbaB5kqh6zHkwDs2TNFnV-gzGzoHsz',
+    appKey: 'vU551WFpBhylUnuiap7jqnQ2',
+    placeholder: '说点什么吧',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+
+</body>
+</html>

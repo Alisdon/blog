@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>als-block-table 使用说明 | Alisdon</title>
+  <meta name="description" content="列表篇Als-Block-Crud对列表进行了二次封装，意为开发带来更多的便利，减少开发时多余代码的Ctrl+c、Ctrl+v。 功能说明  本地数据或远程数据展示  初始选中状态设置  集成分页组件  自定义列表项  兼容element-ui所有属性  本地数据分页  props 对象12345678910111213141516selectedKeys: [&apos;1&apos;]tableMap: &amp;#12">
+<meta name="keywords" content="als-block">
+<meta property="og:type" content="article">
+<meta property="og:title" content="als-block-table 使用说明">
+<meta property="og:url" content="https://alisdon.github.com/als-block/als-block-crud/table/index.html">
+<meta property="og:site_name" content="Alisdon Blog">
+<meta property="og:description" content="列表篇Als-Block-Crud对列表进行了二次封装，意为开发带来更多的便利，减少开发时多余代码的Ctrl+c、Ctrl+v。 功能说明  本地数据或远程数据展示  初始选中状态设置  集成分页组件  自定义列表项  兼容element-ui所有属性  本地数据分页  props 对象12345678910111213141516selectedKeys: [&apos;1&apos;]tableMap: &amp;#12">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2022-08-10T14:02:19.358Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="als-block-table 使用说明">
+<meta name="twitter:description" content="列表篇Als-Block-Crud对列表进行了二次封装，意为开发带来更多的便利，减少开发时多余代码的Ctrl+c、Ctrl+v。 功能说明  本地数据或远程数据展示  初始选中状态设置  集成分页组件  自定义列表项  兼容element-ui所有属性  本地数据分页  props 对象12345678910111213141516selectedKeys: [&apos;1&apos;]tableMap: &amp;#12">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://alisdon.github.com/als-block/als-block-crud/table/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Alisdon Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/blog/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/Alisdon" target="_blank">
+          <img class="img-circle img-rotate" src="/blog/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Alisdon</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> ChengDu, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archive">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/blog/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/blog/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/Alisdon" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/Alisdon" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>感谢光临本博客，博主将持续更新前端知识技术帖</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/als-block/">als-block</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/css/">css</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/mmzsblog/">mmzsblog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/其他/">其他</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/包管理器/">包管理器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/小程序/">小程序</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/服务端/">服务端</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/混合开发/">混合开发</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/blog/tags/als-block/" style="font-size: 14px;">als-block</a> <a href="/blog/tags/css/" style="font-size: 13.33px;">css</a> <a href="/blog/tags/docker基础/" style="font-size: 13px;">docker基础</a> <a href="/blog/tags/git/" style="font-size: 13px;">git</a> <a href="/blog/tags/mmzsblog/" style="font-size: 13px;">mmzsblog</a> <a href="/blog/tags/nginx/" style="font-size: 13px;">nginx</a> <a href="/blog/tags/node/" style="font-size: 13px;">node</a> <a href="/blog/tags/pnpm/" style="font-size: 13px;">pnpm</a> <a href="/blog/tags/svn/" style="font-size: 13px;">svn</a> <a href="/blog/tags/uni-app/" style="font-size: 13px;">uni-app</a> <a href="/blog/tags/其他/" style="font-size: 13.67px;">其他</a> <a href="/blog/tags/小程序/" style="font-size: 13.67px;">小程序</a> <a href="/blog/tags/微信小程序/" style="font-size: 13.33px;">微信小程序</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2022/11/">November 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2021/08/">August 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2021/06/">June 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/07/">July 2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/02/">February 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2019/03/">March 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2018/12/">December 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2018/10/">October 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2018/07/">July 2018</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/其他/关于代码质量的一些思考/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/其他/">其他</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/其他/关于代码质量的一些思考/" class="title">关于代码质量的一些思考</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-11-02T08:51:01.923Z" itemprop="datePublished">2022-11-02</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/包管理器/pnpm在做什么/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/包管理器/">包管理器</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/包管理器/pnpm在做什么/" class="title">pnpm在做什么</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-08-03T13:07:16.000Z" itemprop="datePublished">2022-08-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/小程序/小程序申请步骤及条件/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/小程序/">小程序</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/小程序/小程序申请步骤及条件/" class="title">小程序申请步骤及条件</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-08-14T05:55:37.000Z" itemprop="datePublished">2021-08-14</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/小程序/微信小程序发布流程/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/小程序/">小程序</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/小程序/微信小程序发布流程/" class="title">微信小程序发布流程</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-06-26T09:41:49.000Z" itemprop="datePublished">2021-06-26</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/小程序/微信小程序云开发/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/小程序/">小程序</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/小程序/微信小程序云开发/" class="title">微信小程序云开发</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-06-24T09:41:49.000Z" itemprop="datePublished">2021-06-24</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#列表篇"><span class="toc-number">1.</span> <span class="toc-text">列表篇</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#功能说明"><span class="toc-number">1.1.</span> <span class="toc-text">功能说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#props-对象"><span class="toc-number">1.2.</span> <span class="toc-text">props 对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#options-对象"><span class="toc-number">1.3.</span> <span class="toc-text">options 对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#columns-数组对象"><span class="toc-number">1.4.</span> <span class="toc-text">columns 数组对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法"><span class="toc-number">1.5.</span> <span class="toc-text">方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#操作项-handle-说明"><span class="toc-number">1.6.</span> <span class="toc-text">操作项 handle 说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#案例"><span class="toc-number">1.7.</span> <span class="toc-text">案例</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-als-block-crud/table" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      als-block-table 使用说明
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/blog/als-block/als-block-crud/table/" class="article-date">
+	  <time datetime="2020-07-16T09:41:49.000Z" itemprop="datePublished">2020-07-16</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/blog/categories/als-block/">als-block</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/blog/tags/als-block/">als-block</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/blog/als-block/als-block-crud/table/" class="leancloud_visitors"  data-flag-title="als-block-table 使用说明">0</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/als-block/als-block-crud/table/#comments" class="article-comment-link">Comments</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 1.3k(words)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 5(minutes)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="列表篇"><a href="#列表篇" class="headerlink" title="列表篇"></a>列表篇</h2><p><code>Als-Block-Crud</code>对列表进行了二次封装，意为开发带来更多的便利，减少开发时多余代码的<code>Ctrl+c</code>、<code>Ctrl+v</code>。</p>
+<h3 id="功能说明"><a href="#功能说明" class="headerlink" title="功能说明"></a>功能说明</h3><ul>
+<li style="list-style: none"><input type="checkbox" checked> 本地数据或远程数据展示</li>
+<li style="list-style: none"><input type="checkbox" checked> 初始选中状态设置</li>
+<li style="list-style: none"><input type="checkbox" checked> 集成分页组件</li>
+<li style="list-style: none"><input type="checkbox" checked> 自定义列表项</li>
+<li style="list-style: none"><input type="checkbox" checked> 兼容<code>element-ui</code>所有属性</li>
+<li style="list-style: none"><input type="checkbox"> 本地数据分页</li>
+</ul>
+<h3 id="props-对象"><a href="#props-对象" class="headerlink" title="props 对象"></a>props 对象</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">selectedKeys: [<span class="string">'1'</span>]</span><br><span class="line"></span><br><span class="line">tableMap: &#123;</span><br><span class="line">  options: &#123;&#125;,</span><br><span class="line">  columns: [],</span><br><span class="line">  dataSource: [],</span><br><span class="line">  listeners: &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">pagination: &#123;</span><br><span class="line">  pageSizes: [<span class="number">10</span>, <span class="number">20</span>, <span class="number">50</span>, <span class="number">100</span>],</span><br><span class="line">  pageSize: <span class="number">10</span>,</span><br><span class="line">  pageIndex: <span class="number">1</span>,</span><br><span class="line">  total: <span class="number">0</span>,</span><br><span class="line">  layout: <span class="string">'sizes, prev, pager, next, total, -&gt;'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ol>
+<li><code>pagination</code>为所见参数配置，默认开启，设置 boolean 类型的 false 则关闭，开启时需在引用组件时进行配置使用，如获取<code>pageSize</code>的路径</li>
+<li><code>pageSize</code>和<code>pageIndex</code>为本次案例使用的分页信息，实际使用中请配置成项目字段</li>
+<li><code>tableMap.dataSource</code>为列表数据源，优先使用</li>
+<li><code>tableMap.listeners</code>为列表事件监听集合，可自由添加配置</li>
+<li><code>selectedKeys</code>为选中行的 key 值，需要在<code>table/options</code>下设置行关键值<code>currentRowKey</code>，<code>currentRowKey</code>默认为<code>id</code></li>
+</ol>
+</blockquote>
+<h3 id="options-对象"><a href="#options-对象" class="headerlink" title="options 对象"></a>options 对象</h3><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">函数参数</th>
+<th style="text-align:left">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>immediately</td>
+<td style="text-align:left">是否在页面加载完成立即请求列表数据</td>
+<td style="text-align:left">Boolean/Function</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">true</td>
+</tr>
+<tr>
+<td>requestApi</td>
+<td style="text-align:left">请求列表数据函数，需返回 Promise 对象</td>
+<td style="text-align:left">Function</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td>requestParams</td>
+<td style="text-align:left">除去分页信息外的参数对象，可直接传入 JSON 对象或提供返回值为 JSON 对象的函数</td>
+<td style="text-align:left">Object/Function</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td>deleteApi</td>
+<td style="text-align:left">删除数据地址，需返回 Promise 对象，参数来自调用<a href="#方法">删除方法</a>时传入的值</td>
+<td style="text-align:left">Function</td>
+<td style="text-align:left">无</td>
+</tr>
+<tr>
+<td>firstCellType</td>
+<td style="text-align:left">第一列类型。有效值<code>selection</code>、<code>index</code>、<code>expand</code>、<code>none</code>， 为 expand 时在组件中嵌入名称为<code>expand</code>的作用域插槽（与其他行取值一致）, <code>none</code>为不显示</td>
+<td style="text-align:left">String/Function</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">selection</td>
+</tr>
+<tr>
+<td>headerCellStyle</td>
+<td style="text-align:left">表头样式，可在引用组件时进行配置使用</td>
+<td style="text-align:left">Object</td>
+<td style="text-align:left">不可使用函数</td>
+<td style="text-align:left">无</td>
+</tr>
+<tr>
+<td>onRequestSuccess</td>
+<td style="text-align:left">请求成功的回调</td>
+<td style="text-align:left">Function</td>
+<td style="text-align:left">xhrResponse</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td>onRequestError</td>
+<td style="text-align:left">请求失败的回调</td>
+<td style="text-align:left">Function</td>
+<td style="text-align:left">error</td>
+<td style="text-align:left">依赖全局配置中 <code>table.on_request_error</code></td>
+</tr>
+<tr>
+<td>…</td>
+<td style="text-align:left">elementUI 表格的其他属性，可自由配置</td>
+<td style="text-align:left">不可使用函数</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<ul>
+<li><code>height</code>、<code>stripe</code>、<code>border</code>已在引用组件时进行配置使用</li>
+<li><code>ref</code> 由于 ref 值非响应数据，故封装的时候将<code>el-table</code>的<code>ref</code>确定为<code>alBlockTable</code></li>
+</ul>
+</blockquote>
+<h3 id="columns-数组对象"><a href="#columns-数组对象" class="headerlink" title="columns 数组对象"></a>columns 数组对象</h3><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">函数参数</th>
+<th style="text-align:left">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>field</td>
+<td style="text-align:left">映射标识</td>
+<td style="text-align:left">String/Function</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td>label</td>
+<td style="text-align:left">显示名称</td>
+<td style="text-align:left">String/Function</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td>show</td>
+<td style="text-align:left">是否显示</td>
+<td style="text-align:left">Boolean/Function</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">true</td>
+</tr>
+<tr>
+<td>slot</td>
+<td style="text-align:left">插槽名</td>
+<td style="text-align:left">String/Function</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td>dicts</td>
+<td style="text-align:left">字典数据, 数组内容由注册时决定</td>
+<td style="text-align:left">Array/Function</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">如传入[{ value: ‘1’, label: ‘文本’, type: ‘primary’ }] , value 和 label 由注册时映射. type 为 elTag 的type, 不传则直接显示文本</td>
+</tr>
+<tr>
+<td>render</td>
+<td style="text-align:left">列渲染函数。可编写<a href="https://cn.vuejs.org/v2/guide/render-function.html#%E5%9F%BA%E7%A1%80" target="_blank" rel="noopener">render 函数</a>，或安装 jsx 插件进行开发</td>
+<td style="text-align:left">Function</td>
+<td style="text-align:left">(当前行相关信息, 渲染函数)</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td>handle</td>
+<td style="text-align:left">操作项数组，见下方<a href="#操作项handle说明">操作项说明</a></td>
+<td style="text-align:left">Array</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td>options</td>
+<td style="text-align:left">elementUI 表格的其他属性，可自由配置</td>
+<td style="text-align:left">Object</td>
+<td style="text-align:left">不可使用函数</td>
+<td style="text-align:left">{<br>immediately: true, <br>currentRowKey: ‘id’, <br>firstCellType: ‘selection’, <br>headerCellStyle: 取决于全局配置, <br>height: 取决于全局配置,<br>stripe: 取决于全局配置,<br>border: 取决于全局配置<br>}</td>
+</tr>
+<tr>
+<td>listener</td>
+<td style="text-align:left">elementUI 表格的事件，可自由配置</td>
+<td style="text-align:left">Object</td>
+<td style="text-align:left">无</td>
+</tr>
+</tbody>
+</table>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><table>
+<thead>
+<tr>
+<th>方法名</th>
+<th style="text-align:left">功能</th>
+<th style="text-align:left">接受参数类型</th>
+<th style="text-align:left">用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>loadTableData</td>
+<td style="text-align:left">重载列表数据，需提供 requestApi，返回 Promise 对象可使用</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">表单编辑、列表删除后刷新页面</td>
+</tr>
+<tr>
+<td>searchTableData</td>
+<td style="text-align:left">根据传入的对象查询列表数据，需提供 requestApi，返回 Promise 对象可使用</td>
+<td style="text-align:left">Object</td>
+<td style="text-align:left">搜索</td>
+</tr>
+<tr>
+<td>batchDelTableData</td>
+<td style="text-align:left">批量删除数据，自动检测是否勾选数据，需提供 deleteApi，返回 Promise 对象可使用</td>
+<td style="text-align:left">任意，默认为{ids: 以,分割勾选的 id 值}</td>
+<td style="text-align:left">批量删除</td>
+</tr>
+<tr>
+<td>delTableData</td>
+<td style="text-align:left">删除数据，需提供 deleteApi，返回 Promise 对象可使用</td>
+<td style="text-align:left">任意，默认为{id: id}</td>
+<td style="text-align:left">删除单条数据</td>
+</tr>
+<tr>
+<td>toggleRowSelection</td>
+<td style="text-align:left">切换行选中状态，根据传入的行 key 进行勾选显示，需提供 currentRowKey,默认为 id</td>
+<td style="text-align:left">Array<br>String<br>Function</td>
+<td style="text-align:left">单选列表或多选列表选中或取消选中</td>
+</tr>
+</tbody>
+</table>
+<h3 id="操作项-handle-说明"><a href="#操作项-handle-说明" class="headerlink" title="操作项 handle 说明"></a>操作项 handle 说明</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">handle: [&#123;</span><br><span class="line">  html: <span class="string">'&lt;i class="el-icon-edit"&gt;&lt;/i&gt;编辑'</span>,<span class="comment">// 当前按钮的html</span></span><br><span class="line">  show: <span class="function"><span class="params">rows</span> =&gt;</span> rows.row.age &gt; <span class="number">18</span>,        <span class="comment">// 是否显示</span></span><br><span class="line">  disabled: <span class="function"><span class="params">rows</span> =&gt;</span> rows.row.age &gt; <span class="number">18</span>,    <span class="comment">// 是否不可用</span></span><br><span class="line">  type: <span class="string">'button'</span>,                         <span class="comment">// 按钮类型</span></span><br><span class="line">  style: <span class="string">''</span>,                              <span class="comment">// 按钮样式</span></span><br><span class="line">  click: <span class="function"><span class="params">rows</span> =&gt;</span> <span class="built_in">console</span>.log(rows)        <span class="comment">// 按钮点击事件</span></span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>以上参数可直接返回字符串，也可以执行传入当前行数据的函数</p>
+</blockquote>
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;als-block-table ref=<span class="string">'mainTable'</span> :table-map=<span class="string">'tableMap'</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">als-block-table</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">'AlsBlockTable'</span>,</span><br><span class="line"></span><br><span class="line">  data () &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      tableMap: &#123;</span><br><span class="line">        options: &#123;</span><br><span class="line">          requestApi: <span class="function">(<span class="params">params</span>) =&gt;</span> axios.get(<span class="string">'get'</span>, params),</span><br><span class="line">          requestParams: &#123; <span class="attr">orgId</span>: <span class="string">'1'</span> &#125;,</span><br><span class="line">          deleteApi: <span class="function">(<span class="params">params</span>) =&gt;</span> axios.delete(<span class="string">'del'</span>, params),</span><br><span class="line">        &#125;,</span><br><span class="line">        columns: [</span><br><span class="line">          &#123; <span class="attr">field</span>: <span class="string">'name'</span>, <span class="attr">label</span>: <span class="string">'姓名'</span> &#125;,</span><br><span class="line">          &#123; <span class="attr">field</span>: <span class="string">'age'</span>, <span class="attr">label</span>: <span class="string">'年龄'</span>,</span><br><span class="line">            render: (&#123; row &#125;, h) &#123;</span><br><span class="line">              <span class="keyword">return</span> row.age &gt; <span class="number">18</span> ? h(<span class="string">'span'</span>, &#123;&#125;, <span class="string">'成人'</span>) : h(<span class="string">'span'</span>, &#123;&#125;, <span class="string">'未成年'</span>)</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123; <span class="attr">field</span>: <span class="string">'sex'</span>, <span class="attr">label</span>: <span class="string">'性别'</span>,</span><br><span class="line">            dicts: [</span><br><span class="line">              &#123; <span class="attr">label</span>: <span class="string">'男'</span>, <span class="attr">value</span>: <span class="number">1</span>, <span class="attr">type</span>: <span class="string">'default'</span> &#125;,</span><br><span class="line">              &#123; <span class="attr">label</span>: <span class="string">'女'</span>, <span class="attr">value</span>: <span class="number">0</span>, <span class="attr">type</span>: <span class="string">'warning'</span> &#125;,</span><br><span class="line">            ]</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123; <span class="attr">field</span>: <span class="string">''</span>, <span class="attr">label</span>: <span class="string">'操作'</span>,</span><br><span class="line">            options: &#123; <span class="attr">width</span>: <span class="string">'120px'</span> &#125;,</span><br><span class="line">            handle: [&#123;</span><br><span class="line">              html: <span class="string">'&lt;i class="el-icon-edit"&gt;&lt;/i&gt;编辑'</span>,</span><br><span class="line">              type: <span class="string">'primary'</span>,</span><br><span class="line">              click: <span class="function"><span class="params">rows</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(rows)</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">              html: <span class="string">'&lt;i class="el-icon-delete"&gt;&lt;/i&gt;删除'</span>,</span><br><span class="line">              type: <span class="function"><span class="params">rows</span> =&gt;</span> rows.row.age &gt; <span class="number">22</span> ? <span class="string">'primary'</span> : <span class="string">'danger'</span>,</span><br><span class="line">              click: <span class="function">(<span class="params">&#123;row&#125;</span>) =&gt;</span> &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(row);</span><br><span class="line">                <span class="keyword">this</span>.$refs.mainTable.delTableData(&#123;<span class="attr">id</span>: row.id&#125;)</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;]</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://alisdon.github.com/als-block/als-block-crud/table/" title="als-block-table 使用说明" target="_blank" rel="external">https://alisdon.github.com/als-block/als-block-crud/table/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/Alisdon" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/blog/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/Alisdon" target="_blank"><span class="text-dark">Alisdon</span><small class="ml-1x">Web Developer</small></a></h3>
+        <div>Focus on coding</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/blog/als-block/als-block-crud/form/" title="als-block-form 使用说明"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/blog/als-block/als-block-crud/menu/" title="als-block-menu 使用说明"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,twitter" data-mobile-sites="weibo,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/blog/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/blog/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/Alisdon" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/Alisdon" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+        &copy; 2022 Alisdon
+	<p>
+	  <span id="busuanzi_container_page_pv">总访问量：
+	    <span id="busuanzi_value_page_pv">0</span>
+	  </span>
+	  <span class="post-meta-divider">|</span>
+	  <span id="busuanzi_container_page_uv">总访客量：
+	    <span id="busuanzi_value_page_uv">0</span>
+	  </span>
+	</p>
+        
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="/blog/js/jquery.min.js"><\/script>')
+</script>
+<script src="/blog/js/plugin.min.js"></script>
+<script src="/blog/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/blog/js/insight.js"></script>
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!-- custom analytics part create by xiamo -->
+<script defer src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
+<script defer>
+AV.init({
+  appId: 'gckYbaB5kqh6zHkwDs2TNFnV-gzGzoHsz',
+  appKey: 'vU551WFpBhylUnuiap7jqnQ2'
+});
+
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+		var visitors= $('.leancloud_visitors');
+		query.greaterThanOrEqualTo("time", 0);		
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {				
+					return;
+				}
+				var data = results;
+				visitors.each(function(){
+					var url = $(this).attr('id').trim();					
+					for (var i = 0; i < data.length; i++) {
+						var object = data[i];
+						var content = object.get('time');
+						var _url = object.get('url')
+						if(url == _url){
+							$(this).text(content);
+						}
+					}
+				})
+				
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content = counter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = newcounter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else {
+		showTime(Counter);
+	}
+}); 
+</script>
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: true,
+    appId: 'gckYbaB5kqh6zHkwDs2TNFnV-gzGzoHsz',
+    appKey: 'vU551WFpBhylUnuiap7jqnQ2',
+    placeholder: '说点什么吧',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+
+</body>
+</html>

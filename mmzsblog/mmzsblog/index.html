@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>用于mmzsblog网站博客开发 | Alisdon</title>
+  <meta name="description" content="前期准备以下代码均在系统命令行(非node环境下的命令行)下完成。  cmd打开window系统命令行 直接在mac系统中打开终端  安装nodeJs前往 node官方下载地址下载对应版本进行安装 检测安装状态1$ node -v 出现版本信息则表示安装成功 安装git前往 git官方下载地址下载对应版本进行安装 检测安装状态1$ git --version 出现版本信息则表示安装成功 安装hex">
+<meta name="keywords" content="mmzsblog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用于mmzsblog网站博客开发">
+<meta property="og:url" content="https://alisdon.github.com/mmzsblog/mmzsblog/index.html">
+<meta property="og:site_name" content="Alisdon Blog">
+<meta property="og:description" content="前期准备以下代码均在系统命令行(非node环境下的命令行)下完成。  cmd打开window系统命令行 直接在mac系统中打开终端  安装nodeJs前往 node官方下载地址下载对应版本进行安装 检测安装状态1$ node -v 出现版本信息则表示安装成功 安装git前往 git官方下载地址下载对应版本进行安装 检测安装状态1$ git --version 出现版本信息则表示安装成功 安装hex">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="https://alisdon.github.com/mmzsblog/mmzsblog/hexom.png">
+<meta property="og:image" content="https://alisdon.github.com/mmzsblog/mmzsblog/hexos.png">
+<meta property="og:image" content="https://alisdon.github.com/mmzsblog/mmzsblog/hexog.png">
+<meta property="og:image" content="https://alisdon.github.com/mmzsblog/mmzsblog/hexod.png">
+<meta property="og:updated_time" content="2022-08-03T14:23:55.220Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用于mmzsblog网站博客开发">
+<meta name="twitter:description" content="前期准备以下代码均在系统命令行(非node环境下的命令行)下完成。  cmd打开window系统命令行 直接在mac系统中打开终端  安装nodeJs前往 node官方下载地址下载对应版本进行安装 检测安装状态1$ node -v 出现版本信息则表示安装成功 安装git前往 git官方下载地址下载对应版本进行安装 检测安装状态1$ git --version 出现版本信息则表示安装成功 安装hex">
+<meta name="twitter:image" content="https://alisdon.github.com/mmzsblog/mmzsblog/hexom.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://alisdon.github.com/mmzsblog/mmzsblog/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Alisdon Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/blog/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/Alisdon" target="_blank">
+          <img class="img-circle img-rotate" src="/blog/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Alisdon</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> ChengDu, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archive">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/blog/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/blog/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/Alisdon" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/Alisdon" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>感谢光临本博客，博主将持续更新前端知识技术帖</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/als-block/">als-block</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/css/">css</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/mmzsblog/">mmzsblog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/其他/">其他</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/包管理器/">包管理器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/小程序/">小程序</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/服务端/">服务端</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/混合开发/">混合开发</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/blog/tags/als-block/" style="font-size: 14px;">als-block</a> <a href="/blog/tags/css/" style="font-size: 13.33px;">css</a> <a href="/blog/tags/docker基础/" style="font-size: 13px;">docker基础</a> <a href="/blog/tags/git/" style="font-size: 13px;">git</a> <a href="/blog/tags/mmzsblog/" style="font-size: 13px;">mmzsblog</a> <a href="/blog/tags/nginx/" style="font-size: 13px;">nginx</a> <a href="/blog/tags/node/" style="font-size: 13px;">node</a> <a href="/blog/tags/pnpm/" style="font-size: 13px;">pnpm</a> <a href="/blog/tags/svn/" style="font-size: 13px;">svn</a> <a href="/blog/tags/uni-app/" style="font-size: 13px;">uni-app</a> <a href="/blog/tags/其他/" style="font-size: 13.67px;">其他</a> <a href="/blog/tags/小程序/" style="font-size: 13.67px;">小程序</a> <a href="/blog/tags/微信小程序/" style="font-size: 13.33px;">微信小程序</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2022/11/">November 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2021/08/">August 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2021/06/">June 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/07/">July 2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/02/">February 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2019/03/">March 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2018/12/">December 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2018/10/">October 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2018/07/">July 2018</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/其他/关于代码质量的一些思考/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/其他/">其他</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/其他/关于代码质量的一些思考/" class="title">关于代码质量的一些思考</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-11-02T08:51:01.923Z" itemprop="datePublished">2022-11-02</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/包管理器/pnpm在做什么/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/包管理器/">包管理器</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/包管理器/pnpm在做什么/" class="title">pnpm在做什么</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-08-03T13:07:16.000Z" itemprop="datePublished">2022-08-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/小程序/小程序申请步骤及条件/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/小程序/">小程序</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/小程序/小程序申请步骤及条件/" class="title">小程序申请步骤及条件</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-08-14T05:55:37.000Z" itemprop="datePublished">2021-08-14</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/小程序/微信小程序发布流程/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/小程序/">小程序</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/小程序/微信小程序发布流程/" class="title">微信小程序发布流程</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-06-26T09:41:49.000Z" itemprop="datePublished">2021-06-26</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/小程序/微信小程序云开发/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/小程序/">小程序</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/小程序/微信小程序云开发/" class="title">微信小程序云开发</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-06-24T09:41:49.000Z" itemprop="datePublished">2021-06-24</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前期准备"><span class="toc-number">1.</span> <span class="toc-text">前期准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装nodeJs"><span class="toc-number">1.1.</span> <span class="toc-text">安装nodeJs</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#检测安装状态"><span class="toc-number">1.1.1.</span> <span class="toc-text">检测安装状态</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装git"><span class="toc-number">1.2.</span> <span class="toc-text">安装git</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#检测安装状态-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">检测安装状态</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装hexo"><span class="toc-number">1.3.</span> <span class="toc-text">安装hexo</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#检测安装状态-2"><span class="toc-number">1.3.1.</span> <span class="toc-text">检测安装状态</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#克隆代码"><span class="toc-number">2.</span> <span class="toc-text">克隆代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#克隆框架代码"><span class="toc-number">2.1.</span> <span class="toc-text">克隆框架代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#克隆主题代码"><span class="toc-number">2.2.</span> <span class="toc-text">克隆主题代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装依赖"><span class="toc-number">3.</span> <span class="toc-text">安装依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始创建"><span class="toc-number">4.</span> <span class="toc-text">开始创建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#新建文章"><span class="toc-number">4.1.</span> <span class="toc-text">新建文章</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#静态图片的处理"><span class="toc-number">4.2.</span> <span class="toc-text">静态图片的处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#预览文章"><span class="toc-number">4.3.</span> <span class="toc-text">预览文章</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发布文章"><span class="toc-number">5.</span> <span class="toc-text">发布文章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#打包编译"><span class="toc-number">5.1.</span> <span class="toc-text">打包编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发布提交"><span class="toc-number">5.2.</span> <span class="toc-text">发布提交</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提交代码"><span class="toc-number">6.</span> <span class="toc-text">提交代码</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-mmzsblog" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      用于mmzsblog网站博客开发
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/blog/mmzsblog/mmzsblog/" class="article-date">
+	  <time datetime="2018-11-20T13:07:16.000Z" itemprop="datePublished">2018-11-20</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/blog/categories/mmzsblog/">mmzsblog</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/blog/tags/mmzsblog/">mmzsblog</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/blog/mmzsblog/mmzsblog/" class="leancloud_visitors"  data-flag-title="用于mmzsblog网站博客开发">0</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/mmzsblog/mmzsblog/#comments" class="article-comment-link">Comments</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 767(words)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 2(minutes)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><p>以下代码均在系统命令行(<em>非node环境下的命令行</em>)下完成。</p>
+<ul>
+<li><code>cmd</code>打开<em>window系统</em>命令行</li>
+<li>直接在<em>mac系统</em>中打开<code>终端</code></li>
+</ul>
+<h3 id="安装nodeJs"><a href="#安装nodeJs" class="headerlink" title="安装nodeJs"></a>安装nodeJs</h3><p>前往 <a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">node官方下载地址</a>下载对应版本进行安装</p>
+<h4 id="检测安装状态"><a href="#检测安装状态" class="headerlink" title="检测安装状态"></a>检测安装状态</h4><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">node</span> <span class="title">-v</span></span><br></pre></td></tr></table></figure>
+<p>出现版本信息则表示安装成功</p>
+<h3 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h3><p>前往 <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">git官方下载地址</a>下载对应版本进行安装</p>
+<h4 id="检测安装状态-1"><a href="#检测安装状态-1" class="headerlink" title="检测安装状态"></a>检测安装状态</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git --version</span></span><br></pre></td></tr></table></figure>
+<p>出现版本信息则表示安装成功</p>
+<h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm install -g hexo-cli</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>此步骤需要将<code>nodejs</code>安装成功后才可进行，否则将报<code>npm</code>命令不存在的错误</p>
+</blockquote>
+<h4 id="检测安装状态-2"><a href="#检测安装状态-2" class="headerlink" title="检测安装状态"></a>检测安装状态</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo version</span></span><br></pre></td></tr></table></figure>
+<p>出现版本信息则表示安装成功</p>
+<h2 id="克隆代码"><a href="#克隆代码" class="headerlink" title="克隆代码"></a>克隆代码</h2><h3 id="克隆框架代码"><a href="#克隆框架代码" class="headerlink" title="克隆框架代码"></a>克隆框架代码</h3><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>git clone git<span class="variable">@118</span>.<span class="number">24.19</span>.<span class="number">22</span><span class="symbol">:/mmzsblog/blog</span>.git</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>此步骤需要将<code>git</code>安装成功后才可进行，否则将报<code>git</code>命令不存在的错误。后续在<strong>新增文章之前需要先更新框架代码</strong>。拉取成功后默认文件夹名称为<code>blog</code>，本篇文章以<code>blog</code>为文件夹名称举例</p>
+</blockquote>
+<h3 id="克隆主题代码"><a href="#克隆主题代码" class="headerlink" title="克隆主题代码"></a>克隆主题代码</h3><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>cd blog</span><br><span class="line"><span class="variable">$ </span>git clone git<span class="variable">@118</span>.<span class="number">24.19</span>.<span class="number">22</span><span class="symbol">:/mmzsblog/theme</span>.git themes/pure</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>此步骤需要将<code>git</code>安装成功后才可进行，否则将报<code>git</code>命令不存在的错误，由于框架代码中主题代码不能提交成功，所以将其分开获取。此代码只需要拉取一次，后续<strong>新增文章之前可不再更新</strong></p>
+</blockquote>
+<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm install</span></span><br></pre></td></tr></table></figure>
+<p>执行成功上述操作将出现图中目录文件<br><img src="./hexom.png" alt=""></p>
+<h2 id="开始创建"><a href="#开始创建" class="headerlink" title="开始创建"></a>开始创建</h2><h3 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h3><p>创建文章之前先更新仓库代码，然后再创建一篇新文章</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git pull</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo new 你的文章名称</span></span><br></pre></td></tr></table></figure>
+<p>打开<strong>当前文件夹</strong>下的<code>source/_post</code>目录，找到新建的文件<em>（一般是根据上方新建的文章名称作为文件名称）</em>进行编写</p>
+<h3 id="静态图片的处理"><a href="#静态图片的处理" class="headerlink" title="静态图片的处理"></a>静态图片的处理</h3><ol>
+<li>放到<code>source/images</code>文件中，在文章中需要进行<code>![](/images/xxx.jpg)</code>的引入</li>
+<li>直接放到和文章名称相同的文件夹中，在文章中需要进行<code>![](./xxx.png)</code>的引入</li>
+</ol>
+<h3 id="预览文章"><a href="#预览文章" class="headerlink" title="预览文章"></a>预览文章</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo<span class="built_in"> server	</span>	简写		hexo s</span><br></pre></td></tr></table></figure>
+<p><img src="./hexos.png" alt=""></p>
+<blockquote>
+<p>打开浏览器输入<code>http://localhost:4000</code>进行访问。如果出现白板且控制台出现了<code>index.html</code>相关的问题则是由于没有获取主题导致的，需要前往<a href="#克隆主题代码">克隆主题文件</a></p>
+</blockquote>
+<h2 id="发布文章"><a href="#发布文章" class="headerlink" title="发布文章"></a>发布文章</h2><p>由于<code>mmzsblog</code>是通过<code>github</code>进行重定向，所以将不做清理静态文件的操作，避免提交后需要重新设置的重复操作</p>
+<h3 id="打包编译"><a href="#打包编译" class="headerlink" title="打包编译"></a>打包编译</h3><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git pull</span><br><span class="line">$ hexo <span class="keyword">generate</span> 	 简写		hexo g</span><br></pre></td></tr></table></figure>
+<p><img src="./hexog.png" alt=""></p>
+<h3 id="发布提交"><a href="#发布提交" class="headerlink" title="发布提交"></a>发布提交</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo deploy		 简写		hexo d</span></span><br></pre></td></tr></table></figure>
+<p><img src="./hexod.png" alt=""></p>
+<p>如果出现以上提示则说明提交成功，隔几分钟后刷新<a href="https://blog.mmzsblog.cn" target="_blank" rel="noopener">https://blog.mmzsblog.cn</a>即可查看刚刚新增的文章</p>
+<h2 id="提交代码"><a href="#提交代码" class="headerlink" title="提交代码"></a>提交代码</h2><p>提交框架代码，避免多人开发时不同步的问题</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git status</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git add .</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git commit -m <span class="string">'新增一篇文章'</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git push</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://alisdon.github.com/mmzsblog/mmzsblog/" title="用于mmzsblog网站博客开发" target="_blank" rel="external">https://alisdon.github.com/mmzsblog/mmzsblog/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/Alisdon" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/blog/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/Alisdon" target="_blank"><span class="text-dark">Alisdon</span><small class="ml-1x">Web Developer</small></a></h3>
+        <div>Focus on coding</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/blog/服务端/创建简单的npm脚手架/" title="创建简单的npm脚手架"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/blog/服务端/mac 下安装nginx/" title="mac下安装nginx"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,twitter" data-mobile-sites="weibo,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/blog/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/blog/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/Alisdon" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/Alisdon" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+        &copy; 2022 Alisdon
+	<p>
+	  <span id="busuanzi_container_page_pv">总访问量：
+	    <span id="busuanzi_value_page_pv">0</span>
+	  </span>
+	  <span class="post-meta-divider">|</span>
+	  <span id="busuanzi_container_page_uv">总访客量：
+	    <span id="busuanzi_value_page_uv">0</span>
+	  </span>
+	</p>
+        
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="/blog/js/jquery.min.js"><\/script>')
+</script>
+<script src="/blog/js/plugin.min.js"></script>
+<script src="/blog/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/blog/js/insight.js"></script>
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!-- custom analytics part create by xiamo -->
+<script defer src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
+<script defer>
+AV.init({
+  appId: 'gckYbaB5kqh6zHkwDs2TNFnV-gzGzoHsz',
+  appKey: 'vU551WFpBhylUnuiap7jqnQ2'
+});
+
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+		var visitors= $('.leancloud_visitors');
+		query.greaterThanOrEqualTo("time", 0);		
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {				
+					return;
+				}
+				var data = results;
+				visitors.each(function(){
+					var url = $(this).attr('id').trim();					
+					for (var i = 0; i < data.length; i++) {
+						var object = data[i];
+						var content = object.get('time');
+						var _url = object.get('url')
+						if(url == _url){
+							$(this).text(content);
+						}
+					}
+				})
+				
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content = counter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = newcounter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else {
+		showTime(Counter);
+	}
+}); 
+</script>
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: true,
+    appId: 'gckYbaB5kqh6zHkwDs2TNFnV-gzGzoHsz',
+    appKey: 'vU551WFpBhylUnuiap7jqnQ2',
+    placeholder: '说点什么吧',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+
+</body>
+</html>

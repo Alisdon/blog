@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>als-block-wxmp 插件使用说明 | Alisdon</title>
+  <meta name="description" content="页面拦截由于系统存在部分需要登录和输入锁屏密码的界面, 所以该拦截存在以下配置项:    属性 默认值 说明     auth true 是否需要授权   authRouterType redirectTo 跳转到授权页面的方式   authPage ‘’ 授权页面路径   login true 是否需要登录   loginRouterType redirectTo 跳转到登录页面的方式   lo">
+<meta name="keywords" content="als-block">
+<meta property="og:type" content="article">
+<meta property="og:title" content="als-block-wxmp 插件使用说明">
+<meta property="og:url" content="https://alisdon.github.com/als-block/als-block-wxmp/index.html">
+<meta property="og:site_name" content="Alisdon Blog">
+<meta property="og:description" content="页面拦截由于系统存在部分需要登录和输入锁屏密码的界面, 所以该拦截存在以下配置项:    属性 默认值 说明     auth true 是否需要授权   authRouterType redirectTo 跳转到授权页面的方式   authPage ‘’ 授权页面路径   login true 是否需要登录   loginRouterType redirectTo 跳转到登录页面的方式   lo">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2022-08-10T14:51:22.100Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="als-block-wxmp 插件使用说明">
+<meta name="twitter:description" content="页面拦截由于系统存在部分需要登录和输入锁屏密码的界面, 所以该拦截存在以下配置项:    属性 默认值 说明     auth true 是否需要授权   authRouterType redirectTo 跳转到授权页面的方式   authPage ‘’ 授权页面路径   login true 是否需要登录   loginRouterType redirectTo 跳转到登录页面的方式   lo">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://alisdon.github.com/als-block/als-block-wxmp/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Alisdon Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/blog/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/Alisdon" target="_blank">
+          <img class="img-circle img-rotate" src="/blog/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Alisdon</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> ChengDu, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archive">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/blog/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/blog/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/Alisdon" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/Alisdon" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>感谢光临本博客，博主将持续更新前端知识技术帖</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/als-block/">als-block</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/css/">css</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/mmzsblog/">mmzsblog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/其他/">其他</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/包管理器/">包管理器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/小程序/">小程序</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/服务端/">服务端</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/混合开发/">混合开发</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/blog/tags/als-block/" style="font-size: 14px;">als-block</a> <a href="/blog/tags/css/" style="font-size: 13.33px;">css</a> <a href="/blog/tags/docker基础/" style="font-size: 13px;">docker基础</a> <a href="/blog/tags/git/" style="font-size: 13px;">git</a> <a href="/blog/tags/mmzsblog/" style="font-size: 13px;">mmzsblog</a> <a href="/blog/tags/nginx/" style="font-size: 13px;">nginx</a> <a href="/blog/tags/node/" style="font-size: 13px;">node</a> <a href="/blog/tags/pnpm/" style="font-size: 13px;">pnpm</a> <a href="/blog/tags/svn/" style="font-size: 13px;">svn</a> <a href="/blog/tags/uni-app/" style="font-size: 13px;">uni-app</a> <a href="/blog/tags/其他/" style="font-size: 13.67px;">其他</a> <a href="/blog/tags/小程序/" style="font-size: 13.67px;">小程序</a> <a href="/blog/tags/微信小程序/" style="font-size: 13.33px;">微信小程序</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2022/11/">November 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2021/08/">August 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2021/06/">June 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/07/">July 2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/02/">February 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2019/03/">March 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2018/12/">December 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2018/10/">October 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2018/07/">July 2018</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/其他/关于代码质量的一些思考/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/其他/">其他</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/其他/关于代码质量的一些思考/" class="title">关于代码质量的一些思考</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-11-02T08:51:01.923Z" itemprop="datePublished">2022-11-02</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/包管理器/pnpm在做什么/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/包管理器/">包管理器</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/包管理器/pnpm在做什么/" class="title">pnpm在做什么</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-08-03T13:07:16.000Z" itemprop="datePublished">2022-08-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/小程序/小程序申请步骤及条件/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/小程序/">小程序</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/小程序/小程序申请步骤及条件/" class="title">小程序申请步骤及条件</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-08-14T05:55:37.000Z" itemprop="datePublished">2021-08-14</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/小程序/微信小程序发布流程/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/小程序/">小程序</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/小程序/微信小程序发布流程/" class="title">微信小程序发布流程</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-06-26T09:41:49.000Z" itemprop="datePublished">2021-06-26</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/小程序/微信小程序云开发/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/小程序/">小程序</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/小程序/微信小程序云开发/" class="title">微信小程序云开发</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-06-24T09:41:49.000Z" itemprop="datePublished">2021-06-24</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#页面拦截"><span class="toc-number">1.</span> <span class="toc-text">页面拦截</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#路由函数"><span class="toc-number">2.</span> <span class="toc-text">路由函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#请求组件"><span class="toc-number">3.</span> <span class="toc-text">请求组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#实例化配置项"><span class="toc-number">3.1.</span> <span class="toc-text">实例化配置项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#请求配置项"><span class="toc-number">3.2.</span> <span class="toc-text">请求配置项</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#消息组件"><span class="toc-number">4.</span> <span class="toc-text">消息组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缓存组件"><span class="toc-number">5.</span> <span class="toc-text">缓存组件</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-als-block-wxmp" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      als-block-wxmp 插件使用说明
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/blog/als-block/als-block-wxmp/" class="article-date">
+	  <time datetime="2020-07-17T09:41:49.000Z" itemprop="datePublished">2020-07-17</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/blog/categories/als-block/">als-block</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/blog/tags/als-block/">als-block</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/blog/als-block/als-block-wxmp/" class="leancloud_visitors"  data-flag-title="als-block-wxmp 插件使用说明">0</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/als-block/als-block-wxmp/#comments" class="article-comment-link">Comments</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 990(words)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 4(minutes)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="页面拦截"><a href="#页面拦截" class="headerlink" title="页面拦截"></a>页面拦截</h2><p>由于系统存在部分需要登录和输入锁屏密码的界面, 所以该拦截存在以下配置项:</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>auth</td>
+<td>true</td>
+<td>是否需要授权</td>
+</tr>
+<tr>
+<td>authRouterType</td>
+<td>redirectTo</td>
+<td>跳转到授权页面的方式</td>
+</tr>
+<tr>
+<td>authPage</td>
+<td>‘’</td>
+<td>授权页面路径</td>
+</tr>
+<tr>
+<td>login</td>
+<td>true</td>
+<td>是否需要登录</td>
+</tr>
+<tr>
+<td>loginRouterType</td>
+<td>redirectTo</td>
+<td>跳转到登录页面的方式</td>
+</tr>
+<tr>
+<td>loginPage</td>
+<td>‘’</td>
+<td>登录页面路径</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 注册拦截器</span></span><br><span class="line"><span class="keyword">const</span> &#123; Interceptor &#125; = <span class="built_in">require</span>(<span class="string">'./al-wxmp.min.js'</span>);</span><br><span class="line"><span class="keyword">new</span> Interceptor(&#123;</span><br><span class="line">  auth: <span class="literal">true</span>,</span><br><span class="line">  authRouterType: <span class="string">'redirectTo'</span>,</span><br><span class="line">  authPage: <span class="string">'/pages/login/auth/auth'</span>,</span><br><span class="line">  login: <span class="literal">true</span>,</span><br><span class="line">  loginRouterType: <span class="string">'reLaunch'</span>,</span><br><span class="line">  loginPage: <span class="string">'/pages/login/auth/auth'</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用拦截器</span></span><br><span class="line">Page(&#123;</span><br><span class="line">  interceptor: &#123;</span><br><span class="line">    auth: <span class="literal">true</span>,</span><br><span class="line">    login: <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="路由函数"><a href="#路由函数" class="headerlink" title="路由函数"></a>路由函数</h2><p>由于小程序中带有参数的页面跳转略微复杂, 所以对页面跳转进行一层包裹</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; Router &#125; = <span class="built_in">require</span>(<span class="string">'./al-wxmp.min.js'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 保留当前页面，跳转到应用内的某个页面</span></span><br><span class="line">Router.navigateTo(</span><br><span class="line">  <span class="string">'/pages/index/index'</span>, </span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">1234567890</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">auth</span>: <span class="literal">false</span> &#125;</span><br><span class="line">)</span><br><span class="line"><span class="comment">// 关闭所有页面，打开到应用内的某个页面</span></span><br><span class="line">Router.reLaunch(</span><br><span class="line">  <span class="string">'/pages/index/index'</span>, </span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">1234567890</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">auth</span>: <span class="literal">false</span> &#125;</span><br><span class="line">)</span><br><span class="line"><span class="comment">// 关闭当前页面，跳转到应用内的某个页面</span></span><br><span class="line">Router.redirectTo(</span><br><span class="line">  <span class="string">'/pages/index/index'</span>, </span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">1234567890</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">auth</span>: <span class="literal">false</span> &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Tips: 路由组件传递参数格式一致, 均为(路径[String], 参数[String|Object], <a href="#页面拦截">拦截器参数</a>(不传则使用注册拦截器时的参数配置))</p>
+</blockquote>
+<h2 id="请求组件"><a href="#请求组件" class="headerlink" title="请求组件"></a>请求组件</h2><p>由于请求能够做到更多的复用, 所以将此进行封装</p>
+<h3 id="实例化配置项"><a href="#实例化配置项" class="headerlink" title="实例化配置项"></a>实例化配置项</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>baseUrl</td>
+<td></td>
+<td>默认请求地址(后端网关地址)</td>
+</tr>
+<tr>
+<td>hideErrMsg</td>
+<td>false</td>
+<td>是否隐藏错误信息</td>
+</tr>
+<tr>
+<td>needReject</td>
+<td>false</td>
+<td>是否需要 Promise 的 catch 分之</td>
+</tr>
+<tr>
+<td>isSuccess</td>
+<td>(data) =&gt; data.code === 0</td>
+<td>是否成功的判断</td>
+</tr>
+<tr>
+<td>showErrMsgFn</td>
+<td>(error) =&gt; error.msg</td>
+<td></td>
+<td>“”</td>
+<td>返回错误信息的函数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="请求配置项"><a href="#请求配置项" class="headerlink" title="请求配置项"></a>请求配置项</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>baseUrl</td>
+<td></td>
+<td>默认请求地址(后端网关地址)</td>
+</tr>
+<tr>
+<td>hideErrMsg</td>
+<td>false</td>
+<td>是否隐藏错误信息</td>
+</tr>
+<tr>
+<td>needReject</td>
+<td>false</td>
+<td>是否需要 Promise 的 catch 分之</td>
+</tr>
+<tr>
+<td>headers</td>
+<td></td>
+<td>需要携带的headers</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 注册请求</span></span><br><span class="line"><span class="keyword">const</span> &#123; Request &#125; = <span class="built_in">require</span>(<span class="string">'./al-wxmp.min.js'</span>);</span><br><span class="line"><span class="keyword">new</span> Request(&#123;</span><br><span class="line">  baseUrl: <span class="string">'http://120.27.27.108:3000/'</span>,</span><br><span class="line">  hideErrMsg: <span class="literal">false</span>,</span><br><span class="line">  needReject: <span class="literal">false</span>,</span><br><span class="line">  isSuccess: <span class="function">(<span class="params">data</span>) =&gt;</span> data.code === <span class="number">0</span>,</span><br><span class="line">  showErrMsgFn: <span class="function">(<span class="params">error</span>) =&gt;</span> error.msg || <span class="string">""</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// GET 使用, 隐藏提示、返回catch分支</span></span><br><span class="line">Request.get(</span><br><span class="line">  <span class="string">'/user/get'</span>, </span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="string">'123'</span> &#125;, </span><br><span class="line">  &#123; <span class="attr">hideErrMsg</span>: <span class="literal">true</span>, <span class="attr">needReject</span>: <span class="literal">true</span> &#125;</span><br><span class="line">).then(<span class="built_in">console</span>.log).catch(<span class="built_in">console</span>.error)</span><br><span class="line"><span class="comment">// POST 使用, 设置headers</span></span><br><span class="line">Request.post(</span><br><span class="line">  <span class="string">'/user/save'</span>, </span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">'Alisdon'</span> &#125;, </span><br><span class="line">  &#123; <span class="attr">headers</span>: &#123; <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span> &#125; &#125;</span><br><span class="line">).then(<span class="built_in">console</span>.log)</span><br><span class="line"><span class="comment">// 使用其他 baseUrl</span></span><br><span class="line">Request.post(</span><br><span class="line">  <span class="string">'/user/login'</span>, </span><br><span class="line">  &#123; <span class="attr">userName</span>: <span class="string">'Alisdon'</span> &#125;, </span><br><span class="line">  &#123; <span class="attr">baseUrl</span>: <span class="string">'http://www.baidu.com'</span> &#125;</span><br><span class="line">).then(<span class="built_in">console</span>.log)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>无论是GET还是POST最多能接受3个参数, 依次为<em>请求地址</em>, <em>请求参数</em>, <em>请求配置项</em></p>
+</blockquote>
+<h2 id="消息组件"><a href="#消息组件" class="headerlink" title="消息组件"></a>消息组件</h2><p>由于消息存在大量的复用, 所以将此进行封装</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; Message &#125; = <span class="built_in">require</span>(<span class="string">'./al-wxmp.min.js'</span>);</span><br><span class="line"><span class="comment">// 注册消息组件</span></span><br><span class="line">wx.$message = Router;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 成功提示</span></span><br><span class="line">wx.$message.success(<span class="string">'成功提示'</span>);</span><br><span class="line"><span class="comment">// 成功提示</span></span><br><span class="line">wx.$message.error(<span class="string">'错误提示'</span>);</span><br><span class="line"><span class="comment">// 弹框提示</span></span><br><span class="line">wx.$message.modal(<span class="string">'敏感操作, 是否继续?'</span>).then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  wx.$message.success(<span class="string">'操作成功'</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>此处的成功和失败没有区分, 所以将表现一致, 但希望依旧按照业务使用, 方便后期修改</p>
+</blockquote>
+<h2 id="缓存组件"><a href="#缓存组件" class="headerlink" title="缓存组件"></a>缓存组件</h2><p>本插件提供了便利的缓存功能, 其中内置了用户信息(userinfo)的处理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; Storage &#125; = <span class="built_in">require</span>(<span class="string">'./al-wxmp.min.js'</span>);</span><br><span class="line"><span class="comment">// 注册缓存</span></span><br><span class="line">wx.$storage = Storage;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 用户信息的获取</span></span><br><span class="line"><span class="keyword">const</span> userInfo = wx.$storage.userinfo;</span><br><span class="line"><span class="comment">// 用户信息的设置, 支持增量修改</span></span><br><span class="line">wx.$storage.userinfo = &#123; <span class="attr">name</span>: <span class="string">'alisdon'</span> &#125;</span><br><span class="line"><span class="comment">// 清除用户信息</span></span><br><span class="line">wx.$storage.userinfo = <span class="string">'clean'</span>;</span><br></pre></td></tr></table></figure>
+<p>缓存组件还支持自定义扩展</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>extend</td>
+<td>(key, storageKey, type) =&gt; void</td>
+<td>key 为自定义扩展的关键属性, storageKey 为数据缓存的key, type 为需要缓存数据的类型, 支持 ‘string’ 和 ‘object’, 其中鉴于系统内置方法, <strong>key 不能使用 ‘userinfo’ 和 ‘extend’, storageKey 不能是用 ‘A_UI’</strong></td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; Storage &#125; = <span class="built_in">require</span>(<span class="string">'./al-wxmp.min.js'</span>);</span><br><span class="line"><span class="comment">// 自定义扩展</span></span><br><span class="line">Storage.extend(<span class="string">'token'</span>, <span class="string">'A_TICKET'</span>, <span class="string">'string'</span>);</span><br><span class="line"><span class="comment">// 注册缓存</span></span><br><span class="line">wx.$storage = Storage;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取自定义的内容</span></span><br><span class="line"><span class="keyword">const</span> token = wx.$storage.token;</span><br><span class="line"><span class="comment">// 增量修改自定义内容</span></span><br><span class="line">wx.$storage.token = <span class="string">'1234567890'</span></span><br><span class="line"><span class="comment">// 清除自定义信息</span></span><br><span class="line">wx.$storage.token = <span class="string">'clean'</span>;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://alisdon.github.com/als-block/als-block-wxmp/" title="als-block-wxmp 插件使用说明" target="_blank" rel="external">https://alisdon.github.com/als-block/als-block-wxmp/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/Alisdon" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/blog/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/Alisdon" target="_blank"><span class="text-dark">Alisdon</span><small class="ml-1x">Web Developer</small></a></h3>
+        <div>Focus on coding</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/blog/小程序/微信小程序云开发/" title="微信小程序云开发"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/blog/als-block/als-block-crud/" title="als-block-crud 使用说明"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,twitter" data-mobile-sites="weibo,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/blog/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/blog/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/Alisdon" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/Alisdon" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+        &copy; 2022 Alisdon
+	<p>
+	  <span id="busuanzi_container_page_pv">总访问量：
+	    <span id="busuanzi_value_page_pv">0</span>
+	  </span>
+	  <span class="post-meta-divider">|</span>
+	  <span id="busuanzi_container_page_uv">总访客量：
+	    <span id="busuanzi_value_page_uv">0</span>
+	  </span>
+	</p>
+        
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="/blog/js/jquery.min.js"><\/script>')
+</script>
+<script src="/blog/js/plugin.min.js"></script>
+<script src="/blog/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/blog/js/insight.js"></script>
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!-- custom analytics part create by xiamo -->
+<script defer src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
+<script defer>
+AV.init({
+  appId: 'gckYbaB5kqh6zHkwDs2TNFnV-gzGzoHsz',
+  appKey: 'vU551WFpBhylUnuiap7jqnQ2'
+});
+
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+		var visitors= $('.leancloud_visitors');
+		query.greaterThanOrEqualTo("time", 0);		
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {				
+					return;
+				}
+				var data = results;
+				visitors.each(function(){
+					var url = $(this).attr('id').trim();					
+					for (var i = 0; i < data.length; i++) {
+						var object = data[i];
+						var content = object.get('time');
+						var _url = object.get('url')
+						if(url == _url){
+							$(this).text(content);
+						}
+					}
+				})
+				
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content = counter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = newcounter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else {
+		showTime(Counter);
+	}
+}); 
+</script>
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: true,
+    appId: 'gckYbaB5kqh6zHkwDs2TNFnV-gzGzoHsz',
+    appKey: 'vU551WFpBhylUnuiap7jqnQ2',
+    placeholder: '说点什么吧',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+
+</body>
+</html>

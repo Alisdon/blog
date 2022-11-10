@@ -1,0 +1,92 @@
+<hr>
+<p>title: als-block-menu 使用说明<br>date: 2020-07-16 17:41:49<br>tags: als-block</p>
+<h2 id="category-als-block"><a href="#category-als-block" class="headerlink" title="category: als-block"></a>category: als-block</h2><h2 id="菜单篇"><a href="#菜单篇" class="headerlink" title="菜单篇"></a>菜单篇</h2><p><code>Als-Block-Crud</code>对菜单进行了二次封装，意为开发带来更多的便利，减少开发时多余代码的<code>Ctrl+c</code>、<code>Ctrl+v</code>。</p>
+<h3 id="功能说明"><a href="#功能说明" class="headerlink" title="功能说明"></a>功能说明</h3><ul>
+<li style="list-style: none"><input type="checkbox" checked></input> 自动识别子级</li>
+</ul>
+<h3 id="props-对象"><a href="#props-对象" class="headerlink" title="props 对象"></a>props 对象</h3><pre><code>menuMap: {
+  options: {},
+  lisenters: {},
+  menuData: []
+}
+props: {
+  path: &apos;path&apos;,
+  name: &apos;name&apos;,
+  icon: &apos;icon&apos;,
+  children: &apos;children&apos;
+}
+</code></pre><blockquote>
+<ol>
+<li><code>options</code>为<code>element-ui</code>中<code>el-menu</code>的属性，可传入<code>Object</code>也可以传入返回<code>Object</code>的<code>Function</code>.</li>
+<li><code>lisenters</code>为<code>element-ui</code>中<code>el-menu</code>的事件，可传入<code>Object</code>也可以传入返回<code>Object</code>的<code>Function</code>.</li>
+<li><code>props</code> 为字端映射，可在返回的数据与默认字端不一致时使用</li>
+</ol>
+</blockquote>
+<h3 id="菜单数据"><a href="#菜单数据" class="headerlink" title="菜单数据"></a>菜单数据</h3><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">默认值（接收值）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>path</td>
+<td style="text-align:left">路由地址</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td>name</td>
+<td style="text-align:left">菜单名称</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td>icon</td>
+<td style="text-align:left">菜单图标</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td>children</td>
+<td style="text-align:left">子级菜单</td>
+</tr>
+</tbody>
+</table>
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><pre><code>&lt;template&gt;
+  &lt;als-block-menu ref=&apos;mainMenu&apos; :menu-map=&apos;menuMap&apos;&gt;&lt;/als-block-menu&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  name: &apos;AlsBlockMenu&apos;,
+
+  data () {
+    return {
+      menuMap: {
+        options: {
+          defaultActive: &apos;/index&apos;
+        },
+        listeners: {
+          select: path =&gt; this.$router.push(path)
+        },
+        menuData: [{
+          path: &apos;/index&apos;,
+          title: &apos;首页&apos;,
+          icon: &apos;el-icon el-icon-s-grid&apos;,
+          children: [{
+            path: &apos;/subIndex&apos;,
+            title: &apos;二级菜单&apos;,
+            icon: &apos;el-icon el-icon-message-solid&apos;,
+          }]
+        },
+        {
+          path: &apos;/user&apos;,
+          title: &apos;用户管理&apos;,
+          icon: &apos;el-icon el-icon-eleme&apos;
+        }]
+      }
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre>
