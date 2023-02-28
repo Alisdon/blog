@@ -508,7 +508,7 @@
 <h2 id="包管理器的探索"><a href="#包管理器的探索" class="headerlink" title="包管理器的探索"></a>包管理器的探索</h2><h3 id="Deno"><a href="#Deno" class="headerlink" title="Deno"></a>Deno</h3><p>Node.JS作者Ryan在JSConf上曾表示node_modules是他对Node的十大遗憾之一, 并在后续介绍并推荐了自己的新作Deno. </p>
 <p><img src="./deno.jpeg" width="80%"></p>
 <p>在Deno中不需要package.json和node_modules，而是将引入源、包名、版本号、模块名全部塞进了 URL 里，通过URL导入依赖并进行全局统一缓存，不仅节省了磁盘空间，也优化了项目结构。</p>
-<figure class="highlight capnproto"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> asserts <span class="keyword">from</span> 'https://deno.land/std<span class="symbol">@0</span>.<span class="number">125.0</span>/testing/asserts.ts';</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> asserts <span class="keyword">from</span> <span class="string">'https://deno.land/std@0.125.0/testing/asserts.ts'</span>;</span><br></pre></td></tr></table></figure>
 <p>因此Deno中没有包管理器的概念，对于项目中的依赖管理，Deno提供了这样一种方案。由开发者创建dep.ts，此文件中引用了所有必需的远程依赖关系，并且重新导出了所需的方法和类。本地模块从dep.ts统一导入所需方法和类，避免单独使用URL导入外部依赖可能造成的不一致的问题。</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// dep.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; </span><br><span class="line">	asset, </span><br><span class="line">	assetEquals </span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">'https://deno.land/std@0.125.0/testing/asserts.ts'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// index.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; asset &#125; <span class="keyword">from</span> <span class="string">'./deps.ts'</span>;</span><br></pre></td></tr></table></figure>
 <h3 id="yarn-Plug’n’Play-yarn-PnP"><a href="#yarn-Plug’n’Play-yarn-PnP" class="headerlink" title="yarn Plug’n’Play(yarn PnP)"></a>yarn Plug’n’Play(yarn PnP)</h3><p>yarn 也意识到了在之前版本里存在的问题, 于是在2020年1月发布了v2版本的重大更新, 其中一项重要更新就是 Plug’n’Play（Plug’n’Play = Plug and Play = PnP，即插即用）。</p>
@@ -673,7 +673,7 @@
     </ul>
 
     <div class="copyright">
-        &copy; 2022 Alisdon
+        &copy; 2023 Alisdon
 	<p>
 	  <span id="busuanzi_container_page_pv">总访问量：
 	    <span id="busuanzi_value_page_pv">0</span>
