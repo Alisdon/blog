@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>带你走进 Typescript 泛型 | Alisdon</title>
+  <meta name="description" content="Typescript 是一门静态类型、弱类型的语言。静态是指在编译阶段进行类型检查， 所以要求我们需要在开发期间就对数据类型给出类型申明。弱类型是由于 Javascript 属于一门弱类型语言， 而 Typescript 完全兼容 Javascript，不会修改 JavaScript 运行时的特性，同时两者都存在隐式类型转换（比如 ‘1’ + 1），所以它们都是弱类型语言。 引用一下官方的解释来开">
+<meta name="keywords" content="Typescript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="带你走进 Typescript 泛型">
+<meta property="og:url" content="https://alisdon.github.com/Typescript/带你走进 typescript 泛型/index.html">
+<meta property="og:site_name" content="Alisdon Blog">
+<meta property="og:description" content="Typescript 是一门静态类型、弱类型的语言。静态是指在编译阶段进行类型检查， 所以要求我们需要在开发期间就对数据类型给出类型申明。弱类型是由于 Javascript 属于一门弱类型语言， 而 Typescript 完全兼容 Javascript，不会修改 JavaScript 运行时的特性，同时两者都存在隐式类型转换（比如 ‘1’ + 1），所以它们都是弱类型语言。 引用一下官方的解释来开">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="https://alisdon.github.com/Typescript/带你走进%20typescript%20泛型/interface.gif">
+<meta property="og:image" content="https://alisdon.github.com/Typescript/带你走进%20typescript%20泛型/func.gif">
+<meta property="og:image" content="https://alisdon.github.com/Typescript/带你走进%20typescript%20泛型/class.gif">
+<meta property="og:image" content="https://alisdon.github.com/Typescript/带你走进%20typescript%20泛型/constraint.gif">
+<meta property="og:image" content="https://alisdon.github.com/Typescript/带你走进%20typescript%20泛型/default.gif">
+<meta property="og:updated_time" content="2023-03-02T10:24:39.107Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="带你走进 Typescript 泛型">
+<meta name="twitter:description" content="Typescript 是一门静态类型、弱类型的语言。静态是指在编译阶段进行类型检查， 所以要求我们需要在开发期间就对数据类型给出类型申明。弱类型是由于 Javascript 属于一门弱类型语言， 而 Typescript 完全兼容 Javascript，不会修改 JavaScript 运行时的特性，同时两者都存在隐式类型转换（比如 ‘1’ + 1），所以它们都是弱类型语言。 引用一下官方的解释来开">
+<meta name="twitter:image" content="https://alisdon.github.com/Typescript/带你走进%20typescript%20泛型/interface.gif">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://alisdon.github.com/Typescript/带你走进 typescript 泛型/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Alisdon Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/blog/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/Alisdon" target="_blank">
+          <img class="img-circle img-rotate" src="/blog/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Alisdon</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> ChengDu, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archive">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/blog/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/blog/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/Alisdon" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/Alisdon" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>感谢光临本博客，博主将持续更新前端知识技术帖</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Typescript/">Typescript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/als-block/">als-block</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/css/">css</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/mmzsblog/">mmzsblog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/其他/">其他</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/包管理器/">包管理器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/小程序/">小程序</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/服务端/">服务端</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/混合开发/">混合开发</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/blog/tags/Typescript/" style="font-size: 13px;">Typescript</a> <a href="/blog/tags/als-block/" style="font-size: 14px;">als-block</a> <a href="/blog/tags/css/" style="font-size: 13.33px;">css</a> <a href="/blog/tags/docker基础/" style="font-size: 13px;">docker基础</a> <a href="/blog/tags/git/" style="font-size: 13px;">git</a> <a href="/blog/tags/mmzsblog/" style="font-size: 13px;">mmzsblog</a> <a href="/blog/tags/nginx/" style="font-size: 13px;">nginx</a> <a href="/blog/tags/node/" style="font-size: 13px;">node</a> <a href="/blog/tags/pnpm/" style="font-size: 13px;">pnpm</a> <a href="/blog/tags/svn/" style="font-size: 13px;">svn</a> <a href="/blog/tags/uni-app/" style="font-size: 13px;">uni-app</a> <a href="/blog/tags/其他/" style="font-size: 13.67px;">其他</a> <a href="/blog/tags/小程序/" style="font-size: 13.67px;">小程序</a> <a href="/blog/tags/微信小程序/" style="font-size: 13.33px;">微信小程序</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2022/11/">November 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2021/08/">August 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2021/06/">June 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/07/">July 2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/02/">February 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2019/03/">March 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2018/12/">December 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2018/10/">October 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2018/07/">July 2018</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/Typescript/带你走进 typescript 泛型/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/Typescript/">Typescript</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/Typescript/带你走进 typescript 泛型/" class="title">带你走进 Typescript 泛型</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2023-03-01T16:00:00.000Z" itemprop="datePublished">2023-03-02</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/其他/关于代码质量的一些思考/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/其他/">其他</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/其他/关于代码质量的一些思考/" class="title">关于代码质量的一些思考</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-11-02T08:51:01.923Z" itemprop="datePublished">2022-11-02</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/包管理器/pnpm在做什么/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/包管理器/">包管理器</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/包管理器/pnpm在做什么/" class="title">pnpm在做什么</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-08-03T13:07:16.000Z" itemprop="datePublished">2022-08-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/小程序/小程序申请步骤及条件/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/小程序/">小程序</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/小程序/小程序申请步骤及条件/" class="title">小程序申请步骤及条件</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-08-14T05:55:37.000Z" itemprop="datePublished">2021-08-14</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/小程序/微信小程序发布流程/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/小程序/">小程序</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/小程序/微信小程序发布流程/" class="title">微信小程序发布流程</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-06-26T09:41:49.000Z" itemprop="datePublished">2021-06-26</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#泛型接口"><span class="toc-number">1.</span> <span class="toc-text">泛型接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#泛型函数"><span class="toc-number">2.</span> <span class="toc-text">泛型函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#泛型类"><span class="toc-number">3.</span> <span class="toc-text">泛型类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#泛型约束"><span class="toc-number">4.</span> <span class="toc-text">泛型约束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#泛型参数的默认类型"><span class="toc-number">5.</span> <span class="toc-text">泛型参数的默认类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工具类型"><span class="toc-number">6.</span> <span class="toc-text">工具类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Partial"><span class="toc-number">6.1.</span> <span class="toc-text">Partial</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Require"><span class="toc-number">6.2.</span> <span class="toc-text">Require</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Record-lt-K-V-gt"><span class="toc-number">6.3.</span> <span class="toc-text">Record&lt;K, V&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pick-lt-T-K-gt"><span class="toc-number">6.4.</span> <span class="toc-text">Pick&lt;T, K&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Exclude-lt-T-U-gt"><span class="toc-number">6.5.</span> <span class="toc-text">Exclude&lt;T, U&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Extract-lt-T-U-gt"><span class="toc-number">6.6.</span> <span class="toc-text">Extract&lt;T, U&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Omit-lt-T-K-gt"><span class="toc-number">6.7.</span> <span class="toc-text">Omit&lt;T, K&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NonNullable"><span class="toc-number">6.8.</span> <span class="toc-text">NonNullable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ReturnType"><span class="toc-number">6.9.</span> <span class="toc-text">ReturnType</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Readonly"><span class="toc-number">6.10.</span> <span class="toc-text">Readonly</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">7.</span> <span class="toc-text">总结</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-带你走进 typescript 泛型" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      带你走进 Typescript 泛型
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/blog/Typescript/带你走进 typescript 泛型/" class="article-date">
+	  <time datetime="2023-03-01T16:00:00.000Z" itemprop="datePublished">2023-03-02</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/blog/categories/Typescript/">Typescript</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/blog/tags/Typescript/">Typescript</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/blog/Typescript/带你走进 typescript 泛型/" class="leancloud_visitors"  data-flag-title="带你走进 Typescript 泛型">0</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/Typescript/带你走进 typescript 泛型/#comments" class="article-comment-link">Comments</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 3.3k(words)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 14(minutes)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>Typescript 是一门静态类型、弱类型的语言。静态是指在编译阶段进行类型检查， 所以要求我们需要在开发期间就对数据类型给出类型申明。弱类型是由于 Javascript 属于一门弱类型语言， 而 Typescript 完全兼容 Javascript，不会修改 JavaScript 运行时的特性，同时两者都存在隐式类型转换（比如 ‘1’ + 1），所以它们都是弱类型语言。</p>
+<p>引用一下官方的解释来开始这一篇的主角 —- <strong>泛型</strong></p>
+<blockquote>
+<p>软件工程中，我们不仅要创建一致的定义良好的API，同时也要考虑可重用性。 组件不仅能够支持当前的数据类型，同时也能支持未来的数据类型，这在创建大型系统时为你提供了十分灵活的功能。</p>
+<p>在像C#和Java这样的语言中，可以使用<code>泛型</code>来创建可重用的组件，一个组件可以支持多种类型的数据。 这样用户就可以以自己的数据类型来使用组件。</p>
+</blockquote>
+<p>虽然上面理解起来还是比较晦涩。但是也看出泛型所要解决的问题。正如前面我们说到的，Typescript 属于一门静态类型语言，那么我们在开发阶段需要给出一种既满足良好的API又满足未来复用的类型，这种类型可以是一个占位，只是在未来需要用到的时候再将其替换。所以在我看来 <strong>泛型是泛指某种类型，是一种在定义接口、函数或类的时候，不预先指定具体的类型，而在使用的时候再指定具体类型的解决方案</strong>。</p>
+<p>先来看看我们平常看到的泛型 “KTV”:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">interface Identities&lt;K, T, V&gt; &#123;</span><br><span class="line">  key: K,</span><br><span class="line">  type: T,</span><br><span class="line">  value: V</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在平时我们阅读 Typescript 项目时，肯定避免不了遇见的这种写法，对于我们写惯了 Javascript 语言来说，在 Javascript 里面写了 HTML 标签， 如果没有接触过 JSX 语法， 会不会让你感觉这就是传说中的 JSX？</p>
+<p>其实，你看到这个就说明这个地方用上了 Typescript 的泛型，而这里的“KTV”也不是固定的写法，更多的， 这其实只是一种自我约束，或者说是行业内达成的一种共识。如果换成其他的字母代替 T ，在可读性上可能会弱一些，但是并不会影响程序的正常运行。<strong>通常情况下，T，K，V，E 是这样约定的：</strong></p>
+<ul>
+<li>T (type) 表示具体的一个类型</li>
+<li>K (key) 代表接口类型中的Key</li>
+<li>V (value) 代表接口类型中的Value</li>
+<li>E (element) 代表 Element</li>
+</ul>
+<h2 id="泛型接口"><a href="#泛型接口" class="headerlink" title="泛型接口"></a>泛型接口</h2><p>泛型接口其实和普通的接口类型相差不大，只是在接口类型名称后面跟上了我们的泛型标志，比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">interface UserInfo &#123;</span><br><span class="line">  hobby: &apos;dance&apos; | &apos;swim&apos;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface UserInfo&lt;T&gt; &#123;</span><br><span class="line">  hobby: T;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>那么用上了泛型能解决什么问题呢？我们来看这个案例：</p>
+<blockquote>
+<p>我们有一位同学叫张三，他的爱好是跳舞，我们另外一位同学李四的爱好是游泳</p>
+</blockquote>
+<p>现在我们不使用泛型， 直接用上面的 <code>UserInfo</code> 接口也不会报错，能够正常运行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">interface UserInfo &#123;</span><br><span class="line">  hobby: &apos;dance&apos; | &apos;swim&apos;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const zhangsan: UserInfo = &#123; hobby: &apos;dance&apos; &#125;;</span><br><span class="line">const lisi: UserInfo = &#123; hobby: &apos;swim&apos; &#125;;</span><br></pre></td></tr></table></figure>
+<p>但是这样会出现一个问题，在我们使用这个变量时，获取张三这位同学的爱好时， 是可以取到 <code>swim</code> 爱好的，比如代码中的<code>if</code>判断：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">interface UserInfo &#123;</span><br><span class="line">  hobby: &apos;dance&apos; | &apos;swim&apos;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const zhangsan: UserInfo = &#123; hobby: &apos;dance&apos; &#125;;</span><br><span class="line">const lisi: UserInfo = &#123; hobby: &apos;swim&apos; &#125;;</span><br><span class="line"></span><br><span class="line">if (zhangsan.hobby === &apos;swim&apos;) &#123;</span><br><span class="line">  console.log(&apos;zhangsan is like swim&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>很显然我们张三同学没有 <code>swim</code> 这个爱好，这个判断是多余的，那么我们如何去规避这个问题呢？这个时候泛型就起到了作用， 在我们一开始的时候不去指定具体的类型，只是在使用的时候再指定具体类型，最后的使用方式如下：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> UserInfo&lt;T&gt; &#123;</span><br><span class="line">  hobby: T;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> zhangsan: UserInfo&lt;<span class="string">'dance'</span>&gt; = &#123; hobby: <span class="string">'dance'</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> lisi: UserInfo&lt;<span class="string">'swim'</span>&gt; = &#123; hobby: <span class="string">'swim'</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (zhangsan.hobby === <span class="string">'swim'</span>) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'zhangsan is like swim'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>至此可能看不出有什么问题，那是为什么呢？ 是否泛型其实是没用的呢？</p>
+<p>其实不是， 我们回顾一下<em>Typescript 是一门静态类型、弱类型的语言</em>， 所以说这会在编译阶段进行类型检查，再反馈到开发阶段，我们回到编辑器界面可以看到如下：</p>
+<p><img src="./interface.gif" alt=""></p>
+<p><strong>这个红色的波浪线提醒了我们 “这个判断条件将恒为 <code>false</code>“， 所以这可以让我们在开发阶段避免一些错误。</strong></p>
+<h2 id="泛型函数"><a href="#泛型函数" class="headerlink" title="泛型函数"></a>泛型函数</h2><p>泛型函数和普通函数的区别就在于泛型函数在函数名称后面加入了待指定类型的标志。同时泛型函数也是可以解决类型不灵活带来错误推导的问题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">interface UserInfo&lt;T&gt; &#123;</span><br><span class="line">  hobby: T;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 普通函数</span><br><span class="line">function getUserInfo(user: UserInfo&lt;&apos;dance&apos;&gt;): UserInfo&lt;&apos;dance&apos;&gt; &#123;</span><br><span class="line">  return user;</span><br><span class="line">&#125;</span><br><span class="line">getUserInfo(user);</span><br><span class="line"></span><br><span class="line">// 泛型函数</span><br><span class="line">function getUserInfo&lt;T&gt;(user: UserInfo&lt;T&gt;): UserInfo&lt;T&gt; &#123;</span><br><span class="line">  return user;</span><br><span class="line">&#125;</span><br><span class="line">getUserInfo&lt;&apos;dance&apos;&gt;(user);</span><br></pre></td></tr></table></figure>
+<p>普通函数面临的问题和上面泛型接口是一样的，在获取李四同学信息时， 由于李四的爱好中没有跳舞，所以根据 Typescript 的类型推断，将出现一条红色的波浪线。</p>
+<p><img src="./func.gif" alt=""></p>
+<p>那我们用泛型函数来实现就能够解决这个问题</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> UserInfo&lt;T&gt; &#123;</span><br><span class="line">  hobby: T;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> zhangsan: UserInfo&lt;<span class="string">'dance'</span>&gt; = &#123; hobby: <span class="string">'dance'</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> lisi: UserInfo&lt;<span class="string">'swim'</span>&gt; = &#123; hobby: <span class="string">'swim'</span> &#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getUserInfo</span>&lt;<span class="title">T</span>&gt;(<span class="params">user: UserInfo&lt;T&gt;</span>): <span class="title">UserInfo</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> user;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getUserInfo&lt;<span class="string">'dance'</span>&gt;(zhangsan);</span><br><span class="line">getUserInfo&lt;<span class="string">'swim'</span>&gt;(lisi);</span><br></pre></td></tr></table></figure>
+<p>如果我们结合接口定义函数的方式来实现， 上面泛型函数的实现等价于</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">interface UserInfo&lt;T&gt; &#123;</span><br><span class="line">  hobby: T;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const zhangsan: UserInfo&lt;&apos;dance&apos;&gt; = &#123; hobby: &apos;dance&apos; &#125;;</span><br><span class="line">const lisi: UserInfo&lt;&apos;swim&apos;&gt; = &#123; hobby: &apos;swim&apos; &#125;;</span><br><span class="line">const getUserInfo: GetUserInfo = (user) =&gt; user;</span><br><span class="line"></span><br><span class="line">getUserInfo&lt;&apos;dance&apos;&gt;(zhangsan);</span><br><span class="line">getUserInfo&lt;&apos;swim&apos;&gt;(lisi);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> 泛型函数在平时我们也会使用很多， 比如<code>React.Component&lt;any, any&gt;</code></p>
+</blockquote>
+<h2 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h2><p>泛型类看上去与泛型接口和泛型函数差不多。 泛型类使用（ <code>&lt;&gt;</code>）括起泛型类型，跟在类名后面。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Person&lt;T&gt; &#123;</span><br><span class="line">  hobby: T;</span><br><span class="line">  constructor(hobby: T) &#123;</span><br><span class="line">    this.hobby = hobby;</span><br><span class="line">  &#125;</span><br><span class="line">  speak: () =&gt; string = () =&gt; `I like $&#123;this.hobby&#125;`;</span><br><span class="line">&#125;</span><br><span class="line">const zhangsan = new Person&lt;&apos;dance&apos;&gt;(&apos;dance&apos;);</span><br><span class="line">const lisi = new Person&lt;&apos;swim&apos;&gt;(&apos;swim&apos;);</span><br><span class="line"></span><br><span class="line">console.log(zhangsan.speak()); // &apos;I like dance&apos;;</span><br><span class="line">console.log(lisi.speak()); // &apos;I like swim&apos;;</span><br></pre></td></tr></table></figure>
+<p><strong>但值得注意的是，类有两部分：静态部分和实例部分。 泛型类指的是实例部分的类型，所以类的静态属性不能使用这个泛型类型。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class Person&lt;T&gt; &#123;</span><br><span class="line">  hobby: T;</span><br><span class="line">  constructor(hobby: T) &#123;</span><br><span class="line">    this.hobby = hobby;</span><br><span class="line">  &#125;</span><br><span class="line">  speak: () =&gt; string = () =&gt; `I like $&#123;this.hobby&#125;`;</span><br><span class="line">  static getHobby: () =&gt; T;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>比如上面这种写法是不允许的</p>
+<p><img src="./class.gif" alt=""></p>
+<blockquote>
+<p> 泛型类我们平时也使用挺多的， 比如<code>new Promise&lt;string&gt;</code>、<code>new Map&lt;string, string&gt;()</code>等等，这些都是通过泛型类实现的。</p>
+</blockquote>
+<h2 id="泛型约束"><a href="#泛型约束" class="headerlink" title="泛型约束"></a>泛型约束</h2><p>相信大家在看泛型类的时候已经发现了一个问题，如果我们待制定的变量T没有约束的话， 我们可以传任意的值进去，比如出现这样的代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Person&lt;T&gt; &#123;</span><br><span class="line">  hobby: T;</span><br><span class="line">  constructor(hobby: T) &#123;</span><br><span class="line">    this.hobby = hobby;</span><br><span class="line">  &#125;</span><br><span class="line">  speak: () =&gt; string = () =&gt; `I like $&#123;this.hobby&#125;`;</span><br><span class="line">&#125;</span><br><span class="line">const xiaohua = new Person&lt;&apos;apple&apos;&gt;(&apos;apple&apos;);</span><br><span class="line"></span><br><span class="line">console.log(xiaohua.speak()); // &apos;I like apple&apos;;</span><br></pre></td></tr></table></figure>
+<p>虽然这能够通过我们的编译， 但这已经不符合我们的需求了，<code>apple</code> 肯定不是一种<code>hobby</code>。对于此问题Typescript给的解决方案就是泛型约束，顾名思义就是将泛型约束起来， 让其只能是某个或某种类型。改造之后如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">type Hobby = &apos;dance&apos; | &apos;swim&apos;;</span><br><span class="line">class Person&lt;T extends Hobby&gt; &#123;</span><br><span class="line">  hobby: T;</span><br><span class="line">  constructor(hobby: T) &#123;</span><br><span class="line">    this.hobby = hobby;</span><br><span class="line">  &#125;</span><br><span class="line">  speak: () =&gt; string = () =&gt; `I like $&#123;this.hobby&#125;`;</span><br><span class="line">&#125;</span><br><span class="line">const zhangsan = new Person&lt;&apos;apple&apos;&gt;(&apos;apple&apos;);</span><br></pre></td></tr></table></figure>
+<p>如斯，我们在编辑器中将出现红色波浪线提示我们 <code>apple</code> 不满足 <code>Hobby</code> 类型的。</p>
+<p><img src="./constraint.gif" alt=""></p>
+<p>通过这种方式，我们就能够对泛型进行一定的约束，能够更好的控制我们输入的类型，确保在使用时的正确性。</p>
+<h2 id="泛型参数的默认类型"><a href="#泛型参数的默认类型" class="headerlink" title="泛型参数的默认类型"></a>泛型参数的默认类型</h2><p>在 typescript 2.3 版本中新增了泛型参数默认值特性，其用法和Javascript中的默认参数一致</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> UserInfo&lt;T = 'dance'&gt; &#123;</span><br><span class="line">	hobby: T</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getUserInfo</span>&lt;<span class="title">T</span> = '<span class="title">dance</span>'&gt;(<span class="params">user: UserInfo&lt;T&gt;</span>): <span class="title">UserInfo</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> user;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Person&lt;T = <span class="string">'dance'</span>&gt; &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> zhangsan = &#123;&#125; <span class="keyword">as</span> UserInfo;</span><br><span class="line"><span class="keyword">const</span> zhangsan1 = getUserInfo(&#123;&#125; <span class="keyword">as</span> UserInfo);</span><br><span class="line"><span class="keyword">const</span> zhangsan2 = <span class="keyword">new</span> Person();</span><br></pre></td></tr></table></figure>
+<p>通过上面的定义，我们能够看到，尽管我们在使用的时候没有去定义具体的类型， 但是当鼠标滑上去的时候， typescript还是帮我们推导出了默认的 <code>dance</code> 类型。</p>
+<p><img src="./default.gif" alt=""></p>
+<h2 id="工具类型"><a href="#工具类型" class="headerlink" title="工具类型"></a>工具类型</h2><blockquote>
+<p>工具类型参考链接： <a href="https://juejin.cn/post/6844903981521567752" target="_blank" rel="noopener">https://juejin.cn/post/6844903981521567752</a></p>
+</blockquote>
+<ol>
+<li><h3 id="Partial"><a href="#Partial" class="headerlink" title="Partial"></a>Partial<t></t></h3><p>将构造类型T的所有属性设置为可选。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 内部实现原理</span><br><span class="line">type Partial&lt;T&gt; = &#123;</span><br><span class="line">  [K in keyof T]?: T[K]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 使用案例</span><br><span class="line">interface UserInfo &#123;</span><br><span class="line">  hobby: string</span><br><span class="line">&#125;</span><br><span class="line">type PUserInfo = Partial&lt;UserInfo&gt;</span><br><span class="line"></span><br><span class="line">// PUserInfo 等价于</span><br><span class="line">type PUserInfo = &#123;</span><br><span class="line">  hobby?: string</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><h3 id="Require"><a href="#Require" class="headerlink" title="Require"></a>Require<t></t></h3><p>将类型T所有属性设为require。所有没有带问号<code>?</code>的属性都属于<code>require</code> ， 此工具主要是为了减去可选标识。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 内部实现原理</span><br><span class="line">type Require&lt;T&gt; = &#123;</span><br><span class="line">  [P in keyof T]-?: T[P];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 使用案例</span><br><span class="line">interface UserInfo &#123;</span><br><span class="line">  hobby?: string</span><br><span class="line">&#125;</span><br><span class="line">type RUserInfo = Require&lt;UserInfo&gt;</span><br><span class="line"></span><br><span class="line">// RUserInfo 等价于</span><br><span class="line">type RUserInfo = &#123;</span><br><span class="line">  hobby: string</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><h3 id="Record-lt-K-V-gt"><a href="#Record-lt-K-V-gt" class="headerlink" title="Record&lt;K, V&gt;"></a>Record&lt;K, V&gt;</h3><p>构造一个类型，其属性名为K，值为V</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 内部实现原理</span><br><span class="line">type Record&lt;K extends keyof any, V&gt; = &#123;</span><br><span class="line">  [P in K]: V; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 使用案例</span><br><span class="line">type RUserInfo = Record&lt;&apos;hobby&apos;, string&gt;</span><br><span class="line"></span><br><span class="line">// RUserInfo 等价于</span><br><span class="line">type RUserInfo = &#123;</span><br><span class="line">  hobby: string</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><h3 id="Pick-lt-T-K-gt"><a href="#Pick-lt-T-K-gt" class="headerlink" title="Pick&lt;T, K&gt;"></a>Pick&lt;T, K&gt;</h3><p>从类型T中挑选部分属性K来构造新的类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 内部实现原理</span><br><span class="line">type Pick&lt;T, K extends keyof T&gt; = &#123;</span><br><span class="line">  [P in K]: T[P];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 使用案例</span><br><span class="line">interface UserInfo &#123;</span><br><span class="line">  hobby: string;</span><br><span class="line">  speak: () =&gt; string</span><br><span class="line">&#125;</span><br><span class="line">type PUserInfo = Pick&lt;UserInfo, &apos;hobby&apos;&gt;</span><br><span class="line"></span><br><span class="line">// PUserInfo 等价于</span><br><span class="line">type PUserInfo = &#123;</span><br><span class="line">	hobby: string</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><h3 id="Exclude-lt-T-U-gt"><a href="#Exclude-lt-T-U-gt" class="headerlink" title="Exclude&lt;T, U&gt;"></a>Exclude&lt;T, U&gt;</h3><p>从类型T中，剔除所有能赋值给U的属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 内部实现原理</span><br><span class="line">type Exclude&lt;T, U&gt; = T extends U ? never : T;</span><br><span class="line"></span><br><span class="line">// 使用案例</span><br><span class="line">type Hobby = &apos;dance&apos; | &apos;swim&apos;;</span><br><span class="line">type EHobby = Exclude&lt;&apos;dance&apos; | (() =&gt; void), Hobby&gt;;</span><br><span class="line"></span><br><span class="line">// EHobby 等价于</span><br><span class="line">type EHobby = () =&gt; void</span><br></pre></td></tr></table></figure>
+</li>
+<li><h3 id="Extract-lt-T-U-gt"><a href="#Extract-lt-T-U-gt" class="headerlink" title="Extract&lt;T, U&gt;"></a>Extract&lt;T, U&gt;</h3><p>从类型T中提取所有可以赋值给U的类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 内部实现原理</span><br><span class="line">type Extract&lt;T, U&gt; = T extends U ? T : never;</span><br><span class="line"></span><br><span class="line">// 使用案例</span><br><span class="line">type Hobby = &apos;dance&apos; | &apos;swim&apos;;</span><br><span class="line">type EHobby = Extract&lt;&apos;dance&apos; | (() =&gt; void), Hobby&gt;;</span><br><span class="line"></span><br><span class="line">// EHobby 等价于</span><br><span class="line">type EHobby = &apos;dance&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><h3 id="Omit-lt-T-K-gt"><a href="#Omit-lt-T-K-gt" class="headerlink" title="Omit&lt;T, K&gt;"></a>Omit&lt;T, K&gt;</h3><p>从类型T中剔除所有能赋值给K的属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// 内部实现原理</span><br><span class="line">type Omit&lt;T, K extends keyof T&gt; = Pick&lt;T, Exclude&lt;keyof T, K&gt;&gt;</span><br><span class="line"></span><br><span class="line">// 使用案例</span><br><span class="line">interface UserInfo &#123;</span><br><span class="line">  hobby: string;</span><br><span class="line">  speak: () =&gt; string</span><br><span class="line">&#125;</span><br><span class="line">type OUserInfo = Omit&lt;UserInfo, &apos;speak&apos;&gt;</span><br><span class="line"></span><br><span class="line">// OUserInfo 等价于</span><br><span class="line">type OUserInfo = &#123;</span><br><span class="line">	hobby: string</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><h3 id="NonNullable"><a href="#NonNullable" class="headerlink" title="NonNullable"></a>NonNullable<t></t></h3><p>从T中剔除null和undefined</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 内部实现原理</span><br><span class="line">type NonNullable&lt;T&gt; = T extends undefined | null ? never : T;</span><br><span class="line"></span><br><span class="line">// 使用案例</span><br><span class="line">type Hobby = &apos;dance&apos; | null | undefined;</span><br><span class="line">type NHobby = NonNullable&lt;Hobby&gt;;</span><br><span class="line"></span><br><span class="line">// NHobby 等价于</span><br><span class="line">type NHobby = &apos;dance&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><h3 id="ReturnType"><a href="#ReturnType" class="headerlink" title="ReturnType"></a>ReturnType<t></t></h3><p>由函数类型T的返回值类型构造一个类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 内部实现原理</span><br><span class="line">type ReturnType&lt;T extends (...arg: any) =&gt; any&gt; = T extends (...arg:any) =&gt; infer R ? R : any;</span><br><span class="line"></span><br><span class="line">// 使用案例</span><br><span class="line">type Speak = () =&gt; string</span><br><span class="line">type RSpeak = ReturnType&lt;Speak&gt;;</span><br><span class="line"></span><br><span class="line">// RSpeak 等价于</span><br><span class="line">type RSpeak = string;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> <code>infer R</code> 表示待推断的函数返回值。如果T能够赋值给<code>(...arg:any) =&gt; infer R</code>则结果是<code>R</code>，否则是<code>any</code></p>
+</blockquote>
+</li>
+<li><h3 id="Readonly"><a href="#Readonly" class="headerlink" title="Readonly"></a>Readonly<t></t></h3><p>将T中所有属性设为只读</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// 内部实现原理</span><br><span class="line">type Readonly&lt;T&gt; = &#123;</span><br><span class="line">  readonly [K in keyof T]: T[K];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 使用案例</span><br><span class="line">interface UserInfo &#123;</span><br><span class="line">  hobby: string;</span><br><span class="line">  speak: () =&gt; string</span><br><span class="line">&#125;</span><br><span class="line">type RUserInfo = Readonly&lt;UserInfo&gt;;</span><br><span class="line"></span><br><span class="line">// RUserInfo 等价于</span><br><span class="line">type RUserInfo = &#123;</span><br><span class="line">  readonly hobby: string;</span><br><span class="line">  readonly speak: () =&gt; string</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>泛型在 Typescript 中有着至关重要的份量，甚至有人调侃学会了泛型才算是真正进入 Typescript 开发。在我看来所谓泛型终究还是那句话：<strong>泛型是泛指某种类型，是一种在定义接口、函数或类的时候，不预先指定具体的类型，而在使用的时候再指定具体类型的解决方案</strong>。</p>
+<blockquote>
+<p>BTW, 留下一个小作业</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt; interface UserInfo &#123;</span><br><span class="line">&gt; 	hobby: string;</span><br><span class="line">&gt;   	speak: () =&gt; string</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt; </span><br><span class="line">&gt; type SetPartial&lt;T, K&gt; = ??;</span><br><span class="line">&gt; type SUserInfo = SetPartial&lt;UserInfo, &apos;speak&apos;&gt;;</span><br><span class="line">&gt; </span><br><span class="line">&gt; // SUserInfo 等价于</span><br><span class="line">&gt; type SUserInfo = &#123;</span><br><span class="line">&gt;   	hobby: string;</span><br><span class="line">&gt;   	speak?: () =&gt; string</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>实现 SetPartial&lt;T, K&gt; 将构造类型 T 中的 K 设置为可选。</p>
+</blockquote>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://alisdon.github.com/Typescript/带你走进 typescript 泛型/" title="带你走进 Typescript 泛型" target="_blank" rel="external">https://alisdon.github.com/Typescript/带你走进 typescript 泛型/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/Alisdon" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/blog/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/Alisdon" target="_blank"><span class="text-dark">Alisdon</span><small class="ml-1x">Web Developer</small></a></h3>
+        <div>Focus on coding</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/blog/其他/关于代码质量的一些思考/" title="关于代码质量的一些思考"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,twitter" data-mobile-sites="weibo,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/blog/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/blog/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/Alisdon" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/Alisdon" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+        &copy; 2023 Alisdon
+	<p>
+	  <span id="busuanzi_container_page_pv">总访问量：
+	    <span id="busuanzi_value_page_pv">0</span>
+	  </span>
+	  <span class="post-meta-divider">|</span>
+	  <span id="busuanzi_container_page_uv">总访客量：
+	    <span id="busuanzi_value_page_uv">0</span>
+	  </span>
+	</p>
+        
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="/blog/js/jquery.min.js"><\/script>')
+</script>
+<script src="/blog/js/plugin.min.js"></script>
+<script src="/blog/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/blog/js/insight.js"></script>
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!-- custom analytics part create by xiamo -->
+<script defer src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
+<script defer>
+AV.init({
+  appId: 'gckYbaB5kqh6zHkwDs2TNFnV-gzGzoHsz',
+  appKey: 'vU551WFpBhylUnuiap7jqnQ2'
+});
+
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+		var visitors= $('.leancloud_visitors');
+		query.greaterThanOrEqualTo("time", 0);		
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {				
+					return;
+				}
+				var data = results;
+				visitors.each(function(){
+					var url = $(this).attr('id').trim();					
+					for (var i = 0; i < data.length; i++) {
+						var object = data[i];
+						var content = object.get('time');
+						var _url = object.get('url')
+						if(url == _url){
+							$(this).text(content);
+						}
+					}
+				})
+				
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content = counter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = newcounter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else {
+		showTime(Counter);
+	}
+}); 
+</script>
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: true,
+    appId: 'gckYbaB5kqh6zHkwDs2TNFnV-gzGzoHsz',
+    appKey: 'vU551WFpBhylUnuiap7jqnQ2',
+    placeholder: '说点什么吧',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+
+</body>
+</html>
