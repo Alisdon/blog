@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>关于代码质量的一些思考 | Alisdon</title>
+  <meta name="description" content="最近一直在思考一个问题, 每次做代码 code review 时, 在内心都会有一个纠结点 - 这段阅读起来十分头痛的代码实现了业务并且平稳运行了, 那这块的代码到底算不算是一段合格的代码? 经过一段时间的反复博弈, 我给出了肯定的答案,  任何的程序都是为了准确无误的运行. 从这一点来说, 这是一段合格的代码, 但是那段代码阅读起来又是如此的难以理解更不用说上手调整, 所以这算不上是一段好质量代">
+<meta name="keywords" content="其他">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于代码质量的一些思考">
+<meta property="og:url" content="https://alisdon.github.com/其他/关于代码质量的一些思考/index.html">
+<meta property="og:site_name" content="Alisdon Blog">
+<meta property="og:description" content="最近一直在思考一个问题, 每次做代码 code review 时, 在内心都会有一个纠结点 - 这段阅读起来十分头痛的代码实现了业务并且平稳运行了, 那这块的代码到底算不算是一段合格的代码? 经过一段时间的反复博弈, 我给出了肯定的答案,  任何的程序都是为了准确无误的运行. 从这一点来说, 这是一段合格的代码, 但是那段代码阅读起来又是如此的难以理解更不用说上手调整, 所以这算不上是一段好质量代">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2022-11-10T03:11:04.764Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于代码质量的一些思考">
+<meta name="twitter:description" content="最近一直在思考一个问题, 每次做代码 code review 时, 在内心都会有一个纠结点 - 这段阅读起来十分头痛的代码实现了业务并且平稳运行了, 那这块的代码到底算不算是一段合格的代码? 经过一段时间的反复博弈, 我给出了肯定的答案,  任何的程序都是为了准确无误的运行. 从这一点来说, 这是一段合格的代码, 但是那段代码阅读起来又是如此的难以理解更不用说上手调整, 所以这算不上是一段好质量代">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://alisdon.github.com/其他/关于代码质量的一些思考/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Alisdon Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/blog/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/Alisdon" target="_blank">
+          <img class="img-circle img-rotate" src="/blog/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Alisdon</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> ChengDu, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archive">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/blog/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/blog/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/Alisdon" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/Alisdon" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>感谢光临本博客，博主将持续更新前端知识技术帖</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Typescript/">Typescript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/als-block/">als-block</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/css/">css</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/docker/">docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/mmzsblog/">mmzsblog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/其他/">其他</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/包管理器/">包管理器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/小程序/">小程序</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/服务端/">服务端</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/架构/">架构</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/混合开发/">混合开发</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/blog/tags/Typescript/" style="font-size: 13px;">Typescript</a> <a href="/blog/tags/als-block/" style="font-size: 14px;">als-block</a> <a href="/blog/tags/css/" style="font-size: 13.33px;">css</a> <a href="/blog/tags/docker基础/" style="font-size: 13px;">docker基础</a> <a href="/blog/tags/git/" style="font-size: 13px;">git</a> <a href="/blog/tags/mmzsblog/" style="font-size: 13px;">mmzsblog</a> <a href="/blog/tags/nginx/" style="font-size: 13px;">nginx</a> <a href="/blog/tags/node/" style="font-size: 13px;">node</a> <a href="/blog/tags/pnpm/" style="font-size: 13px;">pnpm</a> <a href="/blog/tags/svn/" style="font-size: 13px;">svn</a> <a href="/blog/tags/uni-app/" style="font-size: 13px;">uni-app</a> <a href="/blog/tags/其他/" style="font-size: 13.67px;">其他</a> <a href="/blog/tags/小程序/" style="font-size: 13.67px;">小程序</a> <a href="/blog/tags/微信小程序/" style="font-size: 13.33px;">微信小程序</a> <a href="/blog/tags/架构/" style="font-size: 13px;">架构</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2023/04/">April 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2022/11/">November 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2021/08/">August 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2021/06/">June 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/07/">July 2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/02/">February 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2019/03/">March 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2018/12/">December 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2018/10/">October 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archive/2018/07/">July 2018</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/架构/一次n*n架构的设计/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/架构/">架构</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/架构/一次n*n架构的设计/" class="title">一次n*n架构的设计</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2023-04-23T16:00:00.000Z" itemprop="datePublished">2023-04-24</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/Typescript/带你走进 typescript 泛型/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/Typescript/">Typescript</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/Typescript/带你走进 typescript 泛型/" class="title">带你走进 Typescript 泛型</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2023-03-01T16:00:00.000Z" itemprop="datePublished">2023-03-02</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/其他/关于代码质量的一些思考/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/其他/">其他</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/其他/关于代码质量的一些思考/" class="title">关于代码质量的一些思考</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-11-02T08:51:01.923Z" itemprop="datePublished">2022-11-02</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/包管理器/pnpm在做什么/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/包管理器/">包管理器</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/包管理器/pnpm在做什么/" class="title">pnpm在做什么</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-08-03T13:07:16.000Z" itemprop="datePublished">2022-08-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/blog/小程序/小程序申请步骤及条件/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/blog/categories/小程序/">小程序</a>
+              </p>
+              <p class="item-title">
+                <a href="/blog/小程序/小程序申请步骤及条件/" class="title">小程序申请步骤及条件</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-08-14T05:55:37.000Z" itemprop="datePublished">2021-08-14</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么我们要写一些质量好的代码"><span class="toc-number">1.</span> <span class="toc-text">为什么我们要写一些质量好的代码?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么样的代码才算是好质量代码"><span class="toc-number">2.</span> <span class="toc-text">什么样的代码才算是好质量代码?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#怎样去写好质量代码"><span class="toc-number">3.</span> <span class="toc-text">怎样去写好质量代码?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#制定统一的编码规范"><span class="toc-number">3.1.</span> <span class="toc-text">制定统一的编码规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用一些实现技巧"><span class="toc-number">3.2.</span> <span class="toc-text">使用一些实现技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#巧用数组"><span class="toc-number">3.2.1.</span> <span class="toc-text">巧用数组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#巧用运算符"><span class="toc-number">3.2.2.</span> <span class="toc-text">巧用运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其他"><span class="toc-number">3.2.3.</span> <span class="toc-text">其他</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#遵循设计原则"><span class="toc-number">3.3.</span> <span class="toc-text">遵循设计原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#合理使用设计模式"><span class="toc-number">3.4.</span> <span class="toc-text">合理使用设计模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-number">4.</span> <span class="toc-text">结语</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-关于代码质量的一些思考" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      关于代码质量的一些思考
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/blog/其他/关于代码质量的一些思考/" class="article-date">
+	  <time datetime="2022-11-02T08:51:01.923Z" itemprop="datePublished">2022-11-02</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/blog/categories/其他/">其他</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/blog/tags/其他/">其他</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/blog/其他/关于代码质量的一些思考/" class="leancloud_visitors"  data-flag-title="关于代码质量的一些思考">0</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/其他/关于代码质量的一些思考/#comments" class="article-comment-link">Comments</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 3.2k(words)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 10(minutes)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>最近一直在思考一个问题, 每次做代码 code review 时, 在内心都会有一个纠结点 - 这段阅读起来十分头痛的代码实现了业务并且平稳运行了, 那这块的代码到底算不算是一段合格的代码? 经过一段时间的反复博弈, 我给出了肯定的答案,  任何的程序都是为了准确无误的运行. 从这一点来说, 这是一段合格的代码, 但是那段代码阅读起来又是如此的难以理解更不用说上手调整, 所以这算不上是一段好质量代码。</p>
+<h2 id="为什么我们要写一些质量好的代码"><a href="#为什么我们要写一些质量好的代码" class="headerlink" title="为什么我们要写一些质量好的代码?"></a>为什么我们要写一些质量好的代码?</h2><blockquote>
+<p>场景: </p>
+<ol>
+<li>接到一个开发任务 </li>
+<li>噼里啪啦开发完成</li>
+<li>一周后这个地方可以优化一下, 那个地方存在bug需要修复</li>
+<li>一个月后这写的什么东西, 看不懂啊</li>
+<li>又一个月后无力维护, 开始甩锅</li>
+</ol>
+</blockquote>
+<p>针对这一个场景, 可能有些夸张, 毕竟拿了老板的钱就需要帮老板排忧解难, 怎么能甩锅呢? 可以拿《世界很大, 我想去看看》的理由和老板‘协商’嘛! </p>
+<p>而这种情况其实我是亲身经历过的, 当然我说的是前面那部分, 到看不懂自己写的代码哪儿截止。但是不难看出, 代码不仅仅只是为了运行起来, 还需要考虑后期的维护。</p>
+<blockquote>
+<p>场景:</p>
+<ol>
+<li>接到一个功能迭代任务</li>
+<li>打开并开始阅读第一个函数代码</li>
+<li>找到了需要改动的代码, 开始输入了第一行代码</li>
+<li>又删除了输入的代码, 并进入了另外一个函数</li>
+<li>又开始输入代码, 输入一半, 又删除了输入代码</li>
+<li>回到了最初改动代码的位置, 将代码做了还原</li>
+<li>打开新的窗口继续查看</li>
+</ol>
+</blockquote>
+<p>我们在修改代码的时候, 首先需要做的就是阅读理解已有代码(废话), 当遇到一段难以理解维护的代码时, 无疑会增加你的阅读时间, 这样你的投入时间越多, 性价比就越低。 而往往在多人合作开发中, 阅读已有代码这是一个不可避免的存在, 所以我们更加需要去写一些高质量的代码让我们的代码变得可读、易读。 </p>
+<h2 id="什么样的代码才算是好质量代码"><a href="#什么样的代码才算是好质量代码" class="headerlink" title="什么样的代码才算是好质量代码?"></a>什么样的代码才算是好质量代码?</h2><p>通过上面的两个场景, 我们已经对高质量代码的重要性有了一个共同的认识, 那么什么样的代码才算是高质量代码呢? </p>
+<p>在软件质量评价标准中对影响软件质量的定义提到了以下特性</p>
+<blockquote>
+<ul>
+<li><p>可理解性(‘我能理解它吗?’)</p>
+</li>
+<li><p>可维护性(‘我能修复它吗?’)</p>
+</li>
+<li><p>灵活性(‘我能改变它吗?’)</p>
+</li>
+<li><p>可测试性(‘我能测试它吗?’)</p>
+</li>
+<li><p>可移植性(‘我能在另外一台机器上运行它吗?’)</p>
+</li>
+<li><p>可重用性(‘我能再用它的某些部分吗?’)</p>
+</li>
+<li><p>互运行性(‘我能把它和另外一个系统结合吗?’)</p>
+</li>
+<li><p>正确性(‘它按照我的需求工作吗?’)</p>
+</li>
+<li><p>健壮性(‘对意外环境它能适当适应吗?’)</p>
+</li>
+<li><p>效率(‘完成预定功能时它需要的计算机资源多吗?’)</p>
+</li>
+<li><p>完整性(‘它是安全的吗?’)</p>
+</li>
+<li><p>可用性(‘我能使用它吗?’)</p>
+</li>
+<li><p>风险性(‘能按预定计划完成它吗?’)</p>
+</li>
+</ul>
+</blockquote>
+<p>同时在《代码整洁之道》中关于什么是整洁代码一段中, 作者询问了一些非常知名且经验丰富的程序员</p>
+<blockquote>
+<ul>
+<li><p><strong>C++ 语言发明者 - Bjarne Stroustrup</strong></p>
+<p>我喜欢优雅和高效的代码。代码逻辑应该直接了当，叫缺陷难以隐藏；尽量减少依赖关系，使之便于维护；依据某种分层战略完善错误处理代码。性能调制最优，省的引诱别人做没规矩的优化，搞出一堆混乱来。整洁的代码只做好一件事。</p>
+</li>
+<li><p><strong>《面向对象设计与分析》作者 -  Grady Booch</strong></p>
+<p>简洁的代码简单直接。简洁的代码如同优美的散文。简洁的代码从不隐藏设计者的意图，充满了干净利落的抽象和直接了当的控制语句。</p>
+</li>
+<li><p><strong>OTI公司创始人、Eclipse 战略教父 - Dave Thomas</strong></p>
+<p>整洁的代码应可由作者之外的开发者阅读和增补。它应有单元测试和验收测试。它使用有意义的命名。它只提供一种而非多种做一件事的途径。它只有尽量少的依赖关系，而且要明确地定义和提供清晰、尽量少的API。代码应通过其字面表达含义，因为不同的语言导致并非所有必须信息均可通过代码自身清晰表达。</p>
+</li>
+<li><p><strong>《修改代码的艺术》作者 - Michael Feathers</strong></p>
+<p>我可以列出我留意到的简洁代码的所有优点，但其中有一条是根本性的。简洁的代码总是看起来像是某位特别在意它的人写的。几乎没有改进的余地，代码作者几乎什么都想到了，如果你企图改进他，总会回到原点，赞叹某人留给你的代码–全心投入的某人留给你的代码。</p>
+</li>
+<li><p><strong>《极限编程实施》、《C#极限编程探险》作者 - Ron Jeffries</strong></p>
+<p>简单代码, 依其重要顺序:</p>
+<ul>
+<li>能通过所有测试</li>
+<li>没有重复代码</li>
+<li>体现系统中的全部设计理念</li>
+<li>包括尽量少的实体, 比如类、方法、函数等</li>
+</ul>
+<p>减少重复代码, 提高表达力, 提早构建简单抽象。</p>
+</li>
+<li><p><strong>Wiki 发明者 - Ward Cunningham</strong></p>
+<p>如果每个例程都让你感到深合已意，那就是整洁代码。如果代码让编程语言看起来像是专为解决那个问题而存在，就可以称之为漂亮的代码。</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="怎样去写好质量代码"><a href="#怎样去写好质量代码" class="headerlink" title="怎样去写好质量代码?"></a>怎样去写好质量代码?</h2><blockquote>
+<p>此篇主要是提出一些相关的思考, 后续将针对以下部分做详细总结。</p>
+</blockquote>
+<h3 id="制定统一的编码规范"><a href="#制定统一的编码规范" class="headerlink" title="制定统一的编码规范"></a>制定统一的编码规范</h3><p>众所周知, 一个团队中的开发水平很能保持高度统一,  所以这个是我们需要借助一些工具来制定项目的编码规范。目前(2022年)是用较为广泛的为 <code>eslint</code> + <code>prettier</code> 组合, 针对编码规范, 我觉得应该从这些方面出发</p>
+<ul>
+<li><strong>统一技术栈</strong>: 项目中切忌出现不同的技术栈风格(如有人使用<code>less</code>, 也有人使用<code>sass</code>)。</li>
+<li><strong>统一代码风格</strong>: 如统一使用<code>空格2格</code>还是<code>tab 4格</code>需要保持一致, 否则切换页面后会产生不是同一个项目的错觉。</li>
+<li><strong>语义化命名</strong>: 较好的命名可以让阅读者有信息继续阅读下去, 这不是夸张说法, 试想看到一个名为 <code>q</code>和<code>queryUserInfo</code>的函数, 谁更能让你愿意阅读下去呢?</li>
+<li><strong>写好注释</strong>: 这对阅读代码具有重要的参考意义。但这里所说的注释应<strong>避免无意义注释</strong>、<strong>魔法注释</strong>。</li>
+</ul>
+<h3 id="使用一些实现技巧"><a href="#使用一些实现技巧" class="headerlink" title="使用一些实现技巧"></a>使用一些实现技巧</h3><blockquote>
+<p>各语言的使用技巧各不相同, 唯有不断积累总结才有效果, 下方以 javascript 为例</p>
+</blockquote>
+<ul>
+<li><h4 id="巧用数组"><a href="#巧用数组" class="headerlink" title="巧用数组"></a>巧用数组</h4><ol>
+<li><code>some</code>、<code>every</code>、<code>include</code></li>
+<li><code>find</code>、<code>findIndex</code>、<code>indexOf</code></li>
+<li><code>reduce</code></li>
+</ol>
+</li>
+<li><h4 id="巧用运算符"><a href="#巧用运算符" class="headerlink" title="巧用运算符"></a>巧用运算符</h4><ol>
+<li><code>+</code>、<code>-</code>、<code>!</code>、<code>~</code></li>
+<li><code>&amp;</code>、<code>&amp;&amp;</code>、<code>|</code>、<code>||</code></li>
+<li><code>&gt;&gt;</code>、<code>&lt;&lt;</code></li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><ol>
+<li><code>Object.assign</code>、<code>Object.keys</code>、<code>Object.values</code>、<code>Object.entries</code></li>
+<li><code>performance.now</code></li>
+<li><code>URLSearchParams</code></li>
+<li>展开操作符</li>
+</ol>
+</li>
+</ul>
+<h3 id="遵循设计原则"><a href="#遵循设计原则" class="headerlink" title="遵循设计原则"></a>遵循设计原则</h3><ul>
+<li><strong>单一职责</strong>: 程序功能要单一明确</li>
+<li><strong>开闭原则</strong>: 尽量减少原有代码的修改</li>
+<li><strong>里式替换原则</strong>: 子类能够覆盖父类</li>
+<li><strong>接口隔离原则</strong>: 保持接口的单一独立(JS中较少)</li>
+<li><strong>依赖倒置原则</strong>: 不依赖具体实现</li>
+<li><strong>KISS原则</strong>: 尽量保持代码简单</li>
+<li><strong>YAGNI原则</strong>: 避免过度设计, 但需要考虑扩展性</li>
+<li><strong>DRY原则</strong>: 避免重复性代码</li>
+<li><strong>LOD原则</strong>: 最小知识原则</li>
+</ul>
+<h3 id="合理使用设计模式"><a href="#合理使用设计模式" class="headerlink" title="合理使用设计模式"></a>合理使用设计模式</h3><blockquote>
+<p>参考链接: <a href="https://refactoringguru.cn/design-patterns/catalog" target="_blank" rel="noopener">https://refactoringguru.cn/design-patterns/catalog</a> </p>
+<p>TIPS: 需自寻🍇,  另链接文章中出现的政治言论与本人无关, 一切以学习为主</p>
+</blockquote>
+<ul>
+<li><strong>工厂方法</strong>: 父类中提供一个创建对象的方法， 允许子类决定实例化对象的类型</li>
+<li><strong>抽象工厂</strong>: 创建一系列相关的对象， 而无需指定其具体类</li>
+<li><strong>生成器模式</strong>: 该模式允许你使用相同的创建代码生成不同类型和形式的对象。</li>
+<li><strong>原型模式</strong>: 能够复制已有对象， 而又无需使代码依赖它们所属的类。</li>
+<li><strong>单例模式</strong>: 能够保证一个类只有一个实例， 并提供一个访问该实例的全局节点。</li>
+<li><strong>适配器模式</strong>: 能使接口不兼容的对象能够相互合作。</li>
+<li><strong>桥接模式</strong>: 可将一个大类或一系列紧密相关的类拆分为抽象和实现两个独立的层次结构， 从而能在开发时分别使用。</li>
+<li><strong>组合模式</strong>: 可使用它将对象组合成树状结构， 并且能像使用独立对象一样使用它们。</li>
+<li><strong>装饰模式</strong>: 允许你通过将对象放入包含行为的特殊封装对象中来为原对象绑定新的行为。</li>
+<li><strong>外观模式</strong>: 能为程序库、 框架或其他复杂类提供一个简单的接口。</li>
+<li><strong>享元模式</strong>: 通过共享多个对象所共有的相同状态， 让你能在有限的内存容量中载入更多对象。</li>
+<li><strong>代理模式</strong>: 能够提供对象的替代品或其占位符。 代理控制着对于原对象的访问， 并允许在将请求提交给对象前后进行一些处理。</li>
+<li><strong>责任链模式</strong>: 允许你将请求沿着处理者链进行发送。 收到请求后， 每个处理者均可对请求进行处理， 或将其传递给链上的下个处理者。</li>
+<li><strong>命令模式</strong>: 可将请求转换为一个包含与请求相关的所有信息的独立对象。 该转换让你能根据不同的请求将方法参数化、 延迟请求执行或将其放入队列中， 且能实现可撤销操作。</li>
+<li><strong>迭代器模式</strong>: 能在不暴露集合底层表现形式 （列表、 栈和树等） 的情况下遍历集合中所有的元素。</li>
+<li><strong>中介模式</strong>: 能让你减少对象之间混乱无序的依赖关系。 该模式会限制对象之间的直接交互， 迫使它们通过一个中介者对象进行合作。</li>
+<li><strong>备忘录模式</strong>: 允许在不暴露对象实现细节的情况下保存和恢复对象之前的状态。</li>
+<li><strong>观察者模式</strong>: 允许定义一种订阅机制， 可在对象事件发生时通知多个 “观察” 该对象的其他对象。</li>
+<li><strong>状态模式</strong>: 能在一个对象的内部状态变化时改变其行为， 使其看上去就像改变了自身所属的类一样。</li>
+<li><strong>策略模式</strong>: 能定义一系列算法， 并将每种算法分别放入独立的类中， 以使算法的对象能够相互替换。</li>
+<li><strong>模版模式</strong>: 在超类中定义了一个算法的框架， 允许子类在不修改结构的情况下重写算法的特定步骤。</li>
+<li><strong>访问者模式</strong>: 能将算法与其所作用的对象隔离开来。</li>
+</ul>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>我相信作为程序猿, 追求好的代码质量是我们一生的目标和使命。在我看来, 我们需要需要做到以下几点: </p>
+<ol>
+<li><strong>夯实基础。</strong> 一个老生常谈但又不得不坚持做的一件事, 万丈高楼平地起, 再高的楼房也是从打基础开始的。只有掌握好了基础知识, 无论是阅读代码还是自己编写时才能得心应手, 信手拈来。无论新出的框架如何变化, 其底层实现也就那样。</li>
+<li><strong>具有强迫症精神</strong>。要勇于挑战自己,  严格要求自己, 要敢于重构已有代码, 好的代码都是一行一行深思熟虑的结果。</li>
+<li><strong>积极拥抱开源。</strong>一定程度上, 开源项目已经积累了众多优秀大佬的实现思想, 特别是知名项目, 经过不断的重构迭代, 提炼出来的思想都是我们平常接触不到的。</li>
+</ol>
+<p>最后用一句勉励自己的话来结束这篇文章: <strong>代码是用来阅读的, 只是顺便实现了功能</strong></p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://alisdon.github.com/其他/关于代码质量的一些思考/" title="关于代码质量的一些思考" target="_blank" rel="external">https://alisdon.github.com/其他/关于代码质量的一些思考/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/Alisdon" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/blog/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/Alisdon" target="_blank"><span class="text-dark">Alisdon</span><small class="ml-1x">Web Developer</small></a></h3>
+        <div>Focus on coding</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/blog/Typescript/带你走进 typescript 泛型/" title="带你走进 Typescript 泛型"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/blog/包管理器/pnpm在做什么/" title="pnpm在做什么"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,twitter" data-mobile-sites="weibo,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/blog/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/blog/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/Alisdon" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/Alisdon" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+        &copy; 2023 Alisdon
+	<p>
+	  <span id="busuanzi_container_page_pv">总访问量：
+	    <span id="busuanzi_value_page_pv">0</span>
+	  </span>
+	  <span class="post-meta-divider">|</span>
+	  <span id="busuanzi_container_page_uv">总访客量：
+	    <span id="busuanzi_value_page_uv">0</span>
+	  </span>
+	</p>
+        
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="/blog/js/jquery.min.js"><\/script>')
+</script>
+<script src="/blog/js/plugin.min.js"></script>
+<script src="/blog/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/blog/js/insight.js"></script>
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!-- custom analytics part create by xiamo -->
+<script defer src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
+<script defer>
+AV.init({
+  appId: 'gckYbaB5kqh6zHkwDs2TNFnV-gzGzoHsz',
+  appKey: 'vU551WFpBhylUnuiap7jqnQ2'
+});
+
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+		var visitors= $('.leancloud_visitors');
+		query.greaterThanOrEqualTo("time", 0);		
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {				
+					return;
+				}
+				var data = results;
+				visitors.each(function(){
+					var url = $(this).attr('id').trim();					
+					for (var i = 0; i < data.length; i++) {
+						var object = data[i];
+						var content = object.get('time');
+						var _url = object.get('url')
+						if(url == _url){
+							$(this).text(content);
+						}
+					}
+				})
+				
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content = counter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = newcounter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else {
+		showTime(Counter);
+	}
+}); 
+</script>
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: true,
+    appId: 'gckYbaB5kqh6zHkwDs2TNFnV-gzGzoHsz',
+    appKey: 'vU551WFpBhylUnuiap7jqnQ2',
+    placeholder: '说点什么吧',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+
+</body>
+</html>
