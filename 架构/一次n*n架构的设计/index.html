@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://alisdon.github.com/架构/一次n*n架构的设计/step2.png">
 <meta property="og:image" content="https://alisdon.github.com/架构/一次n*n架构的设计/common-sdk-merge.png">
 <meta property="og:image" content="https://alisdon.github.com/架构/一次n*n架构的设计/step4.png">
-<meta property="og:updated_time" content="2023-04-24T13:50:08.017Z">
+<meta property="og:updated_time" content="2023-04-27T12:37:18.748Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一次n*n架构的设计">
 <meta name="twitter:description" content="背景进入公司之初遇见了一个项目， 需求是这样：存在多款不同的app应用， 但是每款应用都具有相同或较小差异的功能，每款应用是通过后台管理端进行配置皮肤样式&amp;amp;内容进行不同风格的展示，所以最后是通过本地代码+远程皮肤&amp;amp;内容文件共同组合成一款全新的应用。 初代项目伊始，也就是我刚刚接触到项目的时候大家考虑到的是通过不同的文件夹来区分不同的应用，各自独立，各自维护，这种也是最行之有效所能形">
@@ -377,7 +377,7 @@
   <div class="slimContent">
     <nav id="toc" class="article-toc">
       <h3 class="toc-title">Catalogue</h3>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初代"><span class="toc-number">2.</span> <span class="toc-text">初代</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#迭代"><span class="toc-number">3.</span> <span class="toc-text">迭代</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#破冰"><span class="toc-number">4.</span> <span class="toc-text">破冰</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最后"><span class="toc-number">5.</span> <span class="toc-text">最后</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初代"><span class="toc-number">2.</span> <span class="toc-text">初代</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#迭代"><span class="toc-number">3.</span> <span class="toc-text">迭代</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#破局"><span class="toc-number">4.</span> <span class="toc-text">破局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最后"><span class="toc-number">5.</span> <span class="toc-text">最后</span></a></li></ol>
     </nav>
   </div>
 </aside>
@@ -477,7 +477,7 @@
 <li>待选择的基准版本有且只有一个，不利于多个相同逻辑产业线的扩展</li>
 <li>此次应用为SDK项目(一个混合应用)，仍然需要开发对应的H5应用（当不能打开SDK项目时打开H5页面兜底）</li>
 </ol>
-<h3 id="破冰"><a href="#破冰" class="headerlink" title="破冰"></a>破冰</h3><p>在费了九牛二虎之力，经历了九九八十二难之后终于完成了这次灵活性较高， 能够支撑一套代码生成两端应用，支持多个基准版本选择的系统架构。在此项目架构中，由于SDK项目中很多语法是支持H5应用的，并且项目通过webpack编译打包，所以这里使用了webpack-loader进行H5应用的转换编译，达到一套代码两端应用的目的。最后架构转换为图形即为：</p>
+<h3 id="破局"><a href="#破局" class="headerlink" title="破局"></a>破局</h3><p>在费了九牛二虎之力，经历了九九八十二难之后终于完成了这次灵活性较高， 能够支撑一套代码生成两端应用，支持多个基准版本选择的系统架构。在此项目架构中，由于SDK项目中很多语法是支持H5应用的，并且项目通过webpack编译打包，所以这里使用了webpack-loader进行H5应用的转换编译，达到一套代码两端应用的目的。最后架构转换为图形即为：</p>
 <p><img src="./step4.png" alt=""></p>
 <h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>首先感谢组织存在这么一次需求，给了我这次架构设计、搭建、开发的机会，在这个过程中也对AST、webpack等相关知识进行了运用和巩固，相信随着此架构的落地，开发效率将得到较大的提升。</p>
 <p>当然目前架构仍然存在很多方面的优化，就此先做一下几点规划：</p>
